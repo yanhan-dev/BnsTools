@@ -16,7 +16,7 @@ namespace BnsTools.ViewModels
 
         #region Dependency Property
 
-        private string _title = "Prism Application";
+        private string _title = "BnsTools BETA 0.1";
         public string Title
         {
             get { return _title; }

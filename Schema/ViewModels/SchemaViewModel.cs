@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml.Linq;
+using Schema.POJO.VO;
 
 namespace Schema.ViewModels
 {
@@ -37,8 +40,7 @@ namespace Schema.ViewModels
         #region Command
 
         private DelegateCommand _selectServerDirCommand;
-        public DelegateCommand SelectServerDirCommand =>
-            _selectServerDirCommand ?? (_selectServerDirCommand = new DelegateCommand(ExecuteSelectServerDirCommand));
+        public DelegateCommand SelectServerDirCommand => _selectServerDirCommand ??= new DelegateCommand(ExecuteSelectServerDirCommand);
 
         void ExecuteSelectServerDirCommand()
         {
@@ -53,8 +55,7 @@ namespace Schema.ViewModels
         }
 
         private DelegateCommand _selectOutSchemaPathCommand;
-        public DelegateCommand SelectOutSchemaPathCommand =>
-            _selectOutSchemaPathCommand ?? (_selectOutSchemaPathCommand = new DelegateCommand(ExecuteSelectOutSchemaPathCommand));
+        public DelegateCommand SelectOutSchemaPathCommand => _selectOutSchemaPathCommand ??= new DelegateCommand(ExecuteSelectOutSchemaPathCommand);
 
         void ExecuteSelectOutSchemaPathCommand()
         {
@@ -66,6 +67,41 @@ namespace Schema.ViewModels
             {
                 OutSchemaPath = dialog.SelectedPath;
             }
+        }
+
+        private DelegateCommand _exportSchemaCommand;
+        public DelegateCommand ExportSchemaCommand => _exportSchemaCommand ??= new DelegateCommand(ExecuteExportSchemaCommand);
+
+        void ExecuteExportSchemaCommand()
+        {
+            /**
+             * 1.遍历读取所有xml
+             * 2.每种不同的xml新建结构
+             * 3.添加所有字段
+             */
+
+            List<SchemaVO> schemaList = new();
+
+            foreach (var xmlFile in Directory.EnumerateFiles(ServerDirPath, "*.xml", SearchOption.AllDirectories))
+            {
+                var xml = XDocument.Load(xmlFile);
+                string type = xml.Root.Attribute("type").Value;
+                SchemaVO schemaVO = schemaList.FirstOrDefault(t => type.Equals(t.TableName));
+                if (schemaVO == null)
+                {
+                    schemaVO = new SchemaVO 
+                    { 
+                        TableName = type,
+                    };
+                    schemaList.Add(schemaVO);
+                }
+                foreach (var node in xml.Root.Nodes())
+                {
+
+                } 
+                schemaVO.SchemaDictionary.TryAdd("", "");
+            }
+
         }
 
         #endregion
