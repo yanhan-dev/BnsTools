@@ -13,6 +13,6 @@ namespace Schema.POJO.VO
         /// <summary>
         /// FieldName, Type
         /// </summary>
-        public SortedDictionary<string, string> SchemaDictionary { get; set; }
+        public SortedDictionary<string, string> SchemaDictionary { get; set; } = new();
     }
 }

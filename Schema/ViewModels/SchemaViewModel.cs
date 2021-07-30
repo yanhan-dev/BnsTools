@@ -9,6 +9,11 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
 using Schema.POJO.VO;
+using System.Xml;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
+using Common;
+using System.Threading.Tasks;
 
 namespace Schema.ViewModels
 {
@@ -48,9 +53,14 @@ namespace Schema.ViewModels
             dialog.Description = "选择服务端目录";
             //dialog.SelectedPath = "D:/";
             //dialog.RootFolder = Environment.SpecialFolder.Programs;
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() != DialogResult.OK)
             {
-                ServerDirPath = dialog.SelectedPath;
+                return;
+            }
+            ServerDirPath = dialog.SelectedPath;
+            if (string.IsNullOrWhiteSpace(OutSchemaPath))
+            {
+                OutSchemaPath = Path.Combine(ServerDirPath, "Schema");
             }
         }
 
@@ -70,9 +80,9 @@ namespace Schema.ViewModels
         }
 
         private DelegateCommand _exportSchemaCommand;
-        public DelegateCommand ExportSchemaCommand => _exportSchemaCommand ??= new DelegateCommand(ExecuteExportSchemaCommand);
+        public DelegateCommand ExportSchemaCommand => _exportSchemaCommand ??= new DelegateCommand(async () => await ExecuteExportSchemaCommand());
 
-        void ExecuteExportSchemaCommand()
+        async Task ExecuteExportSchemaCommand()
         {
             /**
              * 1.遍历读取所有xml
@@ -89,18 +99,27 @@ namespace Schema.ViewModels
                 SchemaVO schemaVO = schemaList.FirstOrDefault(t => type.Equals(t.TableName));
                 if (schemaVO == null)
                 {
-                    schemaVO = new SchemaVO 
-                    { 
+                    schemaVO = new SchemaVO
+                    {
                         TableName = type,
                     };
                     schemaList.Add(schemaVO);
                 }
-                foreach (var node in xml.Root.Nodes())
+                foreach (var element in xml.Root.Elements())
                 {
-
-                } 
-                schemaVO.SchemaDictionary.TryAdd("", "");
+                    if (element.NodeType == XmlNodeType.Comment)
+                    {
+                        continue;
+                    }
+                    foreach (var attribute in element.Attributes())
+                    {
+                        schemaVO.SchemaDictionary.TryAdd(attribute.Name.LocalName, attribute.Value);
+                    }
+                }
             }
+
+            await File.WriteAllTextAsync(Path.Combine(OutSchemaPath, "Schema.json"),
+                JsonConvert.SerializeObject(schemaList));
 
         }
 
