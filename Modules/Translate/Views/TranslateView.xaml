@@ -20,7 +20,7 @@
             <Button Command="{Binding OpenCommand}" Margin="10,0,0,0" Content="打开"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Margin="0,10,0,0" Orientation="Horizontal">
-            <Button Margin="10,0,0,0" Command="{Binding TranslateCommand}">导出</Button>
+            <Button Margin="10,0,0,0" Command="{Binding TranslateCommand}">翻译</Button>
         </StackPanel>
     </Grid>
 </UserControl>
