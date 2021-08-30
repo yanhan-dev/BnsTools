@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace Common
 {
-    public static class Class1
+    public static class XmlCommon
     {
         public static string SerializeXml<T>(this T value)
         {

@@ -23,6 +23,7 @@
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Schema\Schema.csproj" />
+    <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
   </ItemGroup>
 </Project>

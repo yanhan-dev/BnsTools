@@ -10,6 +10,6 @@
     <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\..\Common\Common\Common.csproj" />
   </ItemGroup>
 </Project>
