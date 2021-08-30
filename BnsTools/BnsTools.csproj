@@ -25,5 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj" />
     <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
+    <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
   </ItemGroup>
 </Project>

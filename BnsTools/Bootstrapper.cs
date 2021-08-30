@@ -8,6 +8,8 @@ using Schema;
 
 using System.Windows;
 
+using Translate;
+
 namespace BnsTools
 {
     public class Bootstrapper : PrismBootstrapper
@@ -25,6 +27,7 @@ namespace BnsTools
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<SchemaModule>();
+            moduleCatalog.AddModule<TranslateModule>();
 
         }
     }

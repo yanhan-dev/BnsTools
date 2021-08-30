@@ -29,8 +29,7 @@ namespace BnsTools.ViewModels
         #region Command
 
         private DelegateCommand<string> _navigateCommand;
-        public DelegateCommand<string> NavigateCommand =>
-            _navigateCommand ?? (_navigateCommand = new DelegateCommand<string>(Navigate));
+        public DelegateCommand<string> NavigateCommand => _navigateCommand ??= new DelegateCommand<string>(Navigate);
 
         private void Navigate(string navigatePath)
         {
