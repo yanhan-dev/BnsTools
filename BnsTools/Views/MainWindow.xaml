@@ -20,6 +20,8 @@
             </Grid.ColumnDefinitions>
             <StackPanel Height="29">
                 <Menu HorizontalAlignment="Left">
+                    <MenuItem Header="首页">
+                    </MenuItem>
                     <MenuItem Header="工具">
                         <MenuItem Header="提取服务端数据结构" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
                         <MenuItem Header="繁体转简体" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
