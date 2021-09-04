@@ -13,21 +13,26 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="翻译文件" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
-            <TextBox Text="TextBox" Margin="10,0,0,0" Width="600" />
-            <Button Width="50" Margin="10,0,0,0">打开</Button>
+            <TextBox Text="{Binding TranslateFilePath}" Margin="10,0,0,0" Width="600" />
+            <Button Command="{Binding OpenTranslateCommand}" Width="50" Margin="10,0,0,0">打开</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="后端目录" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
-            <TextBox Text="TextBox" Margin="10,0,0,0" Width="600" />
-            <Button Width="50" Margin="10,0,0,0">打开</Button>
+            <TextBox Text="{Binding ServerPath}" Margin="10,0,0,0" Width="600" />
+            <Button Command="{Binding OpenServerPathCommand}" Width="50" Margin="10,0,0,0">打开</Button>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="导出目录" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
-            <TextBox Text="TextBox" Margin="10,0,0,0" Width="600" />
-            <Button Width="50" Margin="10,0,0,0">选择</Button>
+            <TextBox Text="{Binding ExportPath}" Margin="10,0,0,0" Width="600" />
+            <Button Command="{Binding OpenExportPathCommand}" Width="50" Margin="10,0,0,0">打开</Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Grid.Row="3" Orientation="Horizontal" Margin="10,5,0,0">
+            <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Width="590"/>
+            <Button Command="{Binding ExportCommand}" Width="50" Margin="10,0,60,0">导出</Button>
         </StackPanel>
     </Grid>
 </UserControl>

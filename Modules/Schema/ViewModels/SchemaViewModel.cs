@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Xml.Serialization;
 using Common;
 using System.Threading.Tasks;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Schema.ViewModels
 {
@@ -69,14 +70,17 @@ namespace Schema.ViewModels
 
         void ExecuteSelectOutSchemaPathCommand()
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "选择输出目录";
-            //dialog.SelectedPath = "D:/";
-            //dialog.RootFolder = Environment.SpecialFolder.Programs;
-            if (dialog.ShowDialog() == DialogResult.OK)
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
             {
-                OutSchemaPath = dialog.SelectedPath;
+                IsFolderPicker = true,
+                Title = "选择输出目录"
+            };
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+            {
+                return;
             }
+
+            OutSchemaPath = dialog.FileName;
         }
 
         private DelegateCommand _exportSchemaCommand;

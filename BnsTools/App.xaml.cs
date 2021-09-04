@@ -10,6 +10,7 @@ namespace BnsTools
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             var boot = new Bootstrapper();
             boot.Run();
         }
