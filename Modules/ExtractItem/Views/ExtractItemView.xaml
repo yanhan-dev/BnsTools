@@ -14,6 +14,10 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="翻译文件" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
@@ -30,9 +34,22 @@
             <TextBox Text="{Binding ExportPath}" Margin="10,0,0,0" Width="600" />
             <Button Command="{Binding OpenExportPathCommand}" Width="50" Margin="10,0,0,0">打开</Button>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Right" Grid.Row="3" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Width="590"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10,5,0,0">
+            <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Margin="80,0,0,0" Width="590"/>
             <Button Command="{Binding ExportCommand}" Width="50" Margin="10,0,60,0">导出</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10,5,0,0">
+            <TextBlock Text="物品文件" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBox Text="{Binding ItemsFilePath}" Margin="10,0,0,0" Width="600" />
+            <Button Command="{Binding OpenItemsCommand}" Width="50" Margin="10,0,0,0">打开</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="10,5,0,0">
+            <TextBlock Text="数据库" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBox Text="{Binding ConnString}" Margin="10,0,0,0" Width="600" />
+        </StackPanel>
+        <StackPanel Grid.Row="7" Orientation="Horizontal" Margin="10,5,0,0">
+            <TextBlock Text="{Binding ImportLog}" VerticalAlignment="Center"  Margin="80,0,0,0" Width="590"/>
+            <Button Command="{Binding ImportCommand}" Width="50" Margin="10,0,60,0">导入</Button>
         </StackPanel>
     </Grid>
 </UserControl>

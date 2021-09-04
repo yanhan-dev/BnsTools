@@ -41,6 +41,13 @@ namespace Schema.ViewModels
             set { SetProperty(ref _outSchemaPath, value); }
         }
 
+        private string _ExportLog = "等待中...";
+        public string ExportLog
+        {
+            get { return _ExportLog; }
+            set { SetProperty(ref _ExportLog, value); }
+        }
+
         #endregion
 
         #region Command

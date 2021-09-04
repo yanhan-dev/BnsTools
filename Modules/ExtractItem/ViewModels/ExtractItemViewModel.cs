@@ -1,4 +1,5 @@
-﻿using ExtractItem.POJO.VO;
+﻿using ExtractItem.DAO.GoodsDb;
+using ExtractItem.POJO.VO;
 
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -27,13 +28,6 @@ namespace ExtractItem.ViewModels
         public ExtractItemViewModel()
         {
         }
-
-        #region Field
-
-        private bool IsEnableExportCommand = true;
-
-        #endregion
-
 
         #region Dependency Property
 
@@ -72,13 +66,35 @@ namespace ExtractItem.ViewModels
             set { SetProperty(ref _IsEnableExport, value); }
         }
 
+
+        private string _ItemsFilePath;
+        public string ItemsFilePath
+        {
+            get { return _ItemsFilePath; }
+            set { SetProperty(ref _ItemsFilePath, value); }
+        }
+
+        private string _ConnString;
+        public string ConnString
+        {
+            get { return _ConnString; }
+            set { SetProperty(ref _ConnString, value); }
+        }
+
+        private string _ImportLog = "等待中...";
+        public string ImportLog
+        {
+            get { return _ImportLog; }
+            set { SetProperty(ref _ImportLog, value); }
+        }
+
         #endregion
 
 
         #region Command
 
         private DelegateCommand _OpenTranslateCommand;
-        public DelegateCommand OpenTranslateCommand => _OpenTranslateCommand ??= new DelegateCommand(ExecuteOpenTranslateCommand);
+        public DelegateCommand OpenTranslateCommand => _OpenTranslateCommand ??= new DelegateCommand(ExecuteOpenTranslateCommand).ObservesCanExecute(() => IsEnableExport);
 
         void ExecuteOpenTranslateCommand()
         {
@@ -92,7 +108,7 @@ namespace ExtractItem.ViewModels
         }
 
         private DelegateCommand _OpenServerPathCommand;
-        public DelegateCommand OpenServerPathCommand => _OpenServerPathCommand ??= new DelegateCommand(ExecuteOpenServerPathCommand);
+        public DelegateCommand OpenServerPathCommand => _OpenServerPathCommand ??= new DelegateCommand(ExecuteOpenServerPathCommand).ObservesCanExecute(() => IsEnableExport);
 
         void ExecuteOpenServerPathCommand()
         {
@@ -110,7 +126,7 @@ namespace ExtractItem.ViewModels
         }
 
         private DelegateCommand _OpenExportPathCommand;
-        public DelegateCommand OpenExportPathCommand => _OpenExportPathCommand ??= new DelegateCommand(ExecuteOpenExportPathCommand);
+        public DelegateCommand OpenExportPathCommand => _OpenExportPathCommand ??= new DelegateCommand(ExecuteOpenExportPathCommand).ObservesCanExecute(() => IsEnableExport);
 
         void ExecuteOpenExportPathCommand()
         {
@@ -157,6 +173,51 @@ namespace ExtractItem.ViewModels
 
             ExportLog = "完成!";
             IsEnableExport = true;
+        }
+
+
+        private DelegateCommand _OpenItemsCommand;
+        public DelegateCommand OpenItemsCommand =>
+            _OpenItemsCommand ?? (_OpenItemsCommand = new DelegateCommand(ExecuteOpenItemsCommand));
+
+        void ExecuteOpenItemsCommand()
+        {
+            OpenFileDialog ofd = new OpenFileDialog() { Filter = "xml 文件(*.xml)|*.xml" };
+            if (ofd.ShowDialog() != true)
+            {
+                return;
+            }
+
+            ItemsFilePath = ofd.FileName;
+        }
+
+        private DelegateCommand _ImportCommand;
+        public DelegateCommand ImportCommand =>
+            _ImportCommand ?? (_ImportCommand = new DelegateCommand(ExecuteImportCommand));
+
+        async void ExecuteImportCommand()
+        {
+            ImportLog = "正在读取Items文件...";
+            TableVO table = await LoadItemsFile(ItemsFilePath);
+
+            ImportLog = "正在导入数据库...";
+            GoodsDbHelper goodsDbHelper = new GoodsDbHelper(ConnString);
+            await goodsDbHelper.ImportItems(table.Items);
+            ImportLog = "完成!";
+        }
+
+        private async Task<TableVO> LoadItemsFile(string itemsFilePath)
+        {
+            return await Task.Run(() =>
+            {
+                FileStream fileStream = File.Open(itemsFilePath, FileMode.Open);
+                using (StreamReader streamReader = new(fileStream, new UTF8Encoding(false)))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(TableVO));
+                    TableVO table = (TableVO)xmlSerializer.Deserialize(streamReader);
+                    return table;
+                }
+            });            
         }
 
         #endregion
