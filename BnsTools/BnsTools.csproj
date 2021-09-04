@@ -24,6 +24,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\Modules\ExtractItem\ExtractItem.csproj" />
+    <ProjectReference Include="..\Modules\Home\Home.csproj" />
     <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
     <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
   </ItemGroup>

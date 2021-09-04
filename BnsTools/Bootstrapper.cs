@@ -1,5 +1,9 @@
 ﻿using BnsTools.Views;
 
+using ExtractItem;
+
+using Home;
+
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -26,8 +30,10 @@ namespace BnsTools
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            moduleCatalog.AddModule<HomeModule>();
             moduleCatalog.AddModule<SchemaModule>();
             moduleCatalog.AddModule<TranslateModule>();
+            moduleCatalog.AddModule<ExtractItemModule>();
 
         }
     }

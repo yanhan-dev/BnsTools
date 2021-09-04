@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Home.Views;
+
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -35,6 +37,15 @@ namespace BnsTools.ViewModels
         {
             if (navigatePath != null)
                 _regionManager.RequestNavigate("ContentRegion", navigatePath);
+        }
+
+        private DelegateCommand _ContentRenderedCommand;
+        public DelegateCommand ContentRenderedCommand =>
+            _ContentRenderedCommand ?? (_ContentRenderedCommand = new DelegateCommand(ExecuteContentRenderedCommand));
+
+        void ExecuteContentRenderedCommand()
+        {
+            NavigateCommand.Execute(nameof(HomeView));
         }
         #endregion
     }

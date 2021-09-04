@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
-        xmlns:prism="http://prismlibrary.com/"
+        xmlns:prism="http://prismlibrary.com/" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d"
         Title="{Binding Title}" 
@@ -12,6 +12,11 @@
         ShowTitle="True"
         Height="450" 
         Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <i:InvokeCommandAction Command="{Binding ContentRenderedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <hc:Window.NonClientAreaContent>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,11 +25,12 @@
             </Grid.ColumnDefinitions>
             <StackPanel Height="29">
                 <Menu HorizontalAlignment="Left">
-                    <MenuItem Header="首页">
+                    <MenuItem Header="首页" Command="{Binding NavigateCommand}" CommandParameter="HomeView">
                     </MenuItem>
                     <MenuItem Header="工具">
                         <MenuItem Header="提取服务端数据结构" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
                         <MenuItem Header="繁体转简体" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
+                        <MenuItem Header="导出物品" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
                     </MenuItem>
                     <MenuItem Header="Header2">
                         <MenuItem Header="Header1"/>
