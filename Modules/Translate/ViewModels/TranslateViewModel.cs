@@ -22,18 +22,18 @@ namespace Translate.ViewModels
         {
         }
 
-        private string _XmlPath;
-        public string XmlPath
+        private string _LanguageFilePath;
+        public string LanguageFilePath
         {
-            get { return _XmlPath; }
-            set { SetProperty(ref _XmlPath, value); }
+            get { return _LanguageFilePath; }
+            set { SetProperty(ref _LanguageFilePath, value); }
         }
 
-        private DelegateCommand _OpenCommand;
-        public DelegateCommand OpenCommand =>
-            _OpenCommand ?? (_OpenCommand = new DelegateCommand(ExecuteOpenCommand));
+        private DelegateCommand _OpenLanguageFileCommand;
+        public DelegateCommand OpenLanguageFileCommand =>
+            _OpenLanguageFileCommand ?? (_OpenLanguageFileCommand = new DelegateCommand(ExecuteOpenLanguageFileCommand));
 
-        void ExecuteOpenCommand()
+        void ExecuteOpenLanguageFileCommand()
         {
             OpenFileDialog ofd = new OpenFileDialog() { Filter = "xml 文件(*.xml)|*.xml" };
             if (ofd.ShowDialog() != true)
@@ -41,7 +41,7 @@ namespace Translate.ViewModels
                 return;
             }
 
-            XmlPath = ofd.FileName;
+            LanguageFilePath = ofd.FileName;
         }
 
         private DelegateCommand _TranslateCommand;
@@ -54,7 +54,7 @@ namespace Translate.ViewModels
 
 
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(XmlPath);
+            xDoc.Load(LanguageFilePath);
             XmlNodeList xNodeList = xDoc.SelectNodes("table/child::node()");
 
             foreach (XmlNode xNode in xNodeList)
@@ -83,7 +83,7 @@ namespace Translate.ViewModels
                 Indent = true
             };
 
-            using (XmlWriter xw = XmlWriter.Create(XmlPath, settings))
+            using (XmlWriter xw = XmlWriter.Create(LanguageFilePath, settings))
             {
                 texts.Save(xw);
             }
