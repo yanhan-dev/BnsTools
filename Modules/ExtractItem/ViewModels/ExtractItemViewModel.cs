@@ -15,6 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -197,13 +198,20 @@ namespace ExtractItem.ViewModels
 
         async void ExecuteImportCommand()
         {
-            ImportLog = "正在读取Items文件...";
-            TableVO table = await LoadItemsFile(ItemsFilePath);
+            try
+            {
+                ImportLog = "正在读取Items文件...";
+                TableVO table = await LoadItemsFile(ItemsFilePath);
 
-            ImportLog = "正在导入数据库...";
-            GoodsDbHelper goodsDbHelper = new GoodsDbHelper(ConnString);
-            await goodsDbHelper.ImportItems(table.Items);
-            ImportLog = "完成!";
+                ImportLog = "正在导入数据库...";
+                GoodsDbHelper goodsDbHelper = new GoodsDbHelper(ConnString);
+                await goodsDbHelper.ImportItems(table.Items);
+                ImportLog = "完成!";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}\r\n{ex.StackTrace}");
+            }
         }
 
         private async Task<TableVO> LoadItemsFile(string itemsFilePath)
@@ -217,7 +225,7 @@ namespace ExtractItem.ViewModels
                     TableVO table = (TableVO)xmlSerializer.Deserialize(streamReader);
                     return table;
                 }
-            });            
+            });
         }
 
         #endregion

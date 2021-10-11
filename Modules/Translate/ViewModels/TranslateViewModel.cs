@@ -22,11 +22,32 @@ namespace Translate.ViewModels
         {
         }
 
+        private string _BinFilePath;
+        public string BinFilePath
+        {
+            get { return _BinFilePath; }
+            set { SetProperty(ref _BinFilePath, value); }
+        }
+
+        private string _TranslateFilePath;
+        public string TranslateFilePath
+        {
+            get { return _TranslateFilePath; }
+            set { SetProperty(ref _TranslateFilePath, value); }
+        }
+
         private string _LanguageFilePath;
         public string LanguageFilePath
         {
             get { return _LanguageFilePath; }
             set { SetProperty(ref _LanguageFilePath, value); }
+        }
+
+        private string _BinNewFilePath;
+        public string BinNewFilePath
+        {
+            get { return _BinNewFilePath; }
+            set { SetProperty(ref _BinNewFilePath, value); }
         }
 
         private DelegateCommand _OpenLanguageFileCommand;
@@ -44,11 +65,29 @@ namespace Translate.ViewModels
             LanguageFilePath = ofd.FileName;
         }
 
-        private DelegateCommand _TranslateCommand;
-        public DelegateCommand TranslateCommand =>
-            _TranslateCommand ?? (_TranslateCommand = new DelegateCommand(ExecuteTranslateCommand));
+        private DelegateCommand _ExportBinCommand;
+        public DelegateCommand ExportBinCommand =>
+            _ExportBinCommand ?? (_ExportBinCommand = new DelegateCommand(ExecuteExportBinCommand));
 
-        void ExecuteTranslateCommand()
+        void ExecuteExportBinCommand()
+        {
+
+        }
+
+        private DelegateCommand _MergeTranslateCommand;
+        public DelegateCommand MergeTranslateCommand =>
+            _MergeTranslateCommand ?? (_MergeTranslateCommand = new DelegateCommand(ExecuteMergeTranslateCommand));
+
+        void ExecuteMergeTranslateCommand()
+        {
+
+        }
+
+        private DelegateCommand _TraditionalToSimplifiedCommand;
+        public DelegateCommand TraditionalToSimplifiedCommand =>
+            _TraditionalToSimplifiedCommand ?? (_TraditionalToSimplifiedCommand = new DelegateCommand(ExecuteTraditionalToSimplifiedCommand));
+
+        void ExecuteTraditionalToSimplifiedCommand()
         {
             XElement texts = new XElement("table");
 
@@ -89,6 +128,54 @@ namespace Translate.ViewModels
             }
 
             MessageBox.Show("完成");
+        }
+
+        private DelegateCommand _OpenBinCommand;
+        public DelegateCommand OpenBinCommand =>
+            _OpenBinCommand ?? (_OpenBinCommand = new DelegateCommand(ExecuteOpenBinCommand));
+
+        void ExecuteOpenBinCommand()
+        {
+            OpenFileDialog ofd = new OpenFileDialog() { Filter = "localfile(64).bin (*.bin)|*.bin" };
+            if (ofd.ShowDialog() != true)
+            {
+                return;
+            }
+
+            BinFilePath = ofd.FileName;
+        }
+
+        private DelegateCommand _OpenTranslateFileCommand;
+        public DelegateCommand OpenTranslateFileCommand =>
+            _OpenTranslateFileCommand ?? (_OpenTranslateFileCommand = new DelegateCommand(ExecuteOpenTranslateFileCommand));
+
+        void ExecuteOpenTranslateFileCommand()
+        {
+            OpenFileDialog ofd = new OpenFileDialog() { Filter = "翻译文件 (*.xml)|*.xml" };
+            if (ofd.ShowDialog() != true)
+            {
+                return;
+            }
+
+            TranslateFilePath = ofd.FileName;
+        }
+
+        private DelegateCommand _OpenBinNewCommand;
+        public DelegateCommand OpenBinNewCommand =>
+            _OpenBinNewCommand ?? (_OpenBinNewCommand = new DelegateCommand(ExecuteOpenBinNewCommand));
+
+        void ExecuteOpenBinNewCommand()
+        {
+
+        }
+
+        private DelegateCommand _BuildBinCommand;
+        public DelegateCommand BuildBinCommand =>
+            _BuildBinCommand ?? (_BuildBinCommand = new DelegateCommand(ExecuteBuildBinCommand));
+
+        void ExecuteBuildBinCommand()
+        {
+
         }
     }
 }

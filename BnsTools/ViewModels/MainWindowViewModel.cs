@@ -4,6 +4,8 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
+using System.Reflection;
+
 namespace BnsTools.ViewModels
 {
     public class MainWindowViewModel : BindableBase
@@ -14,11 +16,12 @@ namespace BnsTools.ViewModels
         public MainWindowViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
+            _title = $"BnsTools BETA {Assembly.GetEntryAssembly().GetName().Version}";
         }
 
         #region Dependency Property
 
-        private string _title = "BnsTools BETA 0.1";
+        private string _title;
         public string Title
         {
             get { return _title; }
