@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExtractItem.Views
 {
@@ -32,6 +32,31 @@ namespace ExtractItem.Views
             if (tb != null)
             {
                 tb.Text = string.Format("{0}", ((string[])text)[0]);
+            }
+        }
+
+        private void TextBox_PreviewDrop_File(object sender, DragEventArgs e)
+        {
+            object text = e.Data.GetData(DataFormats.FileDrop);
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                string path = ((string[])text).First();
+                if (!File.Exists(path))
+                {
+                    return;
+                }
+                tb.Text = path;
+            }
+        }
+
+        private void TextBox_PreviewDrop_Directory(object sender, DragEventArgs e)
+        {
+            object text = e.Data.GetData(DataFormats.FileDrop);
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                tb.Text = Path.GetDirectoryName(((string[])text).First());
             }
         }
 
