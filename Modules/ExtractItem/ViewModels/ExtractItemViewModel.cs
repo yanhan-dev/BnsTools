@@ -4,7 +4,8 @@ using ExtractItem.POJO.VO;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
-using MoreLinq.Extensions;
+//using MoreLinq;
+//using MoreLinq.Extensions;
 
 using Prism.Commands;
 using Prism.Mvvm;
