@@ -301,15 +301,13 @@ namespace ExtractItem.ViewModels
         {
             await Task.Run(() =>
              {
-                 FileStream fileStream = File.Create(Path.Combine(path, "Items.xml"));
+                 using FileStream fileStream = File.Create(Path.Combine(path, "Items.xml"));
                  StreamWriter streamWriter = new StreamWriter(fileStream, new UTF8Encoding(false));
                  XmlSerializer xmlSerializer = new XmlSerializer(typeof(TableVO));
 
                  XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
                  ns.Add("", "");
                  xmlSerializer.Serialize(streamWriter, new TableVO { Items = items }, ns);
-
-                 fileStream.Close();
              });
         }
 

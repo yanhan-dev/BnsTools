@@ -42,7 +42,7 @@ namespace BnsTools.Views
                         WindowStyle = WindowStyle.None,
                         MinWidth = 0,
                         MinHeight = 0,
-                        Title = "Select Accent Color"
+                        Title = "选择强调色"
                     };
 
                     picker.SelectedColorChanged += delegate

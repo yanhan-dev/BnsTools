@@ -1,4 +1,6 @@
-﻿using Home.Views;
+﻿using Config.Views;
+
+using Home.Views;
 
 using Prism.Commands;
 using Prism.Mvvm;
@@ -48,7 +50,7 @@ namespace BnsTools.ViewModels
 
         void ExecuteContentRenderedCommand()
         {
-            NavigateCommand.Execute(nameof(HomeView));
+            NavigateCommand.Execute(nameof(ConfigView));
         }
         #endregion
     }

@@ -6,7 +6,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="800"
-             xmlns:prism="http://prismlibrary.com/" xmlns:viewmodels="clr-namespace:ExtractItem.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ExtractItemViewModel}"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:viewmodels="clr-namespace:ExtractItem.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ExtractItemViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid Margin="0,10,0,0">
         <Grid.RowDefinitions>

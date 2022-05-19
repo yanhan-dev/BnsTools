@@ -13,8 +13,10 @@
         Title="{Binding Title}" 
         WindowStartupLocation="CenterScreen"
         ShowTitle="True"
-        Height="450" 
-        Width="800">
+        Height="768" 
+        Width="1366"
+        MinHeight="768" 
+        MinWidth="1366">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="ContentRendered">
             <i:InvokeCommandAction Command="{Binding ContentRenderedCommand}" />
@@ -34,6 +36,7 @@
                         <MenuItem Header="提取服务端数据结构" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
                         <MenuItem Header="翻译" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
                         <MenuItem Header="导出物品" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
+                        <MenuItem Header="聚灵阁" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>
@@ -41,7 +44,7 @@
             <Popup AllowsTransparency="True" Grid.Column="1" PlacementTarget="{Binding ElementName=ButtonConfig}" HorizontalOffset="-35" Name="PopupConfig" VerticalOffset="6" StaysOpen="False">
                 <Border Background="{DynamicResource SecondaryRegionBrush}" CornerRadius="4" Margin="16" Effect="{StaticResource EffectShadow2}">
                     <StackPanel Button.Click="ButtonSkins_OnClick">
-                        <hc:Divider Width="200" Margin="0,10" Content="Application Theme"/>
+                        <hc:Divider Width="200" Margin="0,10" Content="主题"/>
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                             <Button Tag="{x:Static hc:ApplicationTheme.Light}" Style="{StaticResource ButtonCustom}">
                                 <Border Background="White" Width="32" Height="21" CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"/>
@@ -50,8 +53,7 @@
                                 <Border Background="Black" Width="32" Height="21" CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"/>
                             </Button>
                         </StackPanel>
-
-                        <hc:Divider Width="200" Margin="0,10" Content="Accent Color"/>
+                        <hc:Divider Width="200" Margin="0,10" Content="强调色"/>
                         <StackPanel Margin="0,0,0,10" HorizontalAlignment="Center" Orientation="Horizontal">
                             <Button Tag="{Binding ElementName=primaryBorder, Path=Background}" Style="{StaticResource ButtonCustom}">
                                 <Border Name="primaryBorder" Background="#2196F3" Width="32" Height="21" CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"/>
@@ -66,7 +68,9 @@
                                 <Border Name="successBorder" Background="{DynamicResource SuccessBrush}" Width="32" Height="21" CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}"/>
                             </Button>
                         </StackPanel>
-                        <Button HorizontalAlignment="Stretch" Tag="Picker" Content="More Colors" Margin="10"/>
+                        <Button HorizontalAlignment="Stretch" Tag="Picker" Content="更多颜色" Margin="10"/>
+                        <hc:Divider Width="200" Margin="0,10" Content="配置"/>
+                        <Button Command="{Binding NavigateCommand}" CommandParameter="ConfigView" HorizontalAlignment="Stretch" Content="配置路径" Margin="10"/>
                     </StackPanel>
                 </Border>
             </Popup>
