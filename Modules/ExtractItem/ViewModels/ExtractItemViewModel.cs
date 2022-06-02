@@ -158,10 +158,10 @@ namespace ExtractItem.ViewModels
              * 5.更新数据库
              */
             ExportLog = "正在加载服务端Item...";
-            List<ItemVO> items = await LoadIdAndAlias(ServerPath);
+            List<ItemVO> items = await LoadIdAndAlias(Common.Config.ServerPath);
 
             ExportLog = "正在加载翻译...";
-            Dictionary<string, string> translate = await LoadTranslate(TranslateFilePath);
+            Dictionary<string, string> translate = await LoadTranslate(Common.Config.TranslateFilePath);
 
             ExportLog = "正在翻译物品...";
             foreach (var item in items)

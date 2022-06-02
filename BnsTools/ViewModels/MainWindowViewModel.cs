@@ -7,6 +7,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace BnsTools.ViewModels
 {
@@ -31,7 +32,6 @@ namespace BnsTools.ViewModels
         }
 
         #endregion
-
 
         #region Command
 
