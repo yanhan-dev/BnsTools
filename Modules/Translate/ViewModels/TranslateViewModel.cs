@@ -13,6 +13,8 @@ using System.Xml.XPath;
 using System.Xml.Linq;
 using System.Windows;
 using Translate.POJO.VO;
+using Translate.Lib;
+using System.IO;
 
 namespace Translate.ViewModels
 {
@@ -71,7 +73,7 @@ namespace Translate.ViewModels
 
         void ExecuteExportBinCommand()
         {
-
+            new BDat().ExportTranslate(BinFilePath, BinFilePath + ".xml", BXML_TYPE.BXML_PLAIN, Path.GetFileNameWithoutExtension(BinFilePath).Contains("64"));
         }
 
         private DelegateCommand _MergeTranslateCommand;

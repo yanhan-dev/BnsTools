@@ -77,6 +77,11 @@
         </Grid>
     </hc:Window.NonClientAreaContent>
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion" />
+        <RichTextBox Grid.Row="1" x:Name="LogBox"/>
     </Grid>
 </hc:Window>

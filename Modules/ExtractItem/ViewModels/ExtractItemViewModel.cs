@@ -302,10 +302,10 @@ namespace ExtractItem.ViewModels
             await Task.Run(() =>
              {
                  using FileStream fileStream = File.Create(Path.Combine(path, "Items.xml"));
-                 StreamWriter streamWriter = new StreamWriter(fileStream, new UTF8Encoding(false));
-                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(TableVO));
+                 StreamWriter streamWriter = new(fileStream, new UTF8Encoding(false));
+                 XmlSerializer xmlSerializer = new(typeof(TableVO));
 
-                 XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                 XmlSerializerNamespaces ns = new();
                  ns.Add("", "");
                  xmlSerializer.Serialize(streamWriter, new TableVO { Items = items }, ns);
              });
