@@ -1,5 +1,6 @@
 ﻿using HandyControl.Themes;
 
+using System.Configuration;
 using System.Windows;
 using System.Windows.Media;
 
@@ -7,9 +8,13 @@ namespace BnsTools
 {
     public partial class App : Application
     {
+        public Configuration Configuration { get; set; }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             var boot = new Bootstrapper();
             boot.Run();

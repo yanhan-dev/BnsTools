@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>BnsTools</AssemblyName>
     <RootNamespace>BnsTools</RootNamespace>
@@ -20,7 +20,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HandyControls" Version="3.3.5" />
+    <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.1" />
     <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+    <PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj" />

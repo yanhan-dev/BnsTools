@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtractItem", "Modules\Extr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "test\test.csproj", "{3DBBDBEF-E6E3-4069-895F-99205B5A896D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomStore", "Modules\RandomStore\RandomStore.csproj", "{5ABDB68A-A9A1-40AB-929B-4E61EA311FA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomStore", "Modules\RandomStore\RandomStore.csproj", "{5ABDB68A-A9A1-40AB-929B-4E61EA311FA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Config", "Modules\Config\Config.csproj", "{C4AEE2FB-9D37-487E-965B-1BA048D3BEEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Config", "Modules\Config\Config.csproj", "{C4AEE2FB-9D37-487E-965B-1BA048D3BEEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
