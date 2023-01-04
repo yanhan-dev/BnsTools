@@ -37,6 +37,7 @@
                         <MenuItem Header="翻译" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
                         <MenuItem Header="导出物品" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
                         <MenuItem Header="聚灵阁" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
+                        <MenuItem Header="XML编辑器" Command="{Binding NavigateCommand}" CommandParameter="XmlEditorView"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>

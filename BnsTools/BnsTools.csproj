@@ -32,5 +32,6 @@
     <ProjectReference Include="..\Modules\RandomStore\RandomStore.csproj" />
     <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
     <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
+    <ProjectReference Include="..\Modules\XmlEditor\XmlEditor.csproj" />
   </ItemGroup>
 </Project>

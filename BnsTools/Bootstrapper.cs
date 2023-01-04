@@ -9,6 +9,7 @@ using ExtractItem;
 using Home;
 using Translate;
 using Config;
+using XmlEditor;
 
 namespace BnsTools
 {
@@ -31,6 +32,7 @@ namespace BnsTools
             moduleCatalog.AddModule<TranslateModule>();
             moduleCatalog.AddModule<ExtractItemModule>();
             moduleCatalog.AddModule<RandomStoreModule>();
+            moduleCatalog.AddModule<XmlEditorModule>();
 
         }
     }
