@@ -4,13 +4,96 @@
              xmlns:local="clr-namespace:XmlEditor.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"             
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
+             xmlns:prism="http://prismlibrary.com/" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels"             
+             d:DataContext="{d:DesignInstance Type=viewmodels:XmlEditorViewModel}"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             >
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock Text="{Binding Message}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320" MinWidth="100" x:Name="c1" />
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="*" x:Name="c2"/>
+        </Grid.ColumnDefinitions>
+        <!--左-->
+        <DataGrid 
+            Width="{Binding Path=Width.Value, ElementName=c1}" 
+            ItemsSource="{Binding Files}" 
+            Style="{StaticResource DataGrid.Small}" 
+            IsSynchronizedWithCurrentItem="True"
+            Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding FileDoubleClickCommand}"
+                    CommandParameter="{Binding Files/}"
+                />
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
+        <!--右-->
+        <hc:TabControl Grid.Column="2" SelectedIndex="{Binding EditingFilesSelectedIndex}" ItemsSource="{Binding EditingFiles}" IsAnimationEnabled="True" ShowCloseButton="True" ShowOverflowButton="True" ShowScrollButton="False" ShowContextMenu="True" IsDraggable="True" >
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300" x:Name="ac1"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="*" x:Name="ac2"/>
+                        </Grid.ColumnDefinitions>
+                        <!--别名列表-->
+                        <DataGrid
+                            ItemsSource="{Binding XmlNodes}"
+                            Style="{StaticResource DataGrid.Small}"
+                            Width="{Binding Path=Width.Value, ElementName=ac1}" 
+                            IsSynchronizedWithCurrentItem="True"
+                            GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}"
+                            Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                            <DataGrid.InputBindings>
+                                <MouseBinding
+                                    MouseAction="LeftDoubleClick"
+                                    Command="{Binding NodeLeftDoubleClickCommand}"
+                                    CommandParameter="{Binding XmlNodes/}"
+                                />
+                            </DataGrid.InputBindings>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="True" Width="150"/>
+                                <DataGridTextColumn Header="Alias" Binding="{Binding Alias}" IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
+                        <!--编辑区-->
+                        <DataGrid Grid.Column="2" ItemsSource="{Binding EditingXmlAttributes}" Style="{StaticResource DataGrid.Small}" GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Attribute" Binding="{Binding Attribute}" />
+                                <DataGridTextColumn Header="AttributeDesc" Binding="{Binding AttributeDesc}" />
+                                <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </hc:TabControl>
+
+
     </Grid>
 </UserControl>

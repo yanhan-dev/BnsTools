@@ -19,9 +19,9 @@
     <DefineConstants>TRACE;Core</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="HandyControls" Version="3.3.5" />
+    <PackageReference Include="HandyControls" Version="3.4.4" />
     <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.1" />
-    <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
     <PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>

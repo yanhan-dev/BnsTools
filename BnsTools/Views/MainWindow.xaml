@@ -77,12 +77,14 @@
             </Popup>
         </Grid>
     </hc:Window.NonClientAreaContent>
-    <Grid>
+    <Grid x:Name="grid_main">
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MinHeight="20"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="100" MinHeight="40"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion" />
-        <RichTextBox Grid.Row="1" x:Name="LogBox"/>
+        <GridSplitter Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
+        <RichTextBox Grid.Row="2" x:Name="LogBox"/>
     </Grid>
 </hc:Window>

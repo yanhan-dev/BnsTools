@@ -15,7 +15,7 @@
             <Button Content="保存" Command="{Binding SaveGroupCommand}" Margin="20,0,0,0"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" MinHeight="400" Grid.Row="1">
-            <DataGrid SelectedItem="{Binding SelectedRecord}" ItemsSource="{Binding RandomStoreItemGroupRecords}" HorizontalAlignment="Left" Width="365" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <DataGrid SelectedItem="{Binding SelectedRecord}" ItemsSource="{Binding RandomStoreItemGroupRecords}" HorizontalAlignment="Left" Width="365" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="别名" Binding="{Binding Alias}" IsReadOnly="True"/>
