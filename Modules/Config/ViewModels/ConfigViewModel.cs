@@ -26,18 +26,18 @@ namespace Config.ViewModels
             string configFileName = Process.GetCurrentProcess().MainModule?.FileName + ".Config";
             if (!File.Exists(configFileName))
             {
-                using (FileStream fs = File.Create(configFileName))
-                {
-                    var bytes = Encoding.UTF8.GetBytes(Resources.ConfXml);
-                    fs.Write(bytes, 0, bytes.Length);
-                }
+                using FileStream fs = File.Create(configFileName);
+                var bytes = Encoding.UTF8.GetBytes(Resources.ConfXml);
+                fs.Write(bytes, 0, bytes.Length);
             }
 
-            ServerPath = ConfigurationManager.AppSettings["ServerPath"];
-            TranslateFilePath = ConfigurationManager.AppSettings["TranslateFilePath"];
+            ServerPath = ConfigurationManager.AppSettings[nameof(ServerPath)];
+            DescPath = ConfigurationManager.AppSettings[nameof(DescPath)];
+            TranslatePath = ConfigurationManager.AppSettings[nameof(TranslatePath)];
 
             Common.Config.ServerPath = ServerPath;
-            Common.Config.TranslateFilePath = TranslateFilePath;
+            Common.Config.DescPath = DescPath;
+            Common.Config.TranslatePath = TranslatePath;
         }
         #region Dependency Property
 
@@ -49,7 +49,7 @@ namespace Config.ViewModels
         }
 
         private string _TranslateFilePath;
-        public string TranslateFilePath
+        public string TranslatePath
         {
             get { return _TranslateFilePath; }
             set { SetProperty(ref _TranslateFilePath, value); }
@@ -62,6 +62,12 @@ namespace Config.ViewModels
             set { SetProperty(ref _ServerPath, value); }
         }
 
+        private string _ConfigPath;
+        public string DescPath
+        {
+            get { return _ConfigPath; }
+            set { SetProperty(ref _ConfigPath, value); }
+        }
         #endregion
 
 
@@ -78,7 +84,7 @@ namespace Config.ViewModels
                 return;
             }
 
-            TranslateFilePath = ofd.FileName;
+            TranslatePath = ofd.FileName;
         }
 
         private DelegateCommand _OpenServerPathCommand;
@@ -89,7 +95,7 @@ namespace Config.ViewModels
             CommonOpenFileDialog dialog = new CommonOpenFileDialog
             {
                 IsFolderPicker = true,
-                Title = "请选择 服务端Data 文件夹"
+                Title = "请选择服务端XML文件夹"
             };
             if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
             {
@@ -99,6 +105,24 @@ namespace Config.ViewModels
             ServerPath = dialog.FileName;
         }
 
+        private DelegateCommand _OpenDescPathCommand;
+        public DelegateCommand OpenDescPathCommand =>
+            _OpenDescPathCommand ?? (_OpenDescPathCommand = new DelegateCommand(ExecuteOpenDescPathCommand));
+
+        void ExecuteOpenDescPathCommand()
+        {
+            CommonOpenFileDialog dialog = new()
+            {
+                IsFolderPicker = true,
+                Title = "请选择YAML解析文件夹"
+            };
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+            {
+                return;
+            }
+
+            DescPath = dialog.FileName;
+        }
 
         private DelegateCommand _SaveCommand;
         public DelegateCommand SaveCommand =>
@@ -107,10 +131,12 @@ namespace Config.ViewModels
         void ExecuteSaveCommand()
         {
             Common.Config.ServerPath = ServerPath;
-            Common.Config.TranslateFilePath = TranslateFilePath;
+            Common.Config.DescPath = DescPath;
+            Common.Config.TranslatePath = TranslatePath;
 
-            AddOrUpdateConfig("ServerPath", ServerPath);
-            AddOrUpdateConfig("TranslateFilePath", TranslateFilePath);
+            AddOrUpdateConfig(nameof(ServerPath), ServerPath);
+            AddOrUpdateConfig(nameof(DescPath), DescPath);
+            AddOrUpdateConfig(nameof(TranslatePath), TranslatePath);
 
             MessageBox.Success("保存成功");
         }
@@ -140,7 +166,7 @@ namespace Config.ViewModels
         void ExecuteCancelCommand()
         {
             ServerPath = Common.Config.ServerPath;
-            TranslateFilePath = Common.Config.TranslateFilePath;
+            TranslatePath = Common.Config.TranslatePath;
         }
     }
 }

@@ -11,18 +11,18 @@ namespace XmlEditor.ViewModels
 {
     public class AttributeViewModel : BindableBase
     {
-        private string _Attribute;
-        public string Attribute
+        private string _Attr;
+        public string Attr
         {
-            get { return _Attribute; }
-            set { SetProperty(ref _Attribute, value); }
+            get { return _Attr; }
+            set { SetProperty(ref _Attr, value); }
         }
 
-        private string _AttributeDesc;
-        public string AttributeDesc
+        private string _AttrDesc;
+        public string AttrDesc
         {
-            get { return _AttributeDesc; }
-            set { SetProperty(ref _AttributeDesc, value); }
+            get { return _AttrDesc; }
+            set { SetProperty(ref _AttrDesc, value); }
         }
 
         private string _Value;

@@ -12,11 +12,7 @@ namespace Common
     {
         private static Dictionary<string, string> _Translate;
 
-        public static Dictionary<string, string> Translate
-        {
-            get { return _Translate ??= LoadTranslate(Config.TranslateFilePath); }
-        }
-
+        public static Dictionary<string, string> Translate => _Translate ??= LoadTranslate(Config.TranslatePath);
 
         private static Dictionary<string, string> LoadTranslate(string path)
         {
@@ -31,14 +27,14 @@ namespace Common
                 }
 
                 string alias = element.Attribute("alias").Value;
-                if (!alias.StartsWith("Item.Name2."))
-                {
-                    continue;
-                }
+                //if (!alias.StartsWith("Item.Name2."))
+                //{
+                //    continue;
+                //}
 
-                alias = alias[11..];
+                //alias = alias[11..];
 
-                string name = element.Elements().FirstOrDefault().Value;
+                string name = element.Elements().LastOrDefault().Value;
                 translate[alias] = name;
             }
             return translate;

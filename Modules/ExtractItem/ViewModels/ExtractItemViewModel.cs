@@ -161,12 +161,13 @@ namespace ExtractItem.ViewModels
             List<ItemVO> items = await LoadIdAndAlias(Common.Config.ServerPath);
 
             ExportLog = "正在加载翻译...";
-            Dictionary<string, string> translate = await LoadTranslate(Common.Config.TranslateFilePath);
+            Dictionary<string, string> translate = Common.Translation.Translate;
 
             ExportLog = "正在翻译物品...";
             foreach (var item in items)
             {
-                item.Name = translate.GetValueOrDefault(item.Alias, item.Alias);
+                
+                item.Name = translate.GetValueOrDefault($"Item.Name2.{item.Alias}", item.Alias);
             }
 
             ExportLog = "正在导出文件...";
@@ -264,35 +265,6 @@ namespace ExtractItem.ViewModels
                     }
                 }
                 return items.OrderBy(item => item.Id).DistinctBy(item => item.Id).ToList();
-            });
-        }
-
-        private async Task<Dictionary<string, string>> LoadTranslate(string path)
-        {
-            return await Task.Run(() =>
-            {
-                Dictionary<string, string> translate = new();
-
-                XDocument xml = XDocument.Load(path);
-                foreach (var element in xml.Root.Elements())
-                {
-                    if (element.NodeType == XmlNodeType.Comment)
-                    {
-                        continue;
-                    }
-
-                    string alias = element.Attribute("alias").Value;
-                    if (!alias.StartsWith("Item.Name2."))
-                    {
-                        continue;
-                    }
-
-                    alias = alias[11..];
-
-                    string name = element.Elements().FirstOrDefault().Value;
-                    translate[alias] = name;
-                }
-                return translate;
             });
         }
 

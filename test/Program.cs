@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using System;
+
 
 namespace test
 {
@@ -6,9 +9,10 @@ namespace test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("dotnet5");
-            string font = "<font name=\"00008130.Program.Fontset_ItemGrade_8\">洪门宝石结晶</font>";
-            Console.WriteLine("Hello World!");
+            var s = "123_qwer_123_bm".TrimStart("123".ToCharArray());
+            Console.WriteLine(s);
+
+            Console.WriteLine($"[{null}-123-{""}]");
         }
     }
 }

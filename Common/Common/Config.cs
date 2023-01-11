@@ -10,6 +10,7 @@ namespace Common
     public class Config
     {
         public static string ServerPath { get; set; }
-        public static string TranslateFilePath { get; set; }
+        public static string TranslatePath { get; set; }
+        public static string DescPath { get; set; }
     }
 }

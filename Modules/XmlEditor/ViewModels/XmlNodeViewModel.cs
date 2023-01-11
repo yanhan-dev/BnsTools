@@ -11,11 +11,11 @@ namespace XmlEditor.ViewModels
 {
     public class XmlNodeViewModel: BindableBase
     {
-        private string _Alias;
-        public string Alias
+        private string _Title;
+        public string Title
         {
-            get { return _Alias; }
-            set { SetProperty(ref _Alias, value); }
+            get { return _Title; }
+            set { SetProperty(ref _Title, value); }
         }
 
         private string _Desc;

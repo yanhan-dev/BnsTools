@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml;
 using System.Windows;
+using HandyControl.Tools.Extension;
+using Newtonsoft.Json;
+using System.Collections.Immutable;
+using Common.Model;
 
 namespace XmlEditor.ViewModels
 {
@@ -22,6 +26,8 @@ namespace XmlEditor.ViewModels
         {
             Files = new ObservableCollection<FilesViewModel>(GetFiles(Config.ServerPath));
         }
+
+        #region Dependency Property
 
         private ObservableCollection<FilesViewModel> _Files;
         public ObservableCollection<FilesViewModel> Files
@@ -44,6 +50,8 @@ namespace XmlEditor.ViewModels
             set { SetProperty(ref _EditingFilesSelectedIndex, value); }
         }
 
+        #endregion
+
         #region Command
 
         private DelegateCommand<FilesViewModel> _FileDoubleClickCommand;
@@ -52,8 +60,10 @@ namespace XmlEditor.ViewModels
 
         void ExecuteCommand(FilesViewModel file)
         {
-            if (EditingFiles.FirstOrDefault(ss => ss.Uri == file.Uri) != null)
+            var find = EditingFiles.FirstOrDefault(ss => ss.Uri == file.Uri);
+            if (find != null)
             {
+                EditingFilesSelectedIndex = EditingFiles.IndexOf(find);
                 return;
             }
 

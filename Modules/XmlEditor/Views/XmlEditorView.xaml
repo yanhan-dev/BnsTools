@@ -8,12 +8,13 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:prism="http://prismlibrary.com/" 
              xmlns:hc="https://handyorg.github.io/handycontrol"
-             xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels"             
+             xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels" 
+             xmlns:converters="clr-namespace:XmlEditor.Converters"
+             xmlns:attachedProperties="clr-namespace:XmlEditor.AttachedProperties"
              d:DataContext="{d:DesignInstance Type=viewmodels:XmlEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
     <UserControl.Resources>
-
     </UserControl.Resources>
 
     <Grid>
@@ -58,33 +59,46 @@
                             <ColumnDefinition Width="*" x:Name="ac2"/>
                         </Grid.ColumnDefinitions>
                         <!--别名列表-->
-                        <DataGrid
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Grid.Row="0" x:Name="dgList"
                             ItemsSource="{Binding XmlNodes}"
                             Style="{StaticResource DataGrid.Small}"
                             Width="{Binding Path=Width.Value, ElementName=ac1}" 
+                            SelectedIndex="{Binding NodeSelectedIndex}"
+                            attachedProperties:SelectingItemAttachedProperty.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
                             IsSynchronizedWithCurrentItem="True"
                             GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}"
-                            Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-                            <DataGrid.InputBindings>
-                                <MouseBinding
+                            HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                <DataGrid.InputBindings>
+                                    <MouseBinding
                                     MouseAction="LeftDoubleClick"
                                     Command="{Binding NodeLeftDoubleClickCommand}"
                                     CommandParameter="{Binding XmlNodes/}"
                                 />
-                            </DataGrid.InputBindings>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="True" Width="150"/>
-                                <DataGridTextColumn Header="Alias" Binding="{Binding Alias}" IsReadOnly="True" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                                </DataGrid.InputBindings>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="True" Width="150"/>
+                                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
+                                <TextBox x:Name="searchTb" Text="{Binding SearchText}" Width="{Binding Width,ElementName=sp1,Converter={converters:SubtractConverter Value=61}}"/>
+                                <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
+                            </StackPanel>
+                        </Grid>
+                        
                         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                         <!--编辑区-->
                         <DataGrid Grid.Column="2" ItemsSource="{Binding EditingXmlAttributes}" Style="{StaticResource DataGrid.Small}" GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}" AutoGenerateColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Attribute" Binding="{Binding Attribute}" />
-                                <DataGridTextColumn Header="AttributeDesc" Binding="{Binding AttributeDesc}" />
+                                <DataGridTextColumn Header="Attr" Binding="{Binding Attr}"/>
+                                <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
-                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" />
+                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" IsReadOnly="True"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

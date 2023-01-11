@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 using Common;
 using System.Threading.Tasks;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Text;
 
 namespace Schema.ViewModels
 {
@@ -26,13 +27,6 @@ namespace Schema.ViewModels
         }
 
         #region Field
-
-        private string _serverDirPath;
-        public string ServerDirPath
-        {
-            get { return _serverDirPath; }
-            set { SetProperty(ref _serverDirPath, value); }
-        }
 
         private string _outSchemaPath;
         public string OutSchemaPath
@@ -51,26 +45,6 @@ namespace Schema.ViewModels
         #endregion
 
         #region Command
-
-        private DelegateCommand _selectServerDirCommand;
-        public DelegateCommand SelectServerDirCommand => _selectServerDirCommand ??= new DelegateCommand(ExecuteSelectServerDirCommand);
-
-        void ExecuteSelectServerDirCommand()
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "选择服务端目录";
-            //dialog.SelectedPath = "D:/";
-            //dialog.RootFolder = Environment.SpecialFolder.Programs;
-            if (dialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-            ServerDirPath = dialog.SelectedPath;
-            if (string.IsNullOrWhiteSpace(OutSchemaPath))
-            {
-                OutSchemaPath = Path.Combine(ServerDirPath, "Schema");
-            }
-        }
 
         private DelegateCommand _selectOutSchemaPathCommand;
         public DelegateCommand SelectOutSchemaPathCommand => _selectOutSchemaPathCommand ??= new DelegateCommand(ExecuteSelectOutSchemaPathCommand);
@@ -103,7 +77,7 @@ namespace Schema.ViewModels
 
             List<SchemaVO> schemaList = new();
 
-            foreach (var xmlFile in Directory.EnumerateFiles(ServerDirPath, "*.xml", SearchOption.AllDirectories))
+            foreach (var xmlFile in Directory.EnumerateFiles(Config.ServerPath, "*.xml", SearchOption.AllDirectories))
             {
                 var xml = XDocument.Load(xmlFile);
                 string type = xml.Root.Attribute("type").Value;
@@ -128,10 +102,11 @@ namespace Schema.ViewModels
                     }
                 }
             }
+            using FileStream fs = new(Path.Combine(OutSchemaPath, "Schema.json"), FileMode.CreateNew);
+            fs.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemaList)));
 
-            await File.WriteAllTextAsync(Path.Combine(OutSchemaPath, "Schema.json"),
-                JsonConvert.SerializeObject(schemaList));
-
+            //await File.WriteAllTextAsync(Path.Combine(OutSchemaPath, "Schema.json"),
+            //    JsonConvert.SerializeObject(schemaList));
         }
 
         #endregion

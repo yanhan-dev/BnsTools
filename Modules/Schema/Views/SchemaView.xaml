@@ -9,20 +9,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="后端目录" Width="60" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <TextBox Text="{Binding ServerDirPath}" Width="600" Margin="10,0,0,0"/>
-            <Button Command="{Binding SelectServerDirCommand}" Width="50" Margin="10,0,0,0" Content="打开"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="输出路径" Width="60" Margin="10,0,0,0" VerticalAlignment="Center"/>
             <TextBox Text="{Binding OutSchemaPath}" Width="600" Margin="10,0,0,0"/>
             <Button Command="{Binding SelectOutSchemaPathCommand}" Width="50" Margin="10,0,0,0" Content="打开"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,5,0,0">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Margin="82,0,0,0" Width="590"/>
             <Button Margin="18,0,0,0" Width="50" Command="{Binding ExportSchemaCommand}">导出</Button>
         </StackPanel>

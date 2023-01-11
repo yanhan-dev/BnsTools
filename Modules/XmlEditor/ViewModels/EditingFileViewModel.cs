@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Common;
+
+using Prism.Commands;
 using Prism.Mvvm;
 
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace XmlEditor.ViewModels
 {
@@ -33,6 +36,13 @@ namespace XmlEditor.ViewModels
             }
         }
 
+        private int _NodeSelectedIndex;
+        public int NodeSelectedIndex
+        {
+            get { return _NodeSelectedIndex; }
+            set { SetProperty(ref _NodeSelectedIndex, value); }
+        }
+
         private ObservableCollection<XmlNodeViewModel> _XmlNodes;
         public ObservableCollection<XmlNodeViewModel> XmlNodes
         {
@@ -49,7 +59,7 @@ namespace XmlEditor.ViewModels
 
         private DelegateCommand<XmlNodeViewModel> _NodeLeftDoubleClickCommand;
         public DelegateCommand<XmlNodeViewModel> NodeLeftDoubleClickCommand =>
-            _NodeLeftDoubleClickCommand ?? (_NodeLeftDoubleClickCommand = new DelegateCommand<XmlNodeViewModel>(ExecuteNodeLeftDoubleClickCommand));
+            _NodeLeftDoubleClickCommand ??= new DelegateCommand<XmlNodeViewModel>(ExecuteNodeLeftDoubleClickCommand);
 
         void ExecuteNodeLeftDoubleClickCommand(XmlNodeViewModel parameter)
         {
@@ -59,20 +69,71 @@ namespace XmlEditor.ViewModels
         private void LoadXmlFile(string uri)
         {
             XDocument xDocument = XDocument.Load(uri);
+            string type = xDocument.Root.Attribute("type").Value;
+            string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(type, null)?.TitleAttr;
+
             XmlNodes = new ObservableCollection<XmlNodeViewModel>(xDocument.Root.Elements()
                 .Where(element => element.NodeType != XmlNodeType.Comment)
-                .Select(element => new XmlNodeViewModel
+                .Select(element =>
                 {
-                    Alias = element.Attribute("alias")?.Value,
-                    Desc = $"{element.Attribute("alias")?.Value} desc",
-                    XmlAttributes = new ObservableCollection<AttributeViewModel>(element.Attributes().Select(attr => new AttributeViewModel
+                    string title = element.Attribute(titleAttr)?.Value ??
+                        element.Attribute("alias")?.Value ??
+                        element.Attribute("dayofweek")?.Value ??
+                        element.Attribute("store2")?.Value ??
+                        element.Attribute("job")?.Value;
+
+                    List<AttributeViewModel> attrList = new();
+                    foreach (var attr in element.Attributes())
                     {
-                        Attribute = attr.Name.LocalName,
-                        AttributeDesc = $"{attr.Name.LocalName} desc",
-                        Value = attr.Value,
-                        ValueDesc = $"{attr.Value} desc"
-                    }))
+                        var attrM = Desc.FindAttrAndValueDesc(attr.Name.LocalName, attr.Value, type);
+
+                        attrList.Add(new AttributeViewModel
+                        {
+                            Attr = attrM.Attr,
+                            AttrDesc = attrM.AttrDesc,
+                            Value = attrM.Value,
+                            ValueDesc = attrM.ValueDesc
+                        });
+                    }
+
+                    var xmlNode = new XmlNodeViewModel
+                    {
+                        Title = title,
+                        XmlAttributes = new(attrList)
+                    };
+
+                    xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(ss => ss.Value == title)?.ValueDesc;
+
+                    return xmlNode;
                 }));
+        }
+
+
+        private DelegateCommand<string> _SearchCommand;
+        public DelegateCommand<string> SearchCommand =>
+            _SearchCommand ?? (_SearchCommand = new DelegateCommand<string>(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand(string parameter)
+        {
+            for (int i = NodeSelectedIndex + 1; i < XmlNodes.Count; i++)
+            {
+                if (!XmlNodes[i].Title.Contains(parameter) && !XmlNodes[i].Desc.Contains(parameter))
+                {
+                    continue;
+                }
+                NodeSelectedIndex = i;
+                return;
+            }
+
+            for (int i = 0; i < NodeSelectedIndex; i++)
+            {
+                if (!XmlNodes[i].Title.Contains(parameter) && !XmlNodes[i].Desc.Contains(parameter))
+                {
+                    continue;
+                }
+                NodeSelectedIndex = i;
+                return;
+            }
         }
     }
 }
