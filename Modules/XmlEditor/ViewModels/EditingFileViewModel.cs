@@ -30,11 +30,15 @@ namespace XmlEditor.ViewModels
             _eventAggregator = ea;
         }
 
+
+
         #region Property
 
-        public XElement Root { get; set; }
+        private XElement Root { get; set; }
 
-        public string FileType { get; set; }
+        private string FileType { get; set; }
+
+        private int EditingNodeIndex { get; set; }
 
         #endregion
 
@@ -100,6 +104,9 @@ namespace XmlEditor.ViewModels
             {
                 return;
             }
+
+            EditingNodeIndex = NodeSelectedIndex;
+
             EditingXmlAttributes = parameter.XmlAttributes;
         }
 
@@ -160,6 +167,7 @@ namespace XmlEditor.ViewModels
             var originRow = (AttributeViewModel)parameter.Row.Item;
             var header = parameter.Column.Header.ToString();
             var input = ((TextBox)parameter.EditingElement).Text;
+
             if (header == "Value" && !string.Equals(originRow.Value, input, StringComparison.Ordinal))
             {
                 // update by Attr
@@ -168,6 +176,11 @@ namespace XmlEditor.ViewModels
                 originRow.AttrDesc = attrM.AttrDesc;
                 originRow.Value = attrM.Value;
                 originRow.ValueDesc = attrM.ValueDesc;
+
+                if (attrM.Attr == Desc.FindTitleAttr(FileType))
+                {
+                    XmlNodes[EditingNodeIndex].Desc = attrM.ValueDesc;
+                }
 
                 IsEditing = true;
                 return;
@@ -184,7 +197,6 @@ namespace XmlEditor.ViewModels
                 IsEditing = true;
                 return;
             }
-
         }
 
         #endregion
@@ -251,7 +263,7 @@ namespace XmlEditor.ViewModels
         public void Save()
         {
             XDocument xDocument = new XDocument();
-            xDocument.Add(Root);
+            xDocument.Add(new XElement(Root));
 
             foreach (var node in XmlNodes)
             {
@@ -271,8 +283,6 @@ namespace XmlEditor.ViewModels
 
                 xDocument.Root.Add(record);
             }
-
-            //using FileStream fs = new FileStream(Uri, FileMode.Create, FileAccess.ReadWrite);
             xDocument.Save(Uri);
 
             IsEditing = false;
