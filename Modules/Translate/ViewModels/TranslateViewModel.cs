@@ -38,25 +38,11 @@ namespace Translate.ViewModels
             set { SetProperty(ref _TranslateFilePath, value); }
         }
 
-        private string _LanguageFilePath;
-        public string LanguageFilePath
-        {
-            get { return _LanguageFilePath; }
-            set { SetProperty(ref _LanguageFilePath, value); }
-        }
+        private DelegateCommand _OpenTranslateFileCommand;
+        public DelegateCommand OpenTranslateFileCommand =>
+            _OpenTranslateFileCommand ?? (_OpenTranslateFileCommand = new DelegateCommand(ExecuteOpenTranslateFileCommand));
 
-        private string _BinNewFilePath;
-        public string BinNewFilePath
-        {
-            get { return _BinNewFilePath; }
-            set { SetProperty(ref _BinNewFilePath, value); }
-        }
-
-        private DelegateCommand _OpenLanguageFileCommand;
-        public DelegateCommand OpenLanguageFileCommand =>
-            _OpenLanguageFileCommand ?? (_OpenLanguageFileCommand = new DelegateCommand(ExecuteOpenLanguageFileCommand));
-
-        void ExecuteOpenLanguageFileCommand()
+        void ExecuteOpenTranslateFileCommand()
         {
             OpenFileDialog ofd = new OpenFileDialog() { Filter = "xml 文件(*.xml)|*.xml" };
             if (ofd.ShowDialog() != true)
@@ -64,7 +50,7 @@ namespace Translate.ViewModels
                 return;
             }
 
-            LanguageFilePath = ofd.FileName;
+            TranslateFilePath = ofd.FileName;
         }
 
         private DelegateCommand _ExportBinCommand;
@@ -74,15 +60,6 @@ namespace Translate.ViewModels
         void ExecuteExportBinCommand()
         {
             new BDat().ExportTranslate(BinFilePath, BinFilePath + ".xml", BXML_TYPE.BXML_PLAIN, Path.GetFileNameWithoutExtension(BinFilePath).Contains("64"));
-        }
-
-        private DelegateCommand _MergeTranslateCommand;
-        public DelegateCommand MergeTranslateCommand =>
-            _MergeTranslateCommand ?? (_MergeTranslateCommand = new DelegateCommand(ExecuteMergeTranslateCommand));
-
-        void ExecuteMergeTranslateCommand()
-        {
-
         }
 
         private DelegateCommand _TraditionalToSimplifiedCommand;
@@ -95,7 +72,7 @@ namespace Translate.ViewModels
 
 
             XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(LanguageFilePath);
+            xDoc.Load(TranslateFilePath);
             XmlNodeList xNodeList = xDoc.SelectNodes("table/child::node()");
 
             foreach (XmlNode xNode in xNodeList)
@@ -124,7 +101,7 @@ namespace Translate.ViewModels
                 Indent = true
             };
 
-            using (XmlWriter xw = XmlWriter.Create(LanguageFilePath, settings))
+            using (XmlWriter xw = XmlWriter.Create(TranslateFilePath, settings))
             {
                 texts.Save(xw);
             }
@@ -145,39 +122,6 @@ namespace Translate.ViewModels
             }
 
             BinFilePath = ofd.FileName;
-        }
-
-        private DelegateCommand _OpenTranslateFileCommand;
-        public DelegateCommand OpenTranslateFileCommand =>
-            _OpenTranslateFileCommand ?? (_OpenTranslateFileCommand = new DelegateCommand(ExecuteOpenTranslateFileCommand));
-
-        void ExecuteOpenTranslateFileCommand()
-        {
-            OpenFileDialog ofd = new OpenFileDialog() { Filter = "翻译文件 (*.xml)|*.xml" };
-            if (ofd.ShowDialog() != true)
-            {
-                return;
-            }
-
-            TranslateFilePath = ofd.FileName;
-        }
-
-        private DelegateCommand _OpenBinNewCommand;
-        public DelegateCommand OpenBinNewCommand =>
-            _OpenBinNewCommand ?? (_OpenBinNewCommand = new DelegateCommand(ExecuteOpenBinNewCommand));
-
-        void ExecuteOpenBinNewCommand()
-        {
-
-        }
-
-        private DelegateCommand _BuildBinCommand;
-        public DelegateCommand BuildBinCommand =>
-            _BuildBinCommand ?? (_BuildBinCommand = new DelegateCommand(ExecuteBuildBinCommand));
-
-        void ExecuteBuildBinCommand()
-        {
-
         }
     }
 }

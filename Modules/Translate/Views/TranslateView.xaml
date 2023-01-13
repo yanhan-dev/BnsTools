@@ -19,28 +19,16 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="localfile(32/64)" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding BinFilePath}" Margin="10,0,0,0" Width="540" />
+            <TextBox Text="{Binding BinFilePath}" Margin="10,0,0,0" Width="480" />
             <Button Command="{Binding OpenBinCommand}" Width="50" Margin="10,0,0,0">打开</Button>
             <Button Command="{Binding ExportBinCommand}" Width="50" Margin="10,0,0,0">导出</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="导出的语言文件" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding LanguageFilePath}" Margin="10,0,0,0" Width="540" />
-            <Button Command="{Binding OpenLanguageFileCommand}" Width="50" Margin="10,0,0,0">打开</Button>
-            <Button Command="{Binding TraditionalToSimplifiedCommand}" Width="50" Margin="10,0,0,0">简体</Button>
-
+            <Button Command="{Binding ExportBinCommand}" Width="50" Margin="10,0,0,0">导入</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="翻译文件" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding TranslateFilePath}" Margin="10,0,0,0" Width="540" />
+            <TextBlock Text="Translate" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
+            <TextBox Text="{Binding TranslateFilePath}" Margin="10,0,0,0" Width="480" />
             <Button Command="{Binding OpenTranslateFileCommand}" Width="50" Margin="10,0,0,0">打开</Button>
-            <Button Command="{Binding MergeTranslateCommand}" Width="50" Margin="10,0,0,0">合并</Button>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="新localfile(32/64)" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding BinNewFilePath}" Margin="10,0,0,0" Width="540" />
-            <Button Command="{Binding OpenBinNewCommand}" Width="50" Margin="10,0,0,0">打开</Button>
-            <Button Command="{Binding BuildBinCommand}" Width="50" Margin="10,0,0,0">生成</Button>
+            <Button Command="{Binding TraditionalToSimplifiedCommand}" Width="110" Margin="10,0,0,0">繁体转简体</Button>
         </StackPanel>
     </Grid>
 </UserControl>

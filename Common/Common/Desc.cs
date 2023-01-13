@@ -81,7 +81,7 @@ namespace Common
                     }
                 }
 
-                attrAndValueModel.ValueDesc = Translation.Translate.GetValueOrDefault(value, string.Empty);
+                attrAndValueModel.ValueDesc = Translation.Translate.GetValueOrDefault(value, null) ?? Translation.TranslateLower.GetValueOrDefault(value.ToLowerInvariant(), string.Empty);
 
                 return attrAndValueModel;
             }

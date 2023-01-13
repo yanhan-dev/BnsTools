@@ -41,7 +41,46 @@
         "fixed-common-slot-1": "固定奖励-1",
         "fixed-common-slot-2": "固定奖励-2",
         "fixed-common-slot-3": "固定奖励-3",
-        "fixed-common-slot-4": "固定奖励-4"
+        "fixed-common-slot-4": "固定奖励-4",
+        "optional-common-slot-1": "选择奖励-物品-1",
+        "optional-common-slot-2": "选择奖励-物品-2",
+        "optional-common-slot-3": "选择奖励-物品-3",
+        "fixed-1-slot-1": "固定奖励-1-物品-1",
+        "fixed-1-slot-2": "固定奖励-1-物品-2",
+        "fixed-1-slot-3": "固定奖励-1-物品-3",
+        "fixed-1-slot-4": "固定奖励-1-物品-4",
+        "fixed-2-slot-1": "固定奖励-2-物品-1",
+        "fixed-2-slot-2": "固定奖励-2-物品-2",
+        "fixed-2-slot-3": "固定奖励-2-物品-3",
+        "fixed-2-slot-4": "固定奖励-2-物品-4",
+        "fixed-3-slot-1": "固定奖励-3-物品-1",
+        "fixed-3-slot-2": "固定奖励-3-物品-2",
+        "fixed-3-slot-3": "固定奖励-3-物品-3",
+        "fixed-3-slot-4": "固定奖励-3-物品-4",
+        "fixed-4-slot-1": "固定奖励-4-物品-1",
+        "fixed-4-slot-2": "固定奖励-4-物品-2",
+        "fixed-4-slot-3": "固定奖励-4-物品-3",
+        "fixed-4-slot-4": "固定奖励-4-物品-4",
+        "fixed-5-slot-1": "固定奖励-5-物品-1",
+        "fixed-5-slot-2": "固定奖励-5-物品-2",
+        "fixed-5-slot-3": "固定奖励-5-物品-3",
+        "fixed-5-slot-4": "固定奖励-5-物品-4",
+        "fixed-6-slot-1": "固定奖励-6-物品-1",
+        "fixed-6-slot-2": "固定奖励-6-物品-2",
+        "fixed-6-slot-3": "固定奖励-6-物品-3",
+        "fixed-6-slot-4": "固定奖励-6-物品-4",
+        "fixed-7-slot-1": "固定奖励-7-物品-1",
+        "fixed-7-slot-2": "固定奖励-7-物品-2",
+        "fixed-7-slot-3": "固定奖励-7-物品-3",
+        "fixed-7-slot-4": "固定奖励-7-物品-4",
+        "fixed-8-slot-1": "固定奖励-8-物品-1",
+        "fixed-8-slot-2": "固定奖励-8-物品-2",
+        "fixed-8-slot-3": "固定奖励-8-物品-3",
+        "fixed-8-slot-4": "固定奖励-8-物品-4",
+        "fixed-9-slot-1": "固定奖励-9-物品-1",
+        "fixed-9-slot-2": "固定奖励-9-物品-2",
+        "fixed-9-slot-3": "固定奖励-9-物品-3",
+        "fixed-9-slot-4": "固定奖励-9-物品-4"
       },
       "LocalDesc": null,
       "TextDesc": [
@@ -66,129 +105,63 @@
         "fixed-common-item-count-1": "固定奖励-数量-1",
         "fixed-common-item-count-2": "固定奖励-数量-2",
         "fixed-common-item-count-3": "固定奖励-数量-3",
-        "fixed-common-item-count-4": "固定奖励-数量-4"
+        "fixed-common-item-count-4": "固定奖励-数量-4",
+        "optional-common-item-count-1": "选择奖励-物品-数量-1",
+        "optional-common-item-count-2": "选择奖励-物品-数量-2",
+        "optional-common-item-count-3": "选择奖励-物品-数量-3",
+        "optional-common-item-count-4": "选择奖励-物品-数量-4",
+        "fixed-1-item-count-1": "固定奖励-1-道具-数量-1",
+        "fixed-1-item-count-2": "固定奖励-1-道具-数量-2",
+        "fixed-1-item-count-3": "固定奖励-1-道具-数量-3",
+        "fixed-1-item-count-4": "固定奖励-1-道具-数量-4",
+        "fixed-2-item-count-1": "固定奖励-2-道具-数量-1",
+        "fixed-2-item-count-2": "固定奖励-2-道具-数量-2",
+        "fixed-2-item-count-3": "固定奖励-2-道具-数量-3",
+        "fixed-2-item-count-4": "固定奖励-2-道具-数量-4",
+        "fixed-3-item-count-1": "固定奖励-3-道具-数量-1",
+        "fixed-3-item-count-2": "固定奖励-3-道具-数量-2",
+        "fixed-3-item-count-3": "固定奖励-3-道具-数量-3",
+        "fixed-3-item-count-4": "固定奖励-3-道具-数量-4",
+        "fixed-4-item-count-1": "固定奖励-4-道具-数量-1",
+        "fixed-4-item-count-2": "固定奖励-4-道具-数量-2",
+        "fixed-4-item-count-3": "固定奖励-4-道具-数量-3",
+        "fixed-4-item-count-4": "固定奖励-4-道具-数量-4",
+        "fixed-5-item-count-1": "固定奖励-5-道具-数量-1",
+        "fixed-5-item-count-2": "固定奖励-5-道具-数量-2",
+        "fixed-5-item-count-3": "固定奖励-5-道具-数量-3",
+        "fixed-5-item-count-4": "固定奖励-5-道具-数量-4",
+        "fixed-6-item-count-1": "固定奖励-6-道具-数量-1",
+        "fixed-6-item-count-2": "固定奖励-6-道具-数量-2",
+        "fixed-6-item-count-3": "固定奖励-6-道具-数量-3",
+        "fixed-6-item-count-4": "固定奖励-6-道具-数量-4",
+        "fixed-7-item-count-1": "固定奖励-7-道具-数量-1",
+        "fixed-7-item-count-2": "固定奖励-7-道具-数量-2",
+        "fixed-7-item-count-3": "固定奖励-7-道具-数量-3",
+        "fixed-7-item-count-4": "固定奖励-7-道具-数量-4",
+        "fixed-8-item-count-1": "固定奖励-8-道具-数量-1",
+        "fixed-8-item-count-2": "固定奖励-8-道具-数量-2",
+        "fixed-8-item-count-3": "固定奖励-8-道具-数量-3",
+        "fixed-8-item-count-4": "固定奖励-8-道具-数量-4",
+        "fixed-9-item-count-1": "固定奖励-9-道具-数量-1",
+        "fixed-9-item-count-2": "固定奖励-9-道具-数量-2",
+        "fixed-9-item-count-3": "固定奖励-9-道具-数量-3",
+        "fixed-9-item-count-4": "固定奖励-9-道具-数量-4",
+        "": "",
       },
       "LocalDesc": null,
       "TextDesc": null
     },
     {
       "Attrs": {
-        "fixed-1-slot-1": "固定-1-奖励-1",
-        "fixed-1-slot-2": "固定-1-奖励-2",
-        "fixed-1-slot-3": "固定-1-奖励-3",
-        "fixed-1-slot-4": "固定-1-奖励-4",
-
-        "fixed-2-slot-1": "固定-2-奖励-1",
-        "fixed-2-slot-2": "固定-2-奖励-2",
-        "fixed-2-slot-3": "固定-2-奖励-3",
-        "fixed-2-slot-4": "固定-2-奖励-4",
-
-        "fixed-3-slot-1": "固定-3-奖励-1",
-        "fixed-3-slot-2": "固定-3-奖励-2",
-        "fixed-3-slot-3": "固定-3-奖励-3",
-        "fixed-3-slot-4": "固定-3-奖励-4",
-
-        "fixed-4-slot-1": "固定-4-奖励-1",
-        "fixed-4-slot-2": "固定-4-奖励-2",
-        "fixed-4-slot-3": "固定-4-奖励-3",
-        "fixed-4-slot-4": "固定-4-奖励-4",
-
-        "fixed-5-slot-1": "固定-5-奖励-1",
-        "fixed-5-slot-2": "固定-5-奖励-2",
-        "fixed-5-slot-3": "固定-5-奖励-3",
-        "fixed-5-slot-4": "固定-5-奖励-4",
-
-        "fixed-6-slot-1": "固定-6-奖励-1",
-        "fixed-6-slot-2": "固定-6-奖励-2",
-        "fixed-6-slot-3": "固定-6-奖励-3",
-        "fixed-6-slot-4": "固定-6-奖励-4",
-
-        "fixed-7-slot-1": "固定-7-奖励-1",
-        "fixed-7-slot-2": "固定-7-奖励-2",
-        "fixed-7-slot-3": "固定-7-奖励-3",
-        "fixed-7-slot-4": "固定-7-奖励-4",
-
-        "fixed-8-slot-1": "固定-8-奖励-1",
-        "fixed-8-slot-2": "固定-8-奖励-2",
-        "fixed-8-slot-3": "固定-8-奖励-3",
-        "fixed-8-slot-4": "固定-8-奖励-4",
-
-        "fixed-9-slot-1": "固定-9-奖励-1",
-        "fixed-9-slot-2": "固定-9-奖励-2",
-        "fixed-9-slot-3": "固定-9-奖励-3",
-        "fixed-9-slot-4": "固定-9-奖励-4"        
-      },
-      "LocalDesc": null,
-      "TextDesc": [
-        {
-          "Action": "Delete",
-          "Params": {
-            "Start": "item:",
-            "End": ""
-          }
-        },
-        {
-          "Action": "Add",
-          "Params": {
-            "Start": "Item.Name2.",
-            "End": ""
-          }
-        }
-      ]
-    },
-    {
-      "Attrs": {
-        "fixed-1-item-count-1": "固定-1-道具-数量-1",
-        "fixed-1-item-count-2": "固定-1-道具-数量-2",
-        "fixed-1-item-count-3": "固定-1-道具-数量-3",
-        "fixed-1-item-count-4": "固定-1-道具-数量-4",      
-        "fixed-2-item-count-1": "固定-2-道具-数量-1",
-        "fixed-2-item-count-2": "固定-2-道具-数量-2",
-        "fixed-2-item-count-3": "固定-2-道具-数量-3",
-        "fixed-2-item-count-4": "固定-2-道具-数量-4",
-        "fixed-3-item-count-1": "固定-3-道具-数量-1",
-        "fixed-3-item-count-2": "固定-3-道具-数量-2",
-        "fixed-3-item-count-3": "固定-3-道具-数量-3",
-        "fixed-3-item-count-4": "固定-3-道具-数量-4",
-        "fixed-4-item-count-1": "固定-4-道具-数量-1",
-        "fixed-4-item-count-2": "固定-4-道具-数量-2",
-        "fixed-4-item-count-3": "固定-4-道具-数量-3",
-        "fixed-4-item-count-4": "固定-4-道具-数量-4",
-        "fixed-5-item-count-1": "固定-5-道具-数量-1",
-        "fixed-5-item-count-2": "固定-5-道具-数量-2",
-        "fixed-5-item-count-3": "固定-5-道具-数量-3",
-        "fixed-5-item-count-4": "固定-5-道具-数量-4",
-        "fixed-6-item-count-1": "固定-6-道具-数量-1",
-        "fixed-6-item-count-2": "固定-6-道具-数量-2",
-        "fixed-6-item-count-3": "固定-6-道具-数量-3",
-        "fixed-6-item-count-4": "固定-6-道具-数量-4",
-        "fixed-7-item-count-1": "固定-7-道具-数量-1",
-        "fixed-7-item-count-2": "固定-7-道具-数量-2",
-        "fixed-7-item-count-3": "固定-7-道具-数量-3",
-        "fixed-7-item-count-4": "固定-7-道具-数量-4",
-        "fixed-8-item-count-1": "固定-8-道具-数量-1",
-        "fixed-8-item-count-2": "固定-8-道具-数量-2",
-        "fixed-8-item-count-3": "固定-8-道具-数量-3",
-        "fixed-8-item-count-4": "固定-8-道具-数量-4",
-        "fixed-9-item-count-1": "固定-9-道具-数量-1",
-        "fixed-9-item-count-2": "固定-9-道具-数量-2",
-        "fixed-9-item-count-3": "固定-9-道具-数量-3",
-        "fixed-9-item-count-4": "固定-9-道具-数量-4"
-      },
-      "LocalDesc": null,
-      "TextDesc": null
-    },
-    {
-      "Attrs": {
-        "fixed-1-job-1": "固定-1-职业-1",
-        "fixed-2-job-1": "固定-2-职业-1",
-        "fixed-3-job-1": "固定-3-职业-1",
-        "fixed-4-job-1": "固定-4-职业-1",
-        "fixed-5-job-1": "固定-5-职业-1",
-        "fixed-6-job-1": "固定-6-职业-1",
-        "fixed-7-job-1": "固定-7-职业-1",
-        "fixed-8-job-1": "固定-8-职业-1",
-        "fixed-9-job-1": "固定-9-职业-1"
+        "fixed-1-job-1": "固定奖励-1-职业-1",
+        "fixed-2-job-1": "固定奖励-2-职业-1",
+        "fixed-3-job-1": "固定奖励-3-职业-1",
+        "fixed-4-job-1": "固定奖励-4-职业-1",
+        "fixed-5-job-1": "固定奖励-5-职业-1",
+        "fixed-6-job-1": "固定奖励-6-职业-1",
+        "fixed-7-job-1": "固定奖励-7-职业-1",
+        "fixed-8-job-1": "固定奖励-8-职业-1",
+        "fixed-9-job-1": "固定奖励-9-职业-1"
       },
       "LocalDesc": {
         "검사": "剑士",
@@ -205,21 +178,79 @@
     },
     {
       "Attrs": {
-        "fixed-1-party-type": "固定-1-副本-类型",
-        "fixed-2-party-type": "固定-2-副本-类型",
-        "fixed-3-party-type": "固定-3-副本-类型",
-        "fixed-4-party-type": "固定-4-副本-类型",
-        "fixed-5-party-type": "固定-5-副本-类型",
-        "fixed-6-party-type": "固定-6-副本-类型",
-        "fixed-7-party-type": "固定-7-副本-类型",
-        "fixed-8-party-type": "固定-8-副本-类型",
-        "fixed-9-party-type": "固定-9-副本-类型"
+        "fixed-1-party-type": "固定奖励-1-副本-类型",
+        "fixed-2-party-type": "固定奖励-2-副本-类型",
+        "fixed-3-party-type": "固定奖励-3-副本-类型",
+        "fixed-4-party-type": "固定奖励-4-副本-类型",
+        "fixed-5-party-type": "固定奖励-5-副本-类型",
+        "fixed-6-party-type": "固定奖励-6-副本-类型",
+        "fixed-7-party-type": "固定奖励-7-副本-类型",
+        "fixed-8-party-type": "固定奖励-8-副本-类型",
+        "fixed-9-party-type": "固定奖励-9-副本-类型",
+        "optional-1-party-type": "自选-"
       },
       "LocalDesc": {
         "sextet": "6人",
-        "quartet": "4人"
+        "quartet": "4人",
+        "dont-care": "无"
       },
       "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "fixed-skill3-1": "固定奖励-技能3-1",
+        "fixed-skill3-2": "固定奖励-技能3-2",
+        "fixed-skill3-3": "固定奖励-技能3-3",
+        "fixed-skill3-4": "固定奖励-技能3-4"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Skill.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "quest-first-progress": "是否首次执行任务"
+      },
+      "LocalDesc": {
+        "y": "是",
+        "n": "否"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "dayofweek-mon-fixed-count-1": "固定奖励-周一-物品-数量-1",
+        "dayofweek-mon-fixed-count-2": "固定奖励-周一-物品-数量-2",
+        "dayofweek-tue-fixed-count-1": "固定奖励-周二-物品-数量-1",
+        "dayofweek-tue-fixed-count-2": "固定奖励-周二-物品-数量-2",
+        "dayofweek-wed-fixed-count-1": "固定奖励-周三-物品-数量-1",
+        "dayofweek-wed-fixed-count-2": "固定奖励-周三-物品-数量-2",
+        "dayofweek-thu-fixed-count-1": "固定奖励-周四-物品-数量-1",
+        "dayofweek-thu-fixed-count-2": "固定奖励-周四-物品-数量-2",
+        "dayofweek-fri-fixed-count-1": "固定奖励-周五-物品-数量-1",
+        "dayofweek-fri-fixed-count-2": "固定奖励-周五-物品-数量-2",
+        "dayofweek-sat-fixed-count-1": "固定奖励-周六-物品-数量-1",
+        "dayofweek-sat-fixed-count-2": "固定奖励-周六-物品-数量-2",
+        "dayofweek-sun-fixed-count-1": "固定奖励-周日-物品-数量-1",
+        "dayofweek-sun-fixed-count-2": "固定奖励-周日-物品-数量-2"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": ""
+          }
+        }
+      ]
     }
   ]
 }
