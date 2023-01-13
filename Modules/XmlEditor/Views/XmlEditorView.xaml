@@ -10,14 +10,15 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels" 
              xmlns:converters="clr-namespace:XmlEditor.Converters"
-             xmlns:attachedProperties="clr-namespace:XmlEditor.AttachedProperties"
+             xmlns:ap="clr-namespace:XmlEditor.AttachedProperties"
              d:DataContext="{d:DesignInstance Type=viewmodels:XmlEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
     <UserControl.Resources>
+        
     </UserControl.Resources>
 
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320" MinWidth="100" x:Name="c1" />
             <ColumnDefinition Width="3"/>
@@ -38,7 +39,7 @@
                 />
             </DataGrid.InputBindings>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="File" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="File" Binding="{Binding Name}" FontFamily="JetBrainsMono" FontSize="14" Width="200" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -69,9 +70,9 @@
                             Style="{StaticResource DataGrid.Small}"
                             Width="{Binding Path=Width.Value, ElementName=ac1}" 
                             SelectedIndex="{Binding NodeSelectedIndex}"
-                            attachedProperties:SelectingItemAttachedProperty.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
+                            ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
                             IsSynchronizedWithCurrentItem="True"
-                            GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}"
+                            GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
                             HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                                 <DataGrid.InputBindings>
                                     <MouseBinding
@@ -81,8 +82,8 @@
                                 />
                                 </DataGrid.InputBindings>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="True" Width="150"/>
-                                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" />
+                                    <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150"/>
+                                    <DataGridTextColumn Header="Title" Binding="{Binding Title}" FontFamily="JetBrainsMono" FontSize="14" IsReadOnly="True" />
                                 </DataGrid.Columns>
                             </DataGrid>
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
@@ -93,12 +94,12 @@
                         
                         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                         <!--编辑区-->
-                        <DataGrid Grid.Column="2" ItemsSource="{Binding EditingXmlAttributes}" Style="{StaticResource DataGrid.Small}" GridLinesVisibility="Vertical" VerticalGridLinesBrush="{StaticResource BorderBrush}" AutoGenerateColumns="False">
+                        <DataGrid Grid.Column="2" ItemsSource="{Binding EditingXmlAttributes}" Style="{StaticResource DataGrid.Small}" GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}" AutoGenerateColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Attr" Binding="{Binding Attr}"/>
-                                <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
-                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Attr" Binding="{Binding Attr}" FontFamily="JetBrainsMono" FontSize="14"/>
+                                <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc}" IsReadOnly="False" FontSize="13"/>
+                                <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontFamily="JetBrainsMono" FontSize="14"/>
+                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" IsReadOnly="False" FontSize="13"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

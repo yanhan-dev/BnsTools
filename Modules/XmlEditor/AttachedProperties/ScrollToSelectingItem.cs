@@ -12,29 +12,30 @@ namespace XmlEditor.AttachedProperties
     /// <summary>
     /// DataGrid的滚动条自动滚到选中的项目
     /// </summary>
-    public  class SelectingItemAttachedProperty
+    public abstract class ScrollToSelectingItem<T>
     {
         public static readonly DependencyProperty SelectingItemProperty = DependencyProperty.RegisterAttached(
             "SelectingItem",
-            typeof(XmlNodeViewModel),
-            typeof(SelectingItemAttachedProperty),
-            new PropertyMetadata(default(XmlNodeViewModel), OnSelectingItemChanged));
+            typeof(T),
+            typeof(ScrollToSelectingItem<T>),
+            new PropertyMetadata(default(T), OnSelectingItemChanged));
 
-        public static XmlNodeViewModel GetSelectingItem(DependencyObject target)
+        public static T GetSelectingItem(DependencyObject target)
         {
-            return (XmlNodeViewModel)target.GetValue(SelectingItemProperty);
+            return (T)target.GetValue(SelectingItemProperty);
         }
 
-        public static void SetSelectingItem(DependencyObject target, XmlNodeViewModel value)
+        public static void SetSelectingItem(DependencyObject target, T value)
         {
             target.SetValue(SelectingItemProperty, value);
         }
 
         static void OnSelectingItemChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var grid = sender as DataGrid;
-            if (grid == null || grid.SelectedItem == null)
+            if (sender is not DataGrid grid || grid.SelectedItem == null)
+            {
                 return;
+            }
 
             grid.Dispatcher.InvokeAsync(() =>
             {

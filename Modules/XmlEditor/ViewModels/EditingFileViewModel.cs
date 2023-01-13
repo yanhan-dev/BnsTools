@@ -117,7 +117,7 @@ namespace XmlEditor.ViewModels
         {
             for (int i = NodeSelectedIndex + 1; i < XmlNodes.Count; i++)
             {
-                if (!XmlNodes[i].Title.Contains(parameter) && !XmlNodes[i].Desc.Contains(parameter))
+                if (!XmlNodes[i].Title.Contains(parameter) && null != XmlNodes[i].Desc && !XmlNodes[i].Desc.Contains(parameter))
                 {
                     continue;
                 }
