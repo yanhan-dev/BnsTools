@@ -10,12 +10,12 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels" 
              xmlns:converters="clr-namespace:XmlEditor.Converters"
-             xmlns:ap="clr-namespace:XmlEditor.AttachedProperties"
+             xmlns:ap="clr-namespace:XmlEditor.AttachedProperties" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              d:DataContext="{d:DesignInstance Type=viewmodels:XmlEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
     <UserControl.Resources>
-        
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
     <Grid >
@@ -45,10 +45,26 @@
         </DataGrid>
         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
         <!--右-->
-        <hc:TabControl Grid.Column="2" SelectedIndex="{Binding EditingFilesSelectedIndex}" ItemsSource="{Binding EditingFiles}" IsAnimationEnabled="True" ShowCloseButton="True" ShowOverflowButton="True" ShowScrollButton="False" ShowContextMenu="True" IsDraggable="True" >
+        <hc:TabControl Grid.Column="2" x:Name="tc" 
+                       SelectedIndex="{Binding EditingFilesSelectedIndex}" 
+                       ItemsSource="{Binding EditingFiles}" IsAnimationEnabled="True" 
+                       ShowCloseButton="True" 
+                       ShowOverflowButton="True" 
+                       ShowScrollButton="False" 
+                       ShowContextMenu="True" 
+                       IsDraggable="True" >
+            <TabControl.InputBindings>
+                <KeyBinding 
+                    Gesture="Ctrl+S"  
+                    Command="{Binding SaveCommand}" 
+                    CommandParameter="{Binding}" />    
+            </TabControl.InputBindings>
             <TabControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">*</TextBlock>
+                    </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
@@ -66,14 +82,14 @@
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
                             <DataGrid Grid.Row="0" x:Name="dgList"
-                            ItemsSource="{Binding XmlNodes}"
-                            Style="{StaticResource DataGrid.Small}"
-                            Width="{Binding Path=Width.Value, ElementName=ac1}" 
-                            SelectedIndex="{Binding NodeSelectedIndex}"
-                            ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
-                            IsSynchronizedWithCurrentItem="True"
-                            GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
-                            HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                ItemsSource="{Binding XmlNodes}"
+                                Style="{StaticResource DataGrid.Small}"
+                                Width="{Binding Path=Width.Value, ElementName=ac1}" 
+                                SelectedIndex="{Binding NodeSelectedIndex}"
+                                ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
+                                IsSynchronizedWithCurrentItem="True"
+                                GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
+                                HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                                 <DataGrid.InputBindings>
                                     <MouseBinding
                                     MouseAction="LeftDoubleClick"
@@ -85,21 +101,37 @@
                                     <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150"/>
                                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" FontFamily="JetBrainsMono" FontSize="14" IsReadOnly="True" />
                                 </DataGrid.Columns>
+
                             </DataGrid>
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
                                 <TextBox x:Name="searchTb" Width="{Binding Width,ElementName=sp1,Converter={converters:SubtractConverter Value=61}}"/>
                                 <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
                             </StackPanel>
                         </Grid>
-                        
+
                         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                         <!--编辑区-->
-                        <DataGrid Grid.Column="2" ItemsSource="{Binding EditingXmlAttributes}" Style="{StaticResource DataGrid.Small}" GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}" AutoGenerateColumns="False">
+                        <DataGrid Grid.Column="2" 
+                                  ItemsSource="{Binding EditingXmlAttributes}" 
+                                  Style="{StaticResource DataGrid.Small}" 
+                                  GridLinesVisibility="Vertical" 
+                                  VerticalGridLinesBrush="{DynamicResource BorderBrush}" 
+                                  AutoGenerateColumns="False">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="CellEditEnding">
+                                    <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Copy" Command="{Binding CopyCommand}"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Attr" Binding="{Binding Attr}" FontFamily="JetBrainsMono" FontSize="14"/>
-                                <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc}" IsReadOnly="False" FontSize="13"/>
+                                <DataGridTextColumn Header="Attr" Binding="{Binding Attr}"  FontFamily="JetBrainsMono" FontSize="14"/>
+                                <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc, Mode=OneWay}" FontSize="13"/>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontFamily="JetBrainsMono" FontSize="14"/>
-                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc}" IsReadOnly="False" FontSize="13"/>
+                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc, Mode=OneWay}" FontSize="13"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

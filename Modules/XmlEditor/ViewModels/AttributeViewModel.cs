@@ -1,4 +1,7 @@
-﻿using Prism.Mvvm;
+﻿using Newtonsoft.Json.Linq;
+
+using Prism.Events;
+using Prism.Mvvm;
 
 using System;
 using System.Collections.Generic;
@@ -7,10 +10,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using XmlEditor.Message;
+
 namespace XmlEditor.ViewModels
 {
     public class AttributeViewModel : BindableBase
     {
+
+        public AttributeViewModel()
+        {
+        }
+
         private string _Attr;
         public string Attr
         {
@@ -33,6 +43,7 @@ namespace XmlEditor.ViewModels
         }
 
         private string _ValueDesc;
+
         public string ValueDesc
         {
             get { return _ValueDesc; }

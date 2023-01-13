@@ -6,11 +6,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace XmlEditor.ViewModels
 {
     public class XmlNodeViewModel: BindableBase
     {
+        public bool UnUse { get; set; }
+
+        public XNode Node { get; set; }
+
         private string _Title;
         public string Title
         {

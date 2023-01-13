@@ -17,13 +17,17 @@ using HandyControl.Tools.Extension;
 using Newtonsoft.Json;
 using System.Collections.Immutable;
 using Common.Model;
+using Prism.Events;
 
 namespace XmlEditor.ViewModels
 {
     public class XmlEditorViewModel : BindableBase
     {
-        public XmlEditorViewModel()
+        private readonly IEventAggregator _eventAggregator;
+
+        public XmlEditorViewModel(IEventAggregator ea)
         {
+            _eventAggregator = ea;
             Files = new ObservableCollection<FilesViewModel>(GetFiles(Config.ServerPath));
         }
 
@@ -67,13 +71,27 @@ namespace XmlEditor.ViewModels
                 return;
             }
 
-            EditingFiles.Add(new EditingFileViewModel
+            EditingFiles.Add(new EditingFileViewModel(_eventAggregator)
             {
                 Name = file.Name,
                 Uri = file.Uri,
             });
 
             EditingFilesSelectedIndex = EditingFiles.Count - 1;
+        }
+
+        private DelegateCommand<XmlEditorViewModel> _SaveCommand;
+        public DelegateCommand<XmlEditorViewModel> SaveCommand =>
+            _SaveCommand ?? (_SaveCommand = new DelegateCommand<XmlEditorViewModel>(ExecuteSaveCommand));
+
+        void ExecuteSaveCommand(XmlEditorViewModel parameter)
+        {
+            if (!EditingFiles[parameter.EditingFilesSelectedIndex].IsEditing)
+            {
+                return;
+            }
+
+            EditingFiles[parameter.EditingFilesSelectedIndex].Save();
         }
 
         #endregion
