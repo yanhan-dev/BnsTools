@@ -179,6 +179,7 @@ namespace XmlEditor.ViewModels
 
                 if (attrM.Attr == Desc.FindTitleAttr(FileType))
                 {
+                    XmlNodes[EditingNodeIndex].Title = attrM.Value;
                     XmlNodes[EditingNodeIndex].Desc = attrM.ValueDesc;
                 }
 
