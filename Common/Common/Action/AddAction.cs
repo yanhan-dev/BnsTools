@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Autofac.Annotation;
+
+using Common.Model;
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +11,20 @@ using System.Threading.Tasks;
 
 namespace Common.Action
 {
-    public class AddAction
+    [Component(AutofacScope = AutofacScope.SingleInstance, AutoActivate = true)]
+    public class AddAction : IAction
     {
-        public const string ACTION = "Add";
-        public const string START = "Start";
-        public const string END = "End";
+        public override string Name { get; set; } = "Add";
 
-        public static string Do(string value, string start, string end)
+        public AddAction()
         {
-            return $"{start}{value}{end}";
+            ActionHandler.Reg<AddParams>(this);
+        }
+
+        public override string Do(string value, IParams param, bool elseMode = false)
+        {
+            var addParam = param as AddParams;
+            return elseMode ? $"{addParam.ElseStart}{value}{addParam.ElseEnd}" : $"{addParam.Start}{value}{addParam.End}";
         }
     }
 }

@@ -6,6 +6,8 @@
     <AssemblyName>Schema</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Common.Action;
+
+using Newtonsoft.Json;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +30,10 @@ namespace Common.Model
         public int End { get; set; }
     }
 
+    [JsonConverter(typeof(ActionConverter))]
     public class TextDesc
     {
         public string Action { get; set; }
-        public Dictionary<string, string> Params { get; set; }
+        public IParams Params { get; set; }
     }
 }

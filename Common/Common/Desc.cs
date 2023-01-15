@@ -28,6 +28,7 @@ namespace Common
             foreach (var file in files)
             {
                 string text = File.ReadAllText(file, Encoding.UTF8);
+
                 var obj = JsonConvert.DeserializeObject<FileSchemeDescModel>(text);
                 dict[obj.Type] = obj;
             }
@@ -61,29 +62,30 @@ namespace Common
                 return attrAndValueModel;
             }
 
+
             if (attrDescSchema.TextDesc?.Count > 0)
             {
+                string valueBackup = value;
+
                 foreach (var descAction in attrDescSchema.TextDesc)
                 {
-                    switch (descAction.Action)
-                    {
-                        case AddAction.ACTION:
-                            value = AddAction.Do(value, descAction.Params.GetValueOrDefault(AddAction.START), descAction.Params.GetValueOrDefault(AddAction.END));
-                            break;
-                        case DeleteAction.ACTION:
-                            value = DeleteAction.Do(value, descAction.Params.GetValueOrDefault(DeleteAction.START), descAction.Params.GetValueOrDefault(AddAction.END));
-                            break;
-                        case SplitAction.ACTION:
-                            value = SplitAction.Do(value, descAction.Params.GetValueOrDefault(SplitAction.CHAR), int.Parse(descAction.Params.GetValueOrDefault(AddAction.START)), int.Parse(descAction.Params.GetValueOrDefault(AddAction.END)));
-                            break;
-                        default:
-                            throw new InvalidOperationException("肯定不会走这里");
-                    }
+                    value = ActionHandler.Do(value, descAction);
                 }
 
                 attrAndValueModel.ValueDesc = Translation.Translate.GetValueOrDefault(value, null) ?? Translation.TranslateLower.GetValueOrDefault(value.ToLowerInvariant(), string.Empty);
 
-                return attrAndValueModel;
+                if (!string.IsNullOrEmpty(attrAndValueModel.ValueDesc))
+                {
+                    return attrAndValueModel;
+                }
+
+
+                //else search
+                foreach (var descAction in attrDescSchema.TextDesc)
+                {
+                    valueBackup = ActionHandler.Do(valueBackup, descAction, true);
+                }
+                attrAndValueModel.ValueDesc = Translation.Translate.GetValueOrDefault(valueBackup, null) ?? Translation.TranslateLower.GetValueOrDefault(valueBackup.ToLowerInvariant(), string.Empty);
             }
 
             return attrAndValueModel;

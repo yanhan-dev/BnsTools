@@ -19,6 +19,8 @@
     <DefineConstants>TRACE;Core</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
     <PackageReference Include="HandyControls" Version="3.4.4" />
     <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.1" />
     <PackageReference Include="Prism.DryIoc" Version="8.1.97" />

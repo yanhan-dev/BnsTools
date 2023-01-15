@@ -1,0 +1,21 @@
+{
+  "Type": "QuestReward",
+  "TitleAttr": "alias",
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "alias": "别名"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "start",
+            "End": "end"
+          }
+        }
+      ]
+    }
+  ]
+}

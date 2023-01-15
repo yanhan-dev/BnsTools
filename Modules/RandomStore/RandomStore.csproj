@@ -4,6 +4,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
     <PackageReference Include="HandyControls" Version="3.4.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />

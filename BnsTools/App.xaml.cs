@@ -1,4 +1,7 @@
-﻿using HandyControl.Themes;
+﻿using Autofac;
+using Autofac.Annotation;
+
+using HandyControl.Themes;
 
 using System.Configuration;
 using System.Windows;
@@ -8,16 +11,23 @@ namespace BnsTools
 {
     public partial class App : Application
     {
+        private IContainer Container { get; set; }
         public Configuration Configuration { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             var boot = new Bootstrapper();
             boot.Run();
+                        
+            //autofac
+            var builder = new ContainerBuilder();
+
+            builder.RegisterModule(new AutofacAnnotationModule());
+
+            Container = builder.Build();
         }
 
         internal void UpdateTheme(ApplicationTheme theme)

@@ -87,8 +87,10 @@
         {
           "Action": "Delete",
           "Params": {
-            "Start": "item:",
-            "End": ""
+            "Start": [
+              "item:"
+            ],
+            "End": []
           }
         },
         {

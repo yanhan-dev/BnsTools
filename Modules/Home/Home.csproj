@@ -6,6 +6,8 @@
     <AssemblyName>Home</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>
 </Project>

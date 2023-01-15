@@ -6,6 +6,8 @@
     <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.5.0" />
+    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
     <PackageReference Include="CHTCHSConv" Version="1.0.0" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />

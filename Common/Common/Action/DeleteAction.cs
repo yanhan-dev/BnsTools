@@ -1,6 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Autofac.Annotation;
+
+using Common.Model;
+
+using Newtonsoft.Json.Linq;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +13,40 @@ using System.Threading.Tasks;
 
 namespace Common.Action
 {
-    public class DeleteAction
+    [Component(AutofacScope = AutofacScope.SingleInstance, AutoActivate = true)]
+    public class DeleteAction : IAction
     {
-        public const string ACTION = "Delete";
-        public const string START = "Start";
-        public const string END = "End";
+        public override string Name { get; set; } = "Delete";
 
-        public static string Do(string value, string start, string end)
+        public DeleteAction()
         {
-            return value.TrimStart(start.ToCharArray()).TrimEnd(end.ToCharArray());
+            ActionHandler.Reg<DeleteParams>(this);
+        }
+
+
+        public override string Do(string value, IParams param, bool elseMode = false)
+        {
+            DeleteParams deleteParam = param as DeleteParams;
+
+            foreach (var s in deleteParam.Start)
+            {
+                if (!value.StartsWith(s,StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+                value = value.Remove(0, s.Length);
+            }
+
+            foreach (var s in deleteParam.End)
+            {
+                if (!value.EndsWith(s, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+                value = value.Substring(0, value.Length - s.Length);
+            }
+
+            return value;
         }
     }
 }
