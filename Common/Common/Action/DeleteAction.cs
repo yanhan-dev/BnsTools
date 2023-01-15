@@ -30,11 +30,11 @@ namespace Common.Action
 
             foreach (var s in deleteParam.Start)
             {
-                if (!value.StartsWith(s,StringComparison.OrdinalIgnoreCase))
+                if (!value.StartsWith(s, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
-                value = value.Remove(0, s.Length);
+                value = value.Substring(s.Length, value.Length - s.Length);
             }
 
             foreach (var s in deleteParam.End)
@@ -43,7 +43,7 @@ namespace Common.Action
                 {
                     continue;
                 }
-                value = value.Substring(0, value.Length - s.Length);
+                value = value[..^s.Length];
             }
 
             return value;

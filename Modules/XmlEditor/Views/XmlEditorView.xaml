@@ -31,6 +31,11 @@
             Style="{StaticResource DataGrid.Small}" 
             IsSynchronizedWithCurrentItem="True"
             Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open with default text editor"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.InputBindings>
                 <MouseBinding
                     MouseAction="LeftDoubleClick"
@@ -51,14 +56,20 @@
                        ShowCloseButton="True" 
                        ShowOverflowButton="True" 
                        ShowScrollButton="False" 
-                       ShowContextMenu="True" 
-                       IsDraggable="True" >
+                       ShowContextMenu="True"
+                       IsDraggable="True">
             <TabControl.InputBindings>
                 <KeyBinding 
                     Gesture="Ctrl+S"  
                     Command="{Binding SaveCommand}" 
                     CommandParameter="{Binding}" />    
             </TabControl.InputBindings>
+            
+            <hc:TabControl.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy add new line"></MenuItem>
+                </ContextMenu>
+            </hc:TabControl.ContextMenu>
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
