@@ -30,8 +30,6 @@ namespace XmlEditor.ViewModels
             _eventAggregator = ea;
         }
 
-
-
         #region Property
 
         private XElement Root { get; set; }
