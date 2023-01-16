@@ -93,7 +93,7 @@ namespace Common
 
         public static string FindTitleAttr(string type)
         {
-            return FileSchemeDescs[type]?.TitleAttr;
+            return FileSchemeDescs.GetValueOrDefault(type, null)?.TitleAttr;
         }
 
     }

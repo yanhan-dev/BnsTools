@@ -50,10 +50,6 @@
         </DataGrid>
         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
         <!--右-->
-        <!--<hc:TabControl>
-            <hc:TabItem Closing="TabItem_Closing" >
-            </hc:TabItem>
-        </hc:TabControl>-->
         <hc:TabControl Grid.Column="2" x:Name="tc"
                        SelectedIndex="{Binding EditingFilesSelectedIndex}" 
                        ItemsSource="{Binding EditingFiles}" 
@@ -63,25 +59,21 @@
                        ShowScrollButton="False" 
                        ShowContextMenu="True"
                        IsDraggable="True">
-            <TabControl.InputBindings>
+            <hc:TabControl.InputBindings>
                 <KeyBinding 
                     Gesture="Ctrl+S"  
                     Command="{Binding SaveCommand}" 
                     CommandParameter="{Binding}" />
-            </TabControl.InputBindings>
-
-            <TabControl.ItemTemplate>
-                <DataTemplate>                    
+            </hc:TabControl.InputBindings>
+            <hc:TabControl.ItemTemplate>
+                <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
                         <TextBlock Text="*" Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <!--<Button Content="X" BorderThickness="0" Cursor="Hand" DockPanel.Dock="Right" Focusable="False" FontFamily="Courier" FontSize="9" FontWeight="Bold"  Margin="0,1,0,0" Padding="0" VerticalContentAlignment="Bottom" Width="16" Height="16" 
-                                Command="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
-                                CommandParameter="{Binding ElementName=tc, Path=SelectedItem}"/>-->
                     </StackPanel>
                 </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
+            </hc:TabControl.ItemTemplate>
+            <hc:TabControl.ContentTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -150,9 +142,8 @@
                         </DataGrid>
 
                     </Grid>
-
                 </DataTemplate>
-            </TabControl.ContentTemplate>
+            </hc:TabControl.ContentTemplate>
         </hc:TabControl>
 
 

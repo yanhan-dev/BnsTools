@@ -18,16 +18,14 @@ using Newtonsoft.Json;
 using System.Collections.Immutable;
 using Common.Model;
 using Prism.Events;
+using HandyControl.Controls;
 
 namespace XmlEditor.ViewModels
 {
     public class XmlEditorViewModel : BindableBase
     {
-        private readonly IEventAggregator _eventAggregator;
-
-        public XmlEditorViewModel(IEventAggregator ea)
+        public XmlEditorViewModel()
         {
-            _eventAggregator = ea;
             Files = new ObservableCollection<FilesViewModel>(GetFiles(Config.ServerPath));
         }
 
@@ -46,6 +44,7 @@ namespace XmlEditor.ViewModels
             get { return _EditingFiles ??= new ObservableCollection<EditingFileViewModel>(); }
             set { SetProperty(ref _EditingFiles, value); }
         }
+
 
         private int _EditingFilesSelectedIndex;
         public int EditingFilesSelectedIndex
@@ -101,6 +100,15 @@ namespace XmlEditor.ViewModels
         void ExecuteCloseTabCommand(EditingFileViewModel parameter)
         {
             EditingFiles.Remove(parameter);
+        }
+
+        private DelegateCommand<object> _TabClosingCommand;
+        public DelegateCommand<object> TabClosingCommand =>
+            _TabClosingCommand ?? (_TabClosingCommand = new DelegateCommand<object>(ExecuteTabClosingCommand));
+
+        void ExecuteTabClosingCommand(object parameter)
+        {
+
         }
 
         private DelegateCommand<object> _ClosingTabCommand;

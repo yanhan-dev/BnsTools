@@ -1,5 +1,7 @@
 ﻿using Common;
 
+using HandyControl.Data;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -10,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,13 +22,41 @@ using System.Xml.Serialization;
 
 using XmlEditor.Message;
 
+using MessageBox = HandyControl.Controls.MessageBox;
+
 namespace XmlEditor.ViewModels
 {
     public class EditingFileViewModel : BindableBase
     {
         public EditingFileViewModel()
         {
+            RoutedEvent closingEvent = EventManager.GetRoutedEventsForOwner(typeof(HandyControl.Controls.TabItem)).First(ss => ss.Name == "Closing");
+            EventManager.RegisterClassHandler(typeof(HandyControl.Controls.TabItem), closingEvent, new RoutedEventHandler(TabItemClosingHandler));
+        }
 
+        private void TabItemClosingHandler(object sender, RoutedEventArgs e)
+        {
+            var ce = (CancelRoutedEventArgs)e;
+            if (!IsEditing)
+            {
+                return;
+            }
+
+            MessageBoxResult r = MessageBox.Show("Save File ?", Name, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+
+            switch (r)
+            {
+                case MessageBoxResult.Cancel:
+                    ce.Cancel = true;
+                    break;
+                case MessageBoxResult.Yes:
+                    Save();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
 
         #region Property
@@ -89,6 +120,15 @@ namespace XmlEditor.ViewModels
         #endregion
 
         #region Command
+
+        private DelegateCommand<object> _TabClosingCommand;
+        public DelegateCommand<object> TabClosingCommand =>
+            _TabClosingCommand ?? (_TabClosingCommand = new DelegateCommand<object>(ExecuteTabClosingCommand));
+
+        void ExecuteTabClosingCommand(object parameter)
+        {
+
+        }
 
         private DelegateCommand<XmlNodeViewModel> _NodeLeftDoubleClickCommand;
         public DelegateCommand<XmlNodeViewModel> NodeLeftDoubleClickCommand =>
