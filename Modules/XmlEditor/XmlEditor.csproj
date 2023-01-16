@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\Common\Common\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Model\" />
     <Folder Include="Style\" />
   </ItemGroup>

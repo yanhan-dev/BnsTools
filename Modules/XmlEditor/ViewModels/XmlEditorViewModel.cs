@@ -71,7 +71,7 @@ namespace XmlEditor.ViewModels
                 return;
             }
 
-            EditingFiles.Add(new EditingFileViewModel(_eventAggregator)
+            EditingFiles.Add(new ()
             {
                 Name = file.Name,
                 Uri = file.Uri,
@@ -92,6 +92,24 @@ namespace XmlEditor.ViewModels
             }
 
             EditingFiles[parameter.EditingFilesSelectedIndex].Save();
+        }
+
+        private DelegateCommand<EditingFileViewModel> _CloseTabCommand;
+        public DelegateCommand<EditingFileViewModel> CloseTabCommand =>
+            _CloseTabCommand ?? (_CloseTabCommand = new DelegateCommand<EditingFileViewModel>(ExecuteCloseTabCommand));
+
+        void ExecuteCloseTabCommand(EditingFileViewModel parameter)
+        {
+            EditingFiles.Remove(parameter);
+        }
+
+        private DelegateCommand<object> _ClosingTabCommand;
+        public DelegateCommand<object> ClosingTabCommand =>
+            _ClosingTabCommand ?? (_ClosingTabCommand = new DelegateCommand<object>(ExecuteClosingTabCommand));
+
+        void ExecuteClosingTabCommand(object parameter)
+        {
+
         }
 
         #endregion

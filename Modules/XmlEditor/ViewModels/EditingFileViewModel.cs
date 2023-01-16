@@ -23,11 +23,9 @@ namespace XmlEditor.ViewModels
 {
     public class EditingFileViewModel : BindableBase
     {
-        private readonly IEventAggregator _eventAggregator;
-
-        public EditingFileViewModel(IEventAggregator ea)
+        public EditingFileViewModel()
         {
-            _eventAggregator = ea;
+
         }
 
         #region Property

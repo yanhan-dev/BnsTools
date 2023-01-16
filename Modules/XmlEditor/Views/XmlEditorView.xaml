@@ -50,9 +50,14 @@
         </DataGrid>
         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
         <!--右-->
-        <hc:TabControl Grid.Column="2" x:Name="tc" 
+        <!--<hc:TabControl>
+            <hc:TabItem Closing="TabItem_Closing" >
+            </hc:TabItem>
+        </hc:TabControl>-->
+        <hc:TabControl Grid.Column="2" x:Name="tc"
                        SelectedIndex="{Binding EditingFilesSelectedIndex}" 
-                       ItemsSource="{Binding EditingFiles}" IsAnimationEnabled="True" 
+                       ItemsSource="{Binding EditingFiles}" 
+                       IsAnimationEnabled="True" 
                        ShowCloseButton="True" 
                        ShowOverflowButton="True" 
                        ShowScrollButton="False" 
@@ -62,19 +67,17 @@
                 <KeyBinding 
                     Gesture="Ctrl+S"  
                     Command="{Binding SaveCommand}" 
-                    CommandParameter="{Binding}" />    
+                    CommandParameter="{Binding}" />
             </TabControl.InputBindings>
-            
-            <hc:TabControl.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Copy add new line"></MenuItem>
-                </ContextMenu>
-            </hc:TabControl.ContextMenu>
+
             <TabControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate>                    
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}" />
-                        <TextBlock Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">*</TextBlock>
+                        <TextBlock Text="*" Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <!--<Button Content="X" BorderThickness="0" Cursor="Hand" DockPanel.Dock="Right" Focusable="False" FontFamily="Courier" FontSize="9" FontWeight="Bold"  Margin="0,1,0,0" Padding="0" VerticalContentAlignment="Bottom" Width="16" Height="16" 
+                                Command="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                                CommandParameter="{Binding ElementName=tc, Path=SelectedItem}"/>-->
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
@@ -115,7 +118,7 @@
 
                             </DataGrid>
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
-                                <TextBox x:Name="searchTb" Width="{Binding Width,ElementName=sp1,Converter={converters:SubtractConverter Value=61}}"/>
+                                <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}"/>
                                 <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
                             </StackPanel>
                         </Grid>
