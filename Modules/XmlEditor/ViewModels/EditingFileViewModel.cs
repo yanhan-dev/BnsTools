@@ -28,21 +28,29 @@ namespace XmlEditor.ViewModels
 {
     public class EditingFileViewModel : BindableBase
     {
-        public EditingFileViewModel()
+        static EditingFileViewModel()
         {
             RoutedEvent closingEvent = EventManager.GetRoutedEventsForOwner(typeof(HandyControl.Controls.TabItem)).First(ss => ss.Name == "Closing");
             EventManager.RegisterClassHandler(typeof(HandyControl.Controls.TabItem), closingEvent, new RoutedEventHandler(TabItemClosingHandler));
         }
 
-        private void TabItemClosingHandler(object sender, RoutedEventArgs e)
+        public EditingFileViewModel()
         {
-            var ce = (CancelRoutedEventArgs)e;
-            if (!IsEditing)
+        }
+
+        private static void TabItemClosingHandler(object sender, RoutedEventArgs e)
+        {
+            if (e is not CancelRoutedEventArgs ce || ce.OriginalSource is not EditingFileViewModel editingFileVM)
             {
                 return;
             }
 
-            MessageBoxResult r = MessageBox.Show("Save File ?", Name, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            if (!editingFileVM.IsEditing)
+            {
+                return;
+            }
+
+            MessageBoxResult r = MessageBox.Show("Save File ?", editingFileVM.Name, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
 
             switch (r)
             {
@@ -50,7 +58,7 @@ namespace XmlEditor.ViewModels
                     ce.Cancel = true;
                     break;
                 case MessageBoxResult.Yes:
-                    Save();
+                    editingFileVM.Save();
                     break;
                 case MessageBoxResult.No:
                     break;

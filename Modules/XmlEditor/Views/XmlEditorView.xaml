@@ -145,7 +145,5 @@
                 </DataTemplate>
             </hc:TabControl.ContentTemplate>
         </hc:TabControl>
-
-
     </Grid>
 </UserControl>

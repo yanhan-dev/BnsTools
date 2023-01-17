@@ -19,6 +19,7 @@ using System.Collections.Immutable;
 using Common.Model;
 using Prism.Events;
 using HandyControl.Controls;
+using HandyControl.Data;
 
 namespace XmlEditor.ViewModels
 {
@@ -70,7 +71,7 @@ namespace XmlEditor.ViewModels
                 return;
             }
 
-            EditingFiles.Add(new ()
+            EditingFiles.Add(new()
             {
                 Name = file.Name,
                 Uri = file.Uri,
