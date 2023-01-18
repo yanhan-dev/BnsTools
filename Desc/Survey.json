@@ -1,0 +1,37 @@
+{
+  "Type": "survey",
+  "TitleAttr": "level",
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "fixed-reward-item-1": "固定奖励物品-1",
+        "fixed-reward-item-2": "固定奖励物品-2",
+        "fixed-reward-item-3": "固定奖励物品-3",
+        "fixed-reward-item-4": "固定奖励物品-4"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "level": "角色等级",
+        "fixed-reward-item-count-1": "固定奖励物品-数量-1",
+        "fixed-reward-item-count-2": "固定奖励物品-数量-2",
+        "fixed-reward-item-count-3": "固定奖励物品-数量-3",
+        "fixed-reward-item-count-4": "固定奖励物品-数量-4"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    }
+  ]
+}
