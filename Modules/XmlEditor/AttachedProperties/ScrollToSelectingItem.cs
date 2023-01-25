@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using XmlEditor.ViewModels;
+using System.Threading;
+using HandyControl.Tools;
 
 namespace XmlEditor.AttachedProperties
 {
@@ -37,7 +39,7 @@ namespace XmlEditor.AttachedProperties
                 return;
             }
 
-            grid.Dispatcher.InvokeAsync(() =>
+            grid.Dispatcher.Invoke(() =>
             {
                 grid.UpdateLayout();
                 grid.ScrollIntoView(grid.SelectedItem, null);
