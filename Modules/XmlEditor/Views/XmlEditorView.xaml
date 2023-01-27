@@ -125,7 +125,14 @@
                             </DataGrid>
 
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
-                                <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}"/>
+                                <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}">
+                                    <TextBox.InputBindings>
+                                        <KeyBinding 
+                                            Gesture="Enter"  
+                                            Command="{Binding SearchCommand}" 
+                                            CommandParameter="{Binding Path=Text, ElementName=searchTb}" />
+                                    </TextBox.InputBindings>
+                                </TextBox>
                                 <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
                             </StackPanel>
                         </Grid>
