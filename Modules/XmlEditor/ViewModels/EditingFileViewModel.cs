@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Extensions;
 using Common.Model;
 
 using HandyControl.Data;
@@ -85,11 +86,26 @@ namespace XmlEditor.ViewModels
 
         #region Dependency Property
 
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set
+            {
+                if (value.Length > 25)
+                {
+                    value = value.Truncate(25);
+                }
+                SetProperty(ref _Title, value);
+                return;
+            }
+        }
+
         private string _Name;
         public string Name
         {
             get { return _Name; }
-            set { SetProperty(ref _Name, value); }
+            set { SetProperty(ref _Name, value); Title = value; }
         }
 
         private string _Uri;
