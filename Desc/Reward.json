@@ -76,7 +76,7 @@
         "rare-item-16": "概率奖励-物品-16"
       },
       "LocalDesc": null,
-      "TextDesc": [        
+      "TextDesc": [
         {
           "Action": "Delete",
           "Params": {
@@ -101,13 +101,12 @@
           }
         },
         {
-          
           "Action": "Add",
           "Params": {
             "Start": "Item.Name2.",
             "End": "",
-            "ElseStart":"Npc.Name2.",
-            "ELseEnd":""
+            "ElseStart": "Npc.Name2.",
+            "ELseEnd": ""
           }
         }
       ]
