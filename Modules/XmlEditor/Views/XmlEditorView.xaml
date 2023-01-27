@@ -34,7 +34,7 @@
             Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Open with default text editor"/>
+                    <MenuItem Header="Open with default text editor" Command="{Binding OpenFileCommand}" CommandParameter="{Binding Files/}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.InputBindings>

@@ -20,6 +20,7 @@ using Common.Model;
 using Prism.Events;
 using HandyControl.Controls;
 using HandyControl.Data;
+using System.Diagnostics;
 
 namespace XmlEditor.ViewModels
 {
@@ -57,6 +58,21 @@ namespace XmlEditor.ViewModels
         #endregion
 
         #region Command
+        private DelegateCommand<FilesViewModel> _OpenFileCommand;
+        public DelegateCommand<FilesViewModel> OpenFileCommand => _OpenFileCommand ??= new DelegateCommand<FilesViewModel>(ExecuteOpenFileCommand);
+
+        void ExecuteOpenFileCommand(FilesViewModel parameter)
+        {
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    FileName = parameter.Uri
+                }
+            };
+            process.Start();
+        }
 
         private DelegateCommand<FilesViewModel> _FileDoubleClickCommand;
         public DelegateCommand<FilesViewModel> FileDoubleClickCommand => _FileDoubleClickCommand ??= new DelegateCommand<FilesViewModel>(ExecuteCommand);
