@@ -1,6 +1,7 @@
 {
   "Type": "ItemTransformRecipe",
-  "TitleAttr": "title-item",
+  "TitleAttr": "alias",
+  "DescAttr": "title-item",
   "AttrDesc": [
     {
       "Attrs": {
@@ -117,7 +118,7 @@
         "earring": "耳环",
         "Bracelet": "手镯",
         "belt": "腰带",
-        "soul": "魂",
+        "soul": "魂"
       }
     },
     {

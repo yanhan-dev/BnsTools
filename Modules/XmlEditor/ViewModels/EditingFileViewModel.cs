@@ -297,9 +297,15 @@ namespace XmlEditor.ViewModels
                 originRow.Value = attrM.Value;
                 originRow.ValueDesc = attrM.ValueDesc;
 
+                // update title
                 if (attrM.Attr == Desc.FindTitleAttr(FileType))
                 {
                     XmlNodes[EditingNodeIndex].Title = attrM.Value;
+                }
+
+                //update desc
+                if (attrM.Attr == Desc.FindDescAttr(FileType))
+                {
                     XmlNodes[EditingNodeIndex].Desc = attrM.ValueDesc;
                 }
 
@@ -329,6 +335,7 @@ namespace XmlEditor.ViewModels
             XDocument xDocument = XDocument.Load(uri);
             FileType = xDocument.Root.Attribute("type").Value;
             string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.TitleAttr;
+            string descAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.DescAttr;
 
             Root = new XElement(xDocument.Root.Name);
             foreach (var attr in xDocument.Root.Attributes())
@@ -375,7 +382,7 @@ namespace XmlEditor.ViewModels
 
                     xmlNode.Title = title;
                     xmlNode.XmlAttributes = new(attrList);
-                    xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(ss => ss.Value == title)?.ValueDesc;
+                    xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(ss => ss.Attr == descAttr, new AttributeViewModel { ValueDesc = string.Empty })?.ValueDesc;
 
                     return xmlNode;
                 }));

@@ -1,6 +1,7 @@
 {
   "Type": "QuestReward",
   "TitleAttr": "alias",
+  "DescAttr": "alias",
   "AttrDesc": [
     {
       "Attrs": {

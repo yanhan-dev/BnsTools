@@ -45,7 +45,8 @@
                 />
             </DataGrid.InputBindings>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="File" Binding="{Binding Name}" FontFamily="JetBrainsMono" FontSize="14" Width="200" IsReadOnly="True"/>
+                <DataGridTextColumn Header="File" Binding="{Binding Name}" FontFamily="JetBrainsMono" FontSize="14" Width="200" IsReadOnly="True">
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" IsReadOnly="False"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -130,7 +131,6 @@
                             <DataGrid.InputBindings>
                                 <KeyBinding 
                                     Gesture="Delete"  
-                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                     Command="{Binding DeleteSelectedAttrCommand}" />
                             </DataGrid.InputBindings>
                             <i:Interaction.Triggers>
