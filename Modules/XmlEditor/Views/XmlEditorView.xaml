@@ -102,15 +102,28 @@
                                     <MouseBinding
                                     MouseAction="LeftDoubleClick"
                                     Command="{Binding NodeLeftDoubleClickCommand}"
-                                    CommandParameter="{Binding XmlNodes/}"
-                                />
+                                    CommandParameter="{Binding XmlNodes/}" />
+                                    <KeyBinding 
+                                    Gesture="Delete"  
+                                    Command="{Binding DeleteSelectedNodesCommand}" />
                                 </DataGrid.InputBindings>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding NodesSelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <DataGrid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="CopyAdd" Command="{Binding CopyAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
+                                        <MenuItem Header="Delete" Command="{Binding DeleteSelectedNodesCommand}" />
+                                    </ContextMenu>
+                                </DataGrid.ContextMenu>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150"/>
+                                    <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150" />
                                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" FontFamily="JetBrainsMono" FontSize="14" IsReadOnly="True" />
                                 </DataGrid.Columns>
-
                             </DataGrid>
+
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
                                 <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}"/>
                                 <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
@@ -138,12 +151,12 @@
                                     <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                                    <i:InvokeCommandAction Command="{Binding AttrSelectionChangedCommand}" PassEventArgsToCommand="True"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="CopyAdd" Command="{Binding CopyAddCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
+                                    <MenuItem Header="CopyAdd" Command="{Binding CopyAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
                                     <MenuItem Header="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
                                 </ContextMenu>
                             </DataGrid.ContextMenu>

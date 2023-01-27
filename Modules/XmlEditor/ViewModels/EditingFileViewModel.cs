@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using AutoMapper;
+
+using Common;
 using Common.Extensions;
 using Common.Model;
 
@@ -154,13 +156,36 @@ namespace XmlEditor.ViewModels
             set { SetProperty(ref _SelectedAttrs, value); }
         }
 
+        private ObservableCollection<XmlNodeViewModel> _SelectedNodes;
+        public ObservableCollection<XmlNodeViewModel> SelectedNodes
+        {
+            get { return _SelectedNodes ??= new ObservableCollection<XmlNodeViewModel>(); }
+            set { SetProperty(ref _SelectedNodes, value); }
+        }
+
         #endregion
 
         #region Command
-        private DelegateCommand<SelectionChangedEventArgs> _SelectionChangedCommand;
-        public DelegateCommand<SelectionChangedEventArgs> SelectionChangedCommand => _SelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteSelectionChangedCommand);
+        private DelegateCommand<SelectionChangedEventArgs> _NodesSelectionChangedCommand;
+        public DelegateCommand<SelectionChangedEventArgs> NodesSelectionChangedCommand => _NodesSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteNodesSelectionChangedCommand);
 
-        void ExecuteSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        void ExecuteNodesSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        {
+            foreach (XmlNodeViewModel item in parameter.RemovedItems)
+            {
+                SelectedNodes.Remove(item);
+            }
+
+            foreach (XmlNodeViewModel item in parameter.AddedItems)
+            {
+                SelectedNodes.Add(item);
+            }
+        }
+
+        private DelegateCommand<SelectionChangedEventArgs> _AttrSelectionChangedCommand;
+        public DelegateCommand<SelectionChangedEventArgs> AttrSelectionChangedCommand => _AttrSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteAttrSelectionChangedCommand);
+
+        void ExecuteAttrSelectionChangedCommand(SelectionChangedEventArgs parameter)
         {
             foreach (AttributeViewModel item in parameter.RemovedItems)
             {
@@ -182,10 +207,19 @@ namespace XmlEditor.ViewModels
             IsEditing = true;
         }
 
-        private DelegateCommand<AttributeViewModel> _CopyAddCommand;
-        public DelegateCommand<AttributeViewModel> CopyAddCommand => _CopyAddCommand ??= new DelegateCommand<AttributeViewModel>(ExecuteCopyAddCommand);
+        private DelegateCommand _DeleteSelectedNodesCommand;
+        public DelegateCommand DeleteSelectedNodesCommand => _DeleteSelectedNodesCommand ??= new DelegateCommand(ExecuteDeleteSelectedNodesCommand);
 
-        void ExecuteCopyAddCommand(AttributeViewModel parameter)
+        void ExecuteDeleteSelectedNodesCommand()
+        {
+            XmlNodes.RemoveWhere(node => SelectedNodes.FirstOrDefault(sNode => sNode.Title == node.Title) != null);
+            IsEditing = true;
+        }
+
+        private DelegateCommand<AttributeViewModel> _CopyAddAttrCommand;
+        public DelegateCommand<AttributeViewModel> CopyAddAttrCommand => _CopyAddAttrCommand ??= new DelegateCommand<AttributeViewModel>(ExecuteCopyAddAttrCommand);
+
+        void ExecuteCopyAddAttrCommand(AttributeViewModel parameter)
         {
             var attrs = parameter.Attr.Split('-');
             bool isNum = int.TryParse(attrs.LastOrDefault(), out int num);
@@ -204,19 +238,30 @@ namespace XmlEditor.ViewModels
             IsEditing = true;
         }
 
+        private DelegateCommand<XmlNodeViewModel> _CopyAddNodeCommand;
+        public DelegateCommand<XmlNodeViewModel> CopyAddNodeCommand => _CopyAddNodeCommand ??= new DelegateCommand<XmlNodeViewModel>(ExecuteCopyAddNodeCommand);
 
-        private DelegateCommand<object> _TabClosingCommand;
-        public DelegateCommand<object> TabClosingCommand =>
-            _TabClosingCommand ?? (_TabClosingCommand = new DelegateCommand<object>(ExecuteTabClosingCommand));
-
-        void ExecuteTabClosingCommand(object parameter)
+        void ExecuteCopyAddNodeCommand(XmlNodeViewModel parameter)
         {
-
+            XmlNodes.Add(new XmlNodeViewModel
+            {
+                Title = parameter.Title + "_Copy",
+                Desc = parameter.Desc,
+                Node = parameter.Node,
+                UnUse = parameter.UnUse,
+                XmlAttributes = new ObservableCollection<AttributeViewModel>(parameter.XmlAttributes.Select(a => new AttributeViewModel
+                {
+                    Attr = a.Attr,
+                    AttrDesc = a.AttrDesc,
+                    Value = a.Value,
+                    ValueDesc = a.ValueDesc
+                }))
+            });
+            IsEditing = true;
         }
 
         private DelegateCommand<XmlNodeViewModel> _NodeLeftDoubleClickCommand;
-        public DelegateCommand<XmlNodeViewModel> NodeLeftDoubleClickCommand =>
-            _NodeLeftDoubleClickCommand ??= new DelegateCommand<XmlNodeViewModel>(ExecuteNodeLeftDoubleClickCommand);
+        public DelegateCommand<XmlNodeViewModel> NodeLeftDoubleClickCommand => _NodeLeftDoubleClickCommand ??= new DelegateCommand<XmlNodeViewModel>(ExecuteNodeLeftDoubleClickCommand);
 
         void ExecuteNodeLeftDoubleClickCommand(XmlNodeViewModel parameter)
         {
@@ -231,8 +276,7 @@ namespace XmlEditor.ViewModels
         }
 
         private DelegateCommand<string> _SearchCommand;
-        public DelegateCommand<string> SearchCommand =>
-            _SearchCommand ?? (_SearchCommand = new DelegateCommand<string>(ExecuteSearchCommand));
+        public DelegateCommand<string> SearchCommand => _SearchCommand ??= new DelegateCommand<string>(ExecuteSearchCommand);
 
         void ExecuteSearchCommand(string parameter)
         {
