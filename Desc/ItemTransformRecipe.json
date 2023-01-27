@@ -1,168 +1,168 @@
 {
-    "Type": "ItemTransformRecipe",
-    "TitleAttr": "title-item",
-    "AttrDesc": [
+  "Type": "ItemTransformRecipe",
+  "TitleAttr": "title-item",
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "main-ingredient": "主物品",
+        "sub-ingredient-1": "子物品-1"
+      },
+      "TextDesc": [
         {
-            "Attrs": {
-                "main-ingredient": "主物品",
-                "sub-ingredient-1": "子物品-1"
-            },
-            "TextDesc": [
-                {
-                    "Action": "Delete",
-                    "Params": {
-                        "Start": [
-                            "item:"
-                        ],
-                        "End": []
-                    }
-                },
-                {
-                    "Action": "Add",
-                    "Params": {
-                        "Start": "Item.Name2.",
-                        "End": ""
-                    }
-                }
-            ]
+          "Action": "Delete",
+          "Params": {
+            "Start": [
+              "item:"
+            ],
+            "End": []
+          }
         },
         {
-            "Attrs": {
-                "rare-item-1": "概率物品-1",
-                "fixed-ingredient-1": "固定物品-1",
-                "fixed-ingredient-2": "固定物品-2",
-                "fixed-ingredient-3": "固定物品-3",
-                "fixed-ingredient-4": "固定物品-4",
-                "fixed-ingredient-5": "固定物品-5",
-                "fixed-ingredient-6": "固定物品-6",
-                "random-item-1": "随机奖励-物品-1",
-                "random-item-2": "随机奖励-物品-2",
-                "random-item-3": "随机奖励-物品-3",
-                "random-item-4": "随机奖励-物品-4",
-                "random-item-5": "随机奖励-物品-5",
-                "random-item-6": "随机奖励-物品-6",
-                "random-item-7": "随机奖励-物品-7",
-                "random-item-8": "随机奖励-物品-8",
-                "random-item-9": "随机奖励-物品-9",
-                "normal-item-1": "普通奖励-物品-1",
-                "title-item": "标题物品"
-            },
-            "TextDesc": [
-                {
-                    "Action": "Add",
-                    "Params": {
-                        "Start": "Item.Name2.",
-                        "End": "",
-                        "ElseStart": "",
-                        "ELseEnd": ""
-                    }
-                }
-            ]
-        },
-        {
-            "Attrs": {
-                "consume-fixed-ingredient": "失败时消耗-固定道具",
-                "consume-sub-ingredient": "失败时消耗-子道具",
-                "keep-main-ingredient-spirit": "保持武器-精神",
-                "keep-main-ingredient-weapon-appearance": "保持-武器外观外观",
-                "keep-main-ingredient-weapon-gem-slot": "保持-武器宝石孔",
-                "use-random": "使用随机进化"
-            },
-            "LocalDesc": {
-                "y": "是",
-                "n": "否"
-            }
-        },
-        {
-            "Attrs": {
-                "category": "类型"
-            },
-            "LocalDesc": {
-                "none": "无",
-                "event": "活动",
-                "material": "材料",
-                "costume": "服装",
-                "weapon": "武器",
-                "legendary-weapon": "传说武器",
-                "accessory": "首饰",
-                "weapon-gem-adder": "宝石孔",
-                "weapon-gem2": "宝石",
-                "piece": "碎片",
-                "purification": "净化",
-                "special": "特殊",
-                "pet": "守护石",
-                "pet-legend": "传说守护石",
-                "pet-change": "凝神香",
-                "taiji-gem": "太极石",
-                "division": "分配"
-            }
-        },
-        {
-            "Attrs": {
-                "main-ingredient-condition-type": "主道具-类型",
-                "sub-ingredient-condition-type-1": "从道具-类型-1"
-            },
-            "LocalDesc": {
-                "blade-master-sword": "剑",
-                "kung-fu-fighter-gauntlet": "拳套",
-                "assassin-dagger": "短刀",
-                "aura-bangle": "彩绫",
-                "axe": "斧头",
-                "staff": "法杖",
-                "lyn-sword": "灵剑",
-                "warlock-dagger": "佩刀",
-                "soul-fighter-gauntlet": "玄甲",
-                "necklace": "项链",
-                "ring": "戒指",
-                "earring": "耳环",
-                "Bracelet": "手镯",
-                "belt": "腰带",
-                "soul": "魂",
-            }
-        },
-        {
-            "Attrs": {
-                "fixed-ingredient-stack-count-1": "固定物品-数量-1",
-                "fixed-ingredient-stack-count-2": "固定物品-数量-2",
-                "fixed-ingredient-stack-count-3": "固定物品-数量-3",
-                "fixed-ingredient-stack-count-4": "固定物品-数量-4",
-                "fixed-ingredient-stack-count-5": "固定物品-数量-5",
-                "fixed-ingredient-stack-count-6": "固定物品-数量-6",
-                "main-ingredient-min-level": "主物品-最小等级",
-                "main-ingredient-stack-count": "主物品-数量",
-                "money-cost": "铜币",
-                "normal-item-select-count": "普通物品-选择-数量",
-                "normal-item-stack-count-1": "普通物品-数量-1",
-                "normal-item-success-probability": "普通物品-成功率(1-1000)",
-                "normal-item-total-count": "普通物品-总数量",
-                "random-item-select-prop-weight-1": "随机物品-权重-1",
-                "random-item-select-prop-weight-2": "随机物品-权重-2",
-                "random-item-select-prop-weight-3": "随机物品-权重-3",
-                "random-item-select-prop-weight-4": "随机物品-权重-4",
-                "random-item-select-prop-weight-5": "随机物品-权重-5",
-                "random-item-select-prop-weight-6": "随机物品-权重-6",
-                "random-item-select-prop-weight-7": "随机物品-权重-7",
-                "random-item-select-prop-weight-8": "随机物品-权重-8",
-                "random-item-select-prop-weight-9": "随机物品-权重-9",
-                "random-item-stack-count-1": "随机物品-数量-1",
-                "random-item-stack-count-2": "随机物品-数量-2",
-                "random-item-stack-count-3": "随机物品-数量-3",
-                "random-item-stack-count-4": "随机物品-数量-4",
-                "random-item-stack-count-5": "随机物品-数量-5",
-                "random-item-stack-count-6": "随机物品-数量-6",
-                "random-item-stack-count-7": "随机物品-数量-7",
-                "random-item-stack-count-8": "随机物品-数量-8",
-                "random-item-stack-count-9": "随机物品-数量-9",
-                "random-item-success-probability": "随机物品-成功率(1-100)",
-                "random-item-total-count": "随机物品-总数量",
-                "rare-item-select-count": "概率物品-选择-数量",
-                "rare-item-stack-count-1": "概率物品-数量-1",
-                "rare-item-success-probability": "概率物品-成功率(1-1000)",
-                "rare-item-total-count": "概率物品-总数量",
-                "required-inven-capacity": "所需包裹空间",
-                "sub-ingredient-min-level-1": "子物品-最低等级-1",
-                "sub-ingredient-stack-count-1": "子物品-数量-1"
-            }
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": ""
+          }
         }
-    ]
+      ]
+    },
+    {
+      "Attrs": {
+        "rare-item-1": "概率物品-1",
+        "fixed-ingredient-1": "固定物品-1",
+        "fixed-ingredient-2": "固定物品-2",
+        "fixed-ingredient-3": "固定物品-3",
+        "fixed-ingredient-4": "固定物品-4",
+        "fixed-ingredient-5": "固定物品-5",
+        "fixed-ingredient-6": "固定物品-6",
+        "random-item-1": "随机奖励-物品-1",
+        "random-item-2": "随机奖励-物品-2",
+        "random-item-3": "随机奖励-物品-3",
+        "random-item-4": "随机奖励-物品-4",
+        "random-item-5": "随机奖励-物品-5",
+        "random-item-6": "随机奖励-物品-6",
+        "random-item-7": "随机奖励-物品-7",
+        "random-item-8": "随机奖励-物品-8",
+        "random-item-9": "随机奖励-物品-9",
+        "normal-item-1": "普通奖励-物品-1",
+        "title-item": "标题物品"
+      },
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "consume-fixed-ingredient": "失败时消耗-固定道具",
+        "consume-sub-ingredient": "失败时消耗-子道具",
+        "keep-main-ingredient-spirit": "保持武器-精神",
+        "keep-main-ingredient-weapon-appearance": "保持-武器外观外观",
+        "keep-main-ingredient-weapon-gem-slot": "保持-武器宝石孔",
+        "use-random": "使用随机进化"
+      },
+      "LocalDesc": {
+        "y": "是",
+        "n": "否"
+      }
+    },
+    {
+      "Attrs": {
+        "category": "类型"
+      },
+      "LocalDesc": {
+        "none": "无",
+        "event": "活动",
+        "material": "材料",
+        "costume": "服装",
+        "weapon": "武器",
+        "legendary-weapon": "传说武器",
+        "accessory": "首饰",
+        "weapon-gem-adder": "宝石孔",
+        "weapon-gem2": "宝石",
+        "piece": "碎片",
+        "purification": "净化",
+        "special": "特殊",
+        "pet": "守护石",
+        "pet-legend": "传说守护石",
+        "pet-change": "凝神香",
+        "taiji-gem": "太极石",
+        "division": "分配"
+      }
+    },
+    {
+      "Attrs": {
+        "main-ingredient-condition-type": "主道具-类型",
+        "sub-ingredient-condition-type-1": "从道具-类型-1"
+      },
+      "LocalDesc": {
+        "blade-master-sword": "剑",
+        "kung-fu-fighter-gauntlet": "拳套",
+        "assassin-dagger": "短刀",
+        "aura-bangle": "彩绫",
+        "axe": "斧头",
+        "staff": "法杖",
+        "lyn-sword": "灵剑",
+        "warlock-dagger": "佩刀",
+        "soul-fighter-gauntlet": "玄甲",
+        "necklace": "项链",
+        "ring": "戒指",
+        "earring": "耳环",
+        "Bracelet": "手镯",
+        "belt": "腰带",
+        "soul": "魂",
+      }
+    },
+    {
+      "Attrs": {
+        "fixed-ingredient-stack-count-1": "固定物品-数量-1",
+        "fixed-ingredient-stack-count-2": "固定物品-数量-2",
+        "fixed-ingredient-stack-count-3": "固定物品-数量-3",
+        "fixed-ingredient-stack-count-4": "固定物品-数量-4",
+        "fixed-ingredient-stack-count-5": "固定物品-数量-5",
+        "fixed-ingredient-stack-count-6": "固定物品-数量-6",
+        "main-ingredient-min-level": "主物品-最小等级",
+        "main-ingredient-stack-count": "主物品-数量",
+        "money-cost": "铜币",
+        "normal-item-select-count": "普通物品-选择-数量",
+        "normal-item-stack-count-1": "普通物品-数量-1",
+        "normal-item-success-probability": "普通物品-成功率(1-1000)",
+        "normal-item-total-count": "普通物品-总数量",
+        "random-item-select-prop-weight-1": "随机物品-权重-1",
+        "random-item-select-prop-weight-2": "随机物品-权重-2",
+        "random-item-select-prop-weight-3": "随机物品-权重-3",
+        "random-item-select-prop-weight-4": "随机物品-权重-4",
+        "random-item-select-prop-weight-5": "随机物品-权重-5",
+        "random-item-select-prop-weight-6": "随机物品-权重-6",
+        "random-item-select-prop-weight-7": "随机物品-权重-7",
+        "random-item-select-prop-weight-8": "随机物品-权重-8",
+        "random-item-select-prop-weight-9": "随机物品-权重-9",
+        "random-item-stack-count-1": "随机物品-数量-1",
+        "random-item-stack-count-2": "随机物品-数量-2",
+        "random-item-stack-count-3": "随机物品-数量-3",
+        "random-item-stack-count-4": "随机物品-数量-4",
+        "random-item-stack-count-5": "随机物品-数量-5",
+        "random-item-stack-count-6": "随机物品-数量-6",
+        "random-item-stack-count-7": "随机物品-数量-7",
+        "random-item-stack-count-8": "随机物品-数量-8",
+        "random-item-stack-count-9": "随机物品-数量-9",
+        "random-item-success-probability": "随机物品-成功率(1-100)",
+        "random-item-total-count": "随机物品-总数量",
+        "rare-item-select-count": "概率物品-选择-数量",
+        "rare-item-stack-count-1": "概率物品-数量-1",
+        "rare-item-success-probability": "概率物品-成功率(1-1000)",
+        "rare-item-total-count": "概率物品-总数量",
+        "required-inven-capacity": "所需包裹空间",
+        "sub-ingredient-min-level-1": "子物品-最低等级-1",
+        "sub-ingredient-stack-count-1": "子物品-数量-1"
+      }
+    }
+  ]
 }
