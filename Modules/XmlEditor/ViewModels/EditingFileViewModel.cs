@@ -1,6 +1,12 @@
 ﻿using Common;
+using Common.Model;
 
 using HandyControl.Data;
+using HandyControl.Tools;
+
+using Masuit.Tools;
+
+using Microsoft.CodeAnalysis.CSharp;
 
 using Prism.Commands;
 using Prism.Events;
@@ -125,9 +131,63 @@ namespace XmlEditor.ViewModels
             set { SetProperty(ref _EditingXmlAttributes, value); }
         }
 
+        private ObservableCollection<AttributeViewModel> _SelectedAttrs;
+        public ObservableCollection<AttributeViewModel> SelectedAttrs
+        {
+            get { return _SelectedAttrs ??= new ObservableCollection<AttributeViewModel>(); }
+            set { SetProperty(ref _SelectedAttrs, value); }
+        }
+
         #endregion
 
         #region Command
+        private DelegateCommand<SelectionChangedEventArgs> _SelectionChangedCommand;
+        public DelegateCommand<SelectionChangedEventArgs> SelectionChangedCommand => _SelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteSelectionChangedCommand);
+
+        void ExecuteSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        {
+            foreach (AttributeViewModel item in parameter.RemovedItems)
+            {
+                SelectedAttrs.Remove(item);
+            }
+
+            foreach (AttributeViewModel item in parameter.AddedItems)
+            {
+                SelectedAttrs.Add(item);
+            }
+        }
+
+        private DelegateCommand _DeleteSelectedAttrCommand;
+        public DelegateCommand DeleteSelectedAttrCommand => _DeleteSelectedAttrCommand ??= new DelegateCommand(ExecuteDeleteSelectedAttrCommand);
+
+        void ExecuteDeleteSelectedAttrCommand()
+        {
+            EditingXmlAttributes.RemoveWhere(eAttr => SelectedAttrs.FirstOrDefault(sAttr => sAttr.Attr == eAttr.Attr) != null);
+            IsEditing = true;
+        }
+
+        private DelegateCommand<AttributeViewModel> _CopyAddCommand;
+        public DelegateCommand<AttributeViewModel> CopyAddCommand => _CopyAddCommand ??= new DelegateCommand<AttributeViewModel>(ExecuteCopyAddCommand);
+
+        void ExecuteCopyAddCommand(AttributeViewModel parameter)
+        {
+            var attrs = parameter.Attr.Split('-');
+            bool isNum = int.TryParse(attrs.LastOrDefault(), out int num);
+            if (isNum)
+            {
+                num += 1;
+                attrs[^1] = num.ToString();
+            }
+            else
+            {
+                attrs[^1] += "-1";
+            }
+            string newAttr = string.Join("-", attrs);
+
+            EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
+            IsEditing = true;
+        }
+
 
         private DelegateCommand<object> _TabClosingCommand;
         public DelegateCommand<object> TabClosingCommand =>
@@ -323,7 +383,16 @@ namespace XmlEditor.ViewModels
                 var attrs = node.XmlAttributes.Select(attr => new XAttribute(XName.Get(attr.Attr), attr.Value));
                 foreach (var attr in attrs)
                 {
-                    record.Add(attr);
+                    try
+                    {
+                        record.Add(attr);
+
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        MessageBox.Error(attr.Name.LocalName, e.Message);
+                        return;
+                    }
                 }
 
                 xDocument.Root.Add(record);

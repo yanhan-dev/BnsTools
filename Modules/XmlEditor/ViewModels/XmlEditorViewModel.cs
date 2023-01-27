@@ -59,8 +59,7 @@ namespace XmlEditor.ViewModels
         #region Command
 
         private DelegateCommand<FilesViewModel> _FileDoubleClickCommand;
-        public DelegateCommand<FilesViewModel> FileDoubleClickCommand =>
-            _FileDoubleClickCommand ?? (_FileDoubleClickCommand = new DelegateCommand<FilesViewModel>(ExecuteCommand));
+        public DelegateCommand<FilesViewModel> FileDoubleClickCommand => _FileDoubleClickCommand ??= new DelegateCommand<FilesViewModel>(ExecuteCommand);
 
         void ExecuteCommand(FilesViewModel file)
         {

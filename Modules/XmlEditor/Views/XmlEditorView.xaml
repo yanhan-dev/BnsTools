@@ -10,7 +10,8 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:viewmodels="clr-namespace:XmlEditor.ViewModels" 
              xmlns:converters="clr-namespace:XmlEditor.Converters"
-             xmlns:ap="clr-namespace:XmlEditor.AttachedProperties" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:ap="clr-namespace:XmlEditor.AttachedProperties" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              d:DataContext="{d:DesignInstance Type=viewmodels:XmlEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -117,22 +118,40 @@
 
                         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                         <!--编辑区-->
-                        <DataGrid Grid.Column="2" 
+                        <DataGrid x:Name="attrDg"
+                                  Grid.Column="2" 
                                   ItemsSource="{Binding EditingXmlAttributes}" 
                                   Style="{StaticResource DataGrid.Small}" 
                                   GridLinesVisibility="Vertical" 
-                                  VerticalGridLinesBrush="{DynamicResource BorderBrush}" 
-                                  AutoGenerateColumns="False">
+                                  VerticalGridLinesBrush="{DynamicResource BorderBrush}"                                   
+                                  IsSynchronizedWithCurrentItem="True"
+                                  AutoGenerateColumns="False"
+                                  hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30">
+                            <DataGrid.InputBindings>
+                                <KeyBinding 
+                                    Gesture="Delete"  
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    Command="{Binding DeleteSelectedAttrCommand}" />
+                            </DataGrid.InputBindings>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="CellEditEnding">
                                     <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
                                 </i:EventTrigger>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Copy" Command="{Binding CopyCommand}"/>
+                                    <MenuItem Header="CopyAdd" Command="{Binding CopyAddCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
+                                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Attr" Binding="{Binding Attr}"  FontFamily="JetBrainsMono" FontSize="14"/>
                                 <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc, Mode=OneWay}" FontSize="13"/>
