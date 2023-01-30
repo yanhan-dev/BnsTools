@@ -25,7 +25,12 @@ namespace Common.Action
             string name = jsonObject["Action"].ToString();
             Type type = ActionHandler.ParamsTypes[name];
             var tt = Activator.CreateInstance(type);
-            serializer.Populate(jsonObject["Params"].CreateReader(), tt);
+            var paraObj = jsonObject["Params"];
+            if (paraObj != null)
+            {
+                serializer.Populate(paraObj.CreateReader(), tt);
+            }
+            
             return new TextDesc { Action = name, Params = (IParams)tt };
         }
 

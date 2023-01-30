@@ -14,7 +14,7 @@ namespace Common.Action
     [Component(AutofacScope = AutofacScope.SingleInstance, AutoActivate = true)]
     public class SplitAction : IAction
     {
-        public override string Name { get; set; } = "Split";
+        public override string Name { get => "Split"; }
 
         public SplitAction()
         {

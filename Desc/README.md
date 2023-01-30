@@ -75,3 +75,47 @@
   ]
 }
 ```
+
+```JSON
+{
+  "Type": "item",
+  "TitleAttr": "alias",
+  "DescAttr": "alias",
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "set-item": "套装"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Direct", //Direct 不进行任何处理直接去翻译查找
+        }
+      ]
+    },
+        {
+      "Attrs": {
+        "exceptional-usable-attraction": "Dungeon:Dungeon_LightningStorm",
+        "valid-attraction-1": "Field-Zone:YeolSaJeeDea",
+        "valid-attraction-3": "Classic-Field-Zone:PoHwaRan_Classic",
+        "valid-attraction-4": "Faction-battle-field-zone:BuYuDo",
+        "valid-attraction-test1": "Guild-battle-field-zone:HellScroll",
+        "valid-attraction-test2": "Jackpot-Boss-Zone:BloodWindplain",
+        "valid-attraction-2": "Attraction-group:Suwal_Classic"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Replace", //Replace 用Map的Value替换掉Key
+          "Params": {
+            "Maps": {
+              "Dungeon:": "Dungeon.Name2.",
+              "Field-Zone:": "FieldZone.Name2."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```

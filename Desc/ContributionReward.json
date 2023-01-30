@@ -1,0 +1,112 @@
+{
+  "Type": "ContributionReward",
+  "TitleAttr": "alias",
+  "DescAttr": "alias",
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "alias": "别名"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Npc.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "contribution-type": "贡献类型"
+      },
+      "LocalDesc": {
+        "normal": "正常",
+        "faction": "势力",
+        "guild": "公会"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "group-item-1": "群体奖励-物品-1",
+        "group-item-10": "群体奖励-物品-10",
+        "group-item-2": "群体奖励-物品-2",
+        "group-item-3": "群体奖励-物品-3",
+        "group-item-4": "群体奖励-物品-4",
+        "group-item-5": "群体奖励-物品-5",
+        "group-item-6": "群体奖励-物品-6",
+        "group-item-7": "群体奖励-物品-7",
+        "group-item-8": "群体奖励-物品-8",
+        "group-item-9": "群体奖励-物品-9",
+        "guild-reward": "公会奖励",
+        "killer-item": "尾刀奖励-物品",
+        "minimum-group-item": "保底奖励-物品"
+        
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "group-damage-hp-per-ten-thousand-1": "群体伤害-每万生命值-1",
+        "group-damage-hp-per-ten-thousand-10": "群体伤害-每万生命值-10",
+        "group-damage-hp-per-ten-thousand-2": "群体伤害-每万生命值-2",
+        "group-damage-hp-per-ten-thousand-3": "群体伤害-每万生命值-3",
+        "group-damage-hp-per-ten-thousand-4": "群体伤害-每万生命值-4",
+        "group-damage-hp-per-ten-thousand-5": "群体伤害-每万生命值-5",
+        "group-damage-hp-per-ten-thousand-6": "群体伤害-每万生命值-6",
+        "group-damage-hp-per-ten-thousand-7": "群体伤害-每万生命值-7",
+        "group-damage-hp-per-ten-thousand-8": "群体伤害-每万生命值-8",
+        "group-damage-hp-per-ten-thousand-9": "群体伤害-每万生命值-9",
+        "group-damage-hp-percent-1": "群体伤害-百分比-生命值-1",
+        "group-damage-hp-percent-10": "群体伤害-百分比-生命值-10",
+        "group-damage-hp-percent-2": "群体伤害-百分比-生命值-2",
+        "group-damage-hp-percent-3": "群体伤害-百分比-生命值-3",
+        "group-damage-hp-percent-4": "群体伤害-百分比-生命值-4",
+        "group-damage-hp-percent-5": "群体伤害-百分比-生命值-5",
+        "group-damage-hp-percent-6": "群体伤害-百分比-生命值-6",
+        "group-damage-hp-percent-7": "群体伤害-百分比-生命值-7",
+        "group-damage-hp-percent-8": "群体伤害-百分比-生命值-8",
+        "group-damage-hp-percent-9": "群体伤害-百分比-生命值-9",
+        "group-faction-score-percent-1": "群体-势力分数-百分比-1",
+        "group-faction-score-percent-10": "群体-势力分数-百分比-10",
+        "group-faction-score-percent-2": "群体-势力分数-百分比-2",
+        "group-faction-score-percent-3": "群体-势力分数-百分比-3",
+        "group-faction-score-percent-4": "群体-势力分数-百分比-4",
+        "group-faction-score-percent-5": "群体-势力分数-百分比-5",
+        "group-faction-score-percent-6": "群体-势力分数-百分比-6",
+        "group-faction-score-percent-7": "群体-势力分数-百分比-7",
+        "group-faction-score-percent-8": "群体-势力分数-百分比-8",
+        "group-faction-score-percent-9": "群体-势力分数-百分比-9",
+        "group-item-count-1": "群体奖励-物品数量-1",
+        "group-item-count-10": "群体奖励-物品数量-10",
+        "group-item-count-2": "群体奖励-物品数量-2",
+        "group-item-count-3": "群体奖励-物品数量-3",
+        "group-item-count-4": "群体奖励-物品数量-4",
+        "group-item-count-5": "群体奖励-物品数量-5",
+        "group-item-count-6": "群体奖励-物品数量-6",
+        "group-item-count-7": "群体奖励-物品数量-7",
+        "group-item-count-8": "群体奖励-物品数量-8",
+        "group-item-count-9": "群体奖励-物品数量-9",
+        "killer-faction-score-percent": "击杀势力分数(百分比)",
+        "killer-item-count": "尾刀奖励-数量",
+        "minimum-group-item-count": "保底奖励-数量"
+      }
+    }
+  ]
+}

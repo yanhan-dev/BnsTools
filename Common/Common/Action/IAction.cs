@@ -10,7 +10,7 @@ namespace Common.Action
 {
     public abstract class IAction
     {
-        public abstract string Name { get; set; }
+        public abstract string Name { get; }
 
         public abstract string Do(string value, IParams param, bool elseMode = false);
     }

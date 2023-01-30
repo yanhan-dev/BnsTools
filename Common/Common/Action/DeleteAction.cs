@@ -16,7 +16,7 @@ namespace Common.Action
     [Component(AutofacScope = AutofacScope.SingleInstance, AutoActivate = true)]
     public class DeleteAction : IAction
     {
-        public override string Name { get; set; } = "Delete";
+        public override string Name { get => "Delete"; }
 
         public DeleteAction()
         {
