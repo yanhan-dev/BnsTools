@@ -127,13 +127,11 @@
                             <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
                                 <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}">
                                     <TextBox.InputBindings>
-                                        <KeyBinding 
-                                            Gesture="Enter"  
-                                            Command="{Binding SearchCommand}" 
-                                            CommandParameter="{Binding Path=Text, ElementName=searchTb}" />
+                                        <KeyBinding Gesture="Enter" Command="{Binding SearchDownCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" />
                                     </TextBox.InputBindings>
                                 </TextBox>
-                                <Button Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="60">搜索</Button>
+                                <Button Command="{Binding SearchUpCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="30">↑</Button>
+                                <Button Command="{Binding SearchDownCommand}" CommandParameter="{Binding Path=Text, ElementName=searchTb}" Width="30">↓</Button>
                             </StackPanel>
                         </Grid>
 
@@ -149,9 +147,7 @@
                                   AutoGenerateColumns="False"
                                   hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30">
                             <DataGrid.InputBindings>
-                                <KeyBinding 
-                                    Gesture="Delete"  
-                                    Command="{Binding DeleteSelectedAttrCommand}" />
+                                <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
                             </DataGrid.InputBindings>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="CellEditEnding">
@@ -176,7 +172,7 @@
                                 <DataGridTextColumn Header="Attr" Binding="{Binding Attr}"  FontFamily="JetBrainsMono" FontSize="14"/>
                                 <DataGridTextColumn Header="AttrDesc" Binding="{Binding AttrDesc, Mode=OneWay}" FontSize="13"/>
                                 <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontFamily="JetBrainsMono" FontSize="14"/>
-                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc, Mode=OneWay}" FontSize="13"/>
+                                <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc, Mode=TwoWay}" FontSize="13"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

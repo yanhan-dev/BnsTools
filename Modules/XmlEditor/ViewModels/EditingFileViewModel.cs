@@ -276,10 +276,46 @@ namespace XmlEditor.ViewModels
             EditingXmlAttributes = parameter.XmlAttributes;
         }
 
-        private DelegateCommand<string> _SearchCommand;
-        public DelegateCommand<string> SearchCommand => _SearchCommand ??= new DelegateCommand<string>(ExecuteSearchCommand);
+        private DelegateCommand<string> _SearchUpCommand;
+        public DelegateCommand<string> SearchUpCommand => _SearchUpCommand ??= new DelegateCommand<string>(ExecuteSearchUpCommand);
 
-        void ExecuteSearchCommand(string parameter)
+        void ExecuteSearchUpCommand(string parameter)
+        {
+            for (int i = NodeSelectedIndex - 1; i > 0; i--)
+            {
+                if (XmlNodes[i].UnUse)
+                {
+                    continue;
+                }
+
+                if (!XmlNodes[i].Title.Contains(parameter) && null != XmlNodes[i].Desc && !XmlNodes[i].Desc.Contains(parameter))
+                {
+                    continue;
+                }
+                NodeSelectedIndex = i;
+                return;
+            }
+
+            for (int i = XmlNodes.Count - 1; i > NodeSelectedIndex; i--)
+            {
+                if (XmlNodes[i].UnUse)
+                {
+                    continue;
+                }
+
+                if (!XmlNodes[i].Title.Contains(parameter) && !XmlNodes[i].Desc.Contains(parameter))
+                {
+                    continue;
+                }
+                NodeSelectedIndex = i;
+                return;
+            }
+        }
+
+        private DelegateCommand<string> _SearchDownCommand;
+        public DelegateCommand<string> SearchDownCommand => _SearchDownCommand ??= new DelegateCommand<string>(ExecuteSearchDownCommand);
+
+        void ExecuteSearchDownCommand(string parameter)
         {
             for (int i = NodeSelectedIndex + 1; i < XmlNodes.Count; i++)
             {
@@ -381,7 +417,6 @@ namespace XmlEditor.ViewModels
             FileType = xDocument.Root.Attribute("type").Value;
             string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.TitleAttr;
             string descAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.DescAttr;
-
             Root = new XElement(xDocument.Root.Name);
             foreach (var attr in xDocument.Root.Attributes())
             {
@@ -469,7 +504,7 @@ namespace XmlEditor.ViewModels
             XmlWriterSettings settings = new()
             {
                 Indent = true,
-                IndentChars = "  "  // Indent 2 Spaces
+                IndentChars = "  ",  // Indent 2 Spaces
             };
 
             using (XmlWriter writer = XmlWriter.Create(Uri, settings))
