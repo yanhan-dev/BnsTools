@@ -1,7 +1,7 @@
 {
   "Type": "survey",
   "TitleAttr": "level",
-  "DescAttr": "level",
+  "DescAttr": ["level"],
   "AttrDesc": [
     {
       "Attrs": {

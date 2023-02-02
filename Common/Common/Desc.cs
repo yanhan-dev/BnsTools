@@ -96,7 +96,7 @@ namespace Common
             return FileSchemeDescs.GetValueOrDefault(type, null)?.TitleAttr;
         }
 
-        public static string FindDescAttr(string type)
+        public static List<string> FindDescAttr(string type)
         {
             return FileSchemeDescs.GetValueOrDefault(type, null)?.DescAttr;
         }

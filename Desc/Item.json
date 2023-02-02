@@ -1,7 +1,7 @@
 {
   "Type": "item",
   "TitleAttr": "alias",
-  "DescAttr": "alias",
+  "DescAttr": ["alias"],
   "AttrDesc": [
     {
       "Attrs": {
@@ -224,10 +224,10 @@
         "resurrect-recycle-group": "item-2",
         "time-limit-type": "duration",
         "type": "类型",
-        "weapon-appearance-change-type": "both",
+        "weapon-appearance-change-type": "武器外形变更",
         "weapon-enchant-gem-slot-type": "none",
-        "weapon-gem-type": "diamond",
-        "weapon-type": "Sword"
+        "weapon-gem-type": "宝石类型",
+        "weapon-type": "武器类型"
       },
       "LocalDesc": {
         "y": "是",

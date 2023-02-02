@@ -2,7 +2,7 @@
 {
   "Type": "ItemTransformRecipe", //xml文件的type
   "TitleAttr": "alias", //列表的标题取自哪个字段
-  "DescAttr": "title-item", //列表的解释取自哪个字段
+  "DescAttr": ["title-item", "rare-item-1", "random-item-1"] //列表的解释取自哪个字段, 按照顺序匹配查找
   "AttrDesc": [ //字段解析
     {
       "Attrs": { //字段解释, 同类型字段放一起
@@ -47,7 +47,7 @@
 {
   "Type": "QuestReward",
   "TitleAttr": "alias",
-  "DescAttr": "alias",
+  "DescAttr": ["alias"],
   "AttrDesc": [
     {
       "Attrs": {
@@ -80,7 +80,7 @@
 {
   "Type": "item",
   "TitleAttr": "alias",
-  "DescAttr": "alias",
+  "DescAttr": ["alias"],
   "AttrDesc": [
     {
       "Attrs": {

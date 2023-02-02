@@ -1,7 +1,7 @@
 {
   "Type": "ItemTransformRecipe",
   "TitleAttr": "alias",
-  "DescAttr": "title-item",
+  "DescAttr": ["title-item", "rare-item-1", "random-item-1", "normal-item-1"],
   "AttrDesc": [
     {
       "Attrs": {

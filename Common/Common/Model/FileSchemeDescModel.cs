@@ -14,7 +14,7 @@ namespace Common.Model
     {
         public string Type { get; set; }
         public string TitleAttr { get; set; }
-        public string DescAttr { get; set; }
+        public List<string> DescAttr { get; set; }
         public List<AttrDesc> AttrDesc { get; set; }
     }
 

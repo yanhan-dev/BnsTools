@@ -1,7 +1,7 @@
 {
   "Type": "reward",
   "TitleAttr": "alias",
-  "DescAttr": "alias",
+  "DescAttr": ["alias"],
   "AttrDesc": [
     {
       "Attrs": {

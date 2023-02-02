@@ -365,7 +365,7 @@ namespace XmlEditor.ViewModels
                 return;
             }
 
-            var originRow = (AttributeViewModel)parameter.Row.Item;
+            AttributeViewModel originRow = (AttributeViewModel)parameter.Row.Item;
             var header = parameter.Column.Header.ToString();
             var input = ((TextBox)parameter.EditingElement).Text;
 
@@ -385,7 +385,7 @@ namespace XmlEditor.ViewModels
                 }
 
                 //update desc
-                if (attrM.Attr == Desc.FindDescAttr(FileType))
+                if (attrM.Attr == XmlNodes[EditingNodeIndex].DescAttr)
                 {
                     XmlNodes[EditingNodeIndex].Desc = attrM.ValueDesc;
                 }
@@ -416,7 +416,7 @@ namespace XmlEditor.ViewModels
             XDocument xDocument = XDocument.Load(uri);
             FileType = xDocument.Root.Attribute("type").Value;
             string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.TitleAttr;
-            string descAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.DescAttr;
+            List<string> descAttrs = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.DescAttr;
             Root = new XElement(xDocument.Root.Name);
             foreach (var attr in xDocument.Root.Attributes())
             {
@@ -462,7 +462,10 @@ namespace XmlEditor.ViewModels
 
                     xmlNode.Title = title;
                     xmlNode.XmlAttributes = new(attrList);
-                    xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(ss => ss.Attr == descAttr, new AttributeViewModel { ValueDesc = string.Empty })?.ValueDesc;
+
+                    xmlNode.DescAttr = descAttrs.FirstOrDefault(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
+
+                    xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == xmlNode.DescAttr, new AttributeViewModel { ValueDesc = string.Empty })?.ValueDesc;
 
                     return xmlNode;
                 }));
@@ -504,7 +507,7 @@ namespace XmlEditor.ViewModels
             XmlWriterSettings settings = new()
             {
                 Indent = true,
-                IndentChars = "  ",  // Indent 2 Spaces
+                IndentChars = "    ",  // Indent 4 Spaces
             };
 
             using (XmlWriter writer = XmlWriter.Create(Uri, settings))

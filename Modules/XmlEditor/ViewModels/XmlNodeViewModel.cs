@@ -30,6 +30,8 @@ namespace XmlEditor.ViewModels
             set { SetProperty(ref _Desc, value); }
         }
 
+        public string DescAttr { get; set; }
+
         private ObservableCollection<AttributeViewModel> _XmlAttributes;
         public ObservableCollection<AttributeViewModel> XmlAttributes
         {
