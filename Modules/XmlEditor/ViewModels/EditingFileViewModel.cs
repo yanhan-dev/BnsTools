@@ -8,6 +8,7 @@ using HandyControl.Data;
 using HandyControl.Tools;
 
 using Masuit.Tools;
+using Masuit.Tools.Strings;
 
 using Microsoft.CodeAnalysis.CSharp;
 
@@ -434,7 +435,7 @@ namespace XmlEditor.ViewModels
 
         public void Save()
         {
-            XDocument xDocument = new XDocument();
+            XDocument xDocument = new();
             xDocument.Add(new XElement(Root));
 
             foreach (var node in XmlNodes)
@@ -464,7 +465,17 @@ namespace XmlEditor.ViewModels
 
                 xDocument.Root.Add(record);
             }
-            xDocument.Save(Uri);
+
+            XmlWriterSettings settings = new()
+            {
+                Indent = true,
+                IndentChars = "  "  // Indent 2 Spaces
+            };
+
+            using (XmlWriter writer = XmlWriter.Create(Uri, settings))
+            {
+                xDocument.Save(writer);
+            }
 
             IsEditing = false;
         }
