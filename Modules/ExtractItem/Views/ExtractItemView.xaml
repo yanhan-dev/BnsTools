@@ -20,26 +20,26 @@
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="导出目录" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock Text="Export path" Width="70" VerticalAlignment="Center" TextAlignment="Center"/>
             <TextBox Text="{Binding ExportPath, UpdateSourceTrigger=PropertyChanged}" AllowDrop="True" PreviewDragOver="TextBox_PreviewDragOver" PreviewDrop="TextBox_PreviewDrop_Directory" Margin="10,0,0,0" Width="600" />
-            <Button Command="{Binding OpenExportPathCommand}" Width="50" Margin="10,0,0,0">打开</Button>
+            <Button Command="{Binding OpenExportPathCommand}" Width="65" Margin="10,0,0,0">Open</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Margin="80,0,0,0" Width="590"/>
-            <Button Command="{Binding ExportCommand}" Width="50" Margin="10,0,60,0">导出</Button>
+            <TextBlock Text="{Binding ExportLog}" VerticalAlignment="Center" Margin="80,0,0,0" Width="600"/>
+            <Button Command="{Binding ExportCommand}" Width="65" Margin="10,0,60,0">Export</Button>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="物品文件" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock Text="Item file" Width="70" VerticalAlignment="Center" TextAlignment="Center"/>
             <TextBox Text="{Binding ItemsFilePath, UpdateSourceTrigger=PropertyChanged}" AllowDrop="True" PreviewDragOver="TextBox_PreviewDragOver" PreviewDrop="TextBox_PreviewDrop_File" Margin="10,0,0,0" Width="600" />
-            <Button Command="{Binding OpenItemsCommand}" Width="50" Margin="10,0,0,0">打开</Button>
+            <Button Command="{Binding OpenItemsCommand}" Width="65" Margin="10,0,0,0">Open</Button>
         </StackPanel>
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="数据库" Width="60" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBlock Text="Database" Width="70" VerticalAlignment="Center" TextAlignment="Center"/>
             <TextBox Text="{Binding ConnString}" Margin="10,0,0,0" Width="600" />
         </StackPanel>
         <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="10,5,0,0">
-            <TextBlock Text="{Binding ImportLog}" VerticalAlignment="Center"  Margin="80,0,0,0" Width="590"/>
-            <Button Command="{Binding ImportCommand}" Width="50" Margin="10,0,60,0">导入</Button>
+            <TextBlock Text="{Binding ImportLog}" VerticalAlignment="Center"  Margin="80,0,0,0" Width="600"/>
+            <Button Command="{Binding ImportCommand}" Width="65" Margin="10,0,60,0">Import</Button>
         </StackPanel>
     </Grid>
 </UserControl>

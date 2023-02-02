@@ -19,16 +19,16 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="localfile(32/64)" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding BinFilePath}" Margin="10,0,0,0" Width="480" />
-            <Button Command="{Binding OpenBinCommand}" Width="50" Margin="10,0,0,0">打开</Button>
-            <Button Command="{Binding ExportBinCommand}" Width="50" Margin="10,0,0,0">导出</Button>
-            <Button Command="{Binding ExportBinCommand}" Width="50" Margin="10,0,0,0">导入</Button>
+            <TextBox Text="{Binding BinFilePath}" Margin="0,0,0,0" Width="480" />
+            <Button Command="{Binding OpenBinCommand}" Width="60" Margin="10,0,0,0">Open</Button>
+            <Button Command="{Binding ExportBinCommand}" Width="60" Margin="10,0,0,0">Export</Button>
+            <Button Command="{Binding ExportBinCommand}" Width="60" Margin="10,0,0,0">Import</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,0,0">
             <TextBlock Text="Translate" Width="100" VerticalAlignment="Center" TextAlignment="Left"/>
-            <TextBox Text="{Binding TranslateFilePath}" Margin="10,0,0,0" Width="480" />
-            <Button Command="{Binding OpenTranslateFileCommand}" Width="50" Margin="10,0,0,0">打开</Button>
-            <Button Command="{Binding TraditionalToSimplifiedCommand}" Width="110" Margin="10,0,0,0">繁体转简体</Button>
+            <TextBox Text="{Binding TranslateFilePath}" Margin="0,0,0,0" Width="480" />
+            <Button Command="{Binding OpenTranslateFileCommand}" Width="60" Margin="10,0,0,0">Open</Button>
+            <Button Command="{Binding TraditionalToSimplifiedCommand}" Width="130" Margin="10,0,0,0">繁转简</Button>
         </StackPanel>
     </Grid>
 </UserControl>

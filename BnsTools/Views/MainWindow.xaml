@@ -30,14 +30,14 @@
             </Grid.ColumnDefinitions>
             <StackPanel Height="29">
                 <Menu HorizontalAlignment="Left">
-                    <MenuItem Header="首页" Command="{Binding NavigateCommand}" CommandParameter="HomeView">
+                    <MenuItem Header="Home" Command="{Binding NavigateCommand}" CommandParameter="HomeView">
                     </MenuItem>
-                    <MenuItem Header="工具">
-                        <MenuItem Header="提取服务端数据结构" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
-                        <MenuItem Header="翻译" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
-                        <MenuItem Header="导出物品" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
-                        <MenuItem Header="聚灵阁" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
-                        <MenuItem Header="XML编辑器" Command="{Binding NavigateCommand}" CommandParameter="XmlEditorView"/>
+                    <MenuItem Header="Tools">
+                        <MenuItem Header="Export server schema" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
+                        <MenuItem Header="Translate" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
+                        <MenuItem Header="Export item" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
+                        <MenuItem Header="RandomStore" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
+                        <MenuItem Header="XML Editor" Command="{Binding NavigateCommand}" CommandParameter="XmlEditorView"/>
                     </MenuItem>
                 </Menu>
             </StackPanel>

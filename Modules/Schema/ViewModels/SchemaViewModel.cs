@@ -28,14 +28,14 @@ namespace Schema.ViewModels
 
         #region Field
 
-        private string _outSchemaPath;
-        public string OutSchemaPath
+        private string _ExportSchemaPath;
+        public string ExportSchemaPath
         {
-            get { return _outSchemaPath; }
-            set { SetProperty(ref _outSchemaPath, value); }
+            get { return _ExportSchemaPath; }
+            set { SetProperty(ref _ExportSchemaPath, value); }
         }
 
-        private string _ExportLog = "等待中...";
+        private string _ExportLog = "Waiting...";
         public string ExportLog
         {
             get { return _ExportLog; }
@@ -46,10 +46,10 @@ namespace Schema.ViewModels
 
         #region Command
 
-        private DelegateCommand _selectOutSchemaPathCommand;
-        public DelegateCommand SelectOutSchemaPathCommand => _selectOutSchemaPathCommand ??= new DelegateCommand(ExecuteSelectOutSchemaPathCommand);
+        private DelegateCommand _SelectExportSchemaPathCommand;
+        public DelegateCommand SelectExportSchemaPathCommand => _SelectExportSchemaPathCommand ??= new DelegateCommand(ExecuteSelectExportSchemaPathCommand);
 
-        void ExecuteSelectOutSchemaPathCommand()
+        void ExecuteSelectExportSchemaPathCommand()
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog
             {
@@ -61,11 +61,11 @@ namespace Schema.ViewModels
                 return;
             }
 
-            OutSchemaPath = dialog.FileName;
+            ExportSchemaPath = dialog.FileName;
         }
 
-        private DelegateCommand _exportSchemaCommand;
-        public DelegateCommand ExportSchemaCommand => _exportSchemaCommand ??= new DelegateCommand(async () => await ExecuteExportSchemaCommand());
+        private DelegateCommand _ExportSchemaCommand;
+        public DelegateCommand ExportSchemaCommand => _ExportSchemaCommand ??= new DelegateCommand(async () => await ExecuteExportSchemaCommand());
 
         async Task ExecuteExportSchemaCommand()
         {
@@ -102,11 +102,8 @@ namespace Schema.ViewModels
                     }
                 }
             }
-            using FileStream fs = new(Path.Combine(OutSchemaPath, "Schema.json"), FileMode.CreateNew);
+            using FileStream fs = new(Path.Combine(ExportSchemaPath, "Schema.json"), FileMode.CreateNew);
             fs.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemaList)));
-
-            //await File.WriteAllTextAsync(Path.Combine(OutSchemaPath, "Schema.json"),
-            //    JsonConvert.SerializeObject(schemaList));
         }
 
         #endregion
