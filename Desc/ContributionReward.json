@@ -1,7 +1,9 @@
 {
   "Type": "ContributionReward",
   "TitleAttr": "alias",
-  "DescAttr": ["alias"],
+  "DescAttr": [
+    "alias"
+  ],
   "AttrDesc": [
     {
       "Attrs": {
@@ -46,7 +48,6 @@
         "guild-reward": "公会奖励",
         "killer-item": "尾刀奖励-物品",
         "minimum-group-item": "保底奖励-物品"
-        
       },
       "LocalDesc": null,
       "TextDesc": [

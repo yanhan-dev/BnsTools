@@ -1,28 +1,42 @@
 {
   "Type": "ItemTransformRecipe",
   "TitleAttr": "alias",
-  "DescAttr": ["title-item", "rare-item-1", "random-item-1", "normal-item-1"],
+  "DescAttr": [
+    "title-item",
+    "rare-item-1",
+    "random-item-1",
+    "normal-item-1"
+  ],
   "AttrDesc": [
     {
       "Attrs": {
         "main-ingredient": "主物品",
         "sub-ingredient-1": "子物品-1"
       },
+      "LocalDesc": null,
       "TextDesc": [
         {
-          "Action": "Delete",
+          "Action": "Replace",
           "Params": {
-            "Start": [
-              "item:"
-            ],
-            "End": []
+            "Maps": {
+              "item:": "Item.Name2.",
+              "item-brand:": "IBN."
+            }
           }
         },
         {
-          "Action": "Add",
+          "Action": "SelectAdd",
           "Params": {
-            "Start": "Item.Name2.",
-            "End": ""
+            "Selector": [
+              {
+                "Start": "",
+                "End": "_Weapon",
+                "AndContains": [
+                  "ItemBrand",
+                  "Weapon"
+                ]
+              }
+            ]
           }
         }
       ]
@@ -62,8 +76,8 @@
     },
     {
       "Attrs": {
-        "consume-fixed-ingredient": "失败时消耗-固定道具",
-        "consume-sub-ingredient": "失败时消耗-子道具",
+        "consume-fixed-ingredient": "失败时消耗-固定物品",
+        "consume-sub-ingredient": "失败时消耗-子物品",
         "keep-main-ingredient-spirit": "保持武器-精神",
         "keep-main-ingredient-weapon-appearance": "保持-武器外观外观",
         "keep-main-ingredient-weapon-gem-slot": "保持-武器宝石孔",
@@ -100,8 +114,8 @@
     },
     {
       "Attrs": {
-        "main-ingredient-condition-type": "主道具-类型",
-        "sub-ingredient-condition-type-1": "从道具-类型-1"
+        "main-ingredient-condition-type": "主物品-类型",
+        "sub-ingredient-condition-type-1": "从物品-类型-1"
       },
       "LocalDesc": {
         "blade-master-sword": "剑",

@@ -1,7 +1,9 @@
 {
   "Type": "item",
   "TitleAttr": "alias",
-  "DescAttr": ["alias"],
+  "DescAttr": [
+    "alias"
+  ],
   "AttrDesc": [
     {
       "Attrs": {

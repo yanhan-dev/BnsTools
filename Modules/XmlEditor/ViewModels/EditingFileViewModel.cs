@@ -463,7 +463,7 @@ namespace XmlEditor.ViewModels
                     xmlNode.Title = title;
                     xmlNode.XmlAttributes = new(attrList);
 
-                    xmlNode.DescAttr = descAttrs.FirstOrDefault(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
+                    xmlNode.DescAttr = descAttrs?.FirstOrDefault(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
 
                     xmlNode.Desc = xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == xmlNode.DescAttr, new AttributeViewModel { ValueDesc = string.Empty })?.ValueDesc;
 

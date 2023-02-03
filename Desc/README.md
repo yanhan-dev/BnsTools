@@ -119,3 +119,52 @@
   ]
 }
 ```
+
+```JSON
+{
+  "Type": "ItemTransformRecipe",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "title-item",
+    "rare-item-1",
+    "random-item-1",
+    "normal-item-1"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "main-ingredient": "主物品",
+        "sub-ingredient-1": "子物品-1"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Replace",
+          "Params": {
+            "Maps": {
+              "item:": "Item.Name2.",
+              "item-brand:": "IBN."
+            }
+          }
+        },
+        {
+          "Action": "SelectAdd", //匹配添加
+          "Params": {
+            "Selector": [
+              {
+                "Start": "",
+                "End": "_Weapon",
+                "AndContains": [ //如果值中存在ItemBrand且存在Weapon, 在开始和结束分别添加字符
+                  "ItemBrand",
+                  "Weapon"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+
+```

@@ -1,11 +1,51 @@
 {
   "Type": "reward",
   "TitleAttr": "alias",
-  "DescAttr": ["alias"],
+  "DescAttr": [
+    "alias"
+  ],
   "AttrDesc": [
     {
       "Attrs": {
-        "alias": "别名",
+        "alias": "别名"
+      },
+      "TextDesc": [
+        {
+          "Action": "Delete",
+          "Params": {
+            "Start": [],
+            "End": [
+              "_Event",
+              "_Sword",
+              "_Gauntlet",
+              "_Staff",
+              "_Aura-bangle",
+              "_Axe",
+              "_Dagger",
+              "_RynSword",
+              "_WarDagger",
+              "_SoulGauntlet",
+              "_solo",
+              "_duo",
+              "_sextet",
+              "_quartet",
+              "_private"
+            ]
+          }
+        },
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "Npc.Name2.",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
         "fixed-item-1": "固定奖励-物品-1",
         "fixed-item-2": "固定奖励-物品-2",
         "fixed-item-3": "固定奖励-物品-3",
@@ -79,34 +119,11 @@
       "LocalDesc": null,
       "TextDesc": [
         {
-          "Action": "Delete",
-          "Params": {
-            "Start": [],
-            "End": [
-              "_Event",
-              "_Sword",
-              "_Gauntlet",
-              "_Staff",
-              "_Aura-bangle",
-              "_Axe",
-              "_Dagger",
-              "_RynSword",
-              "_WarDagger",
-              "_SoulGauntlet",
-              "_solo",
-              "_duo",
-              "_sextet",
-              "_quartet",
-              "_private"
-            ]
-          }
-        },
-        {
           "Action": "Add",
           "Params": {
             "Start": "Item.Name2.",
             "End": "",
-            "ElseStart": "Npc.Name2.",
+            "ElseStart": "",
             "ELseEnd": ""
           }
         }
