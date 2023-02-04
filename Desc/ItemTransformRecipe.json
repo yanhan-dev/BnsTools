@@ -115,7 +115,7 @@
     {
       "Attrs": {
         "main-ingredient-condition-type": "主物品-类型",
-        "sub-ingredient-condition-type-1": "从物品-类型-1"
+        "sub-ingredient-condition-type-1": "子物品-类型-1"
       },
       "LocalDesc": {
         "blade-master-sword": "剑",

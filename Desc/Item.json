@@ -7,6 +7,49 @@
   "AttrDesc": [
     {
       "Attrs": {
+        "brand": "标牌",
+        "required-feed-item-brand-for-awakening": "突破所需物品标牌",
+        "necessary-costume-brand": "必要-时装标牌"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Replace",
+          "Params": {
+            "Maps": {
+              "item:": "Item.Name2.",
+              "item-brand:": "IBN."
+            }
+          }
+        },
+        {
+          "Action": "SelectAdd",
+          "Params": {
+            "Selector": [
+              {
+                "AndContains": [
+                  "ItemBrand",
+                  "Weapon"
+                ],
+                "Start": "",
+                "End": "_Weapon"
+              }
+            ]
+          }
+        },
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "IBN.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
         "exceptional-usable-attraction": "特殊可用区域",
         "valid-attraction-1": "可用区域-1",
         "valid-attraction-2": "可用区域-2",
@@ -59,25 +102,6 @@
           "Action": "Add",
           "Params": {
             "Start": "Effect.Name2.",
-            "End": "",
-            "ElseStart": "",
-            "ELseEnd": ""
-          }
-        }
-      ]
-    },
-    {
-      "Attrs": {
-        "brand": "标牌",
-        "necessary-costume-brand": "必要-时装标牌",
-        "required-feed-item-brand-for-awakening": "突破所需物品标牌"
-      },
-      "LocalDesc": null,
-      "TextDesc": [
-        {
-          "Action": "Add",
-          "Params": {
-            "Start": "IBN.",
             "End": "",
             "ElseStart": "",
             "ELseEnd": ""
@@ -221,7 +245,7 @@
         "message-range": "district",
         "pouch-appearance": "Normal-Box-Grade3",
         "recharge-heart-type": "instant-heart",
-        "required-feed-item-condition-type": "earring",
+        "required-feed-item-condition-type": "成长所需祭品类型",
         "required-seed-item-growth-course": "coin",
         "resurrect-recycle-group": "item-2",
         "time-limit-type": "duration",
