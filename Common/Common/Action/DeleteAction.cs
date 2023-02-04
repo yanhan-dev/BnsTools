@@ -34,7 +34,7 @@ namespace Common.Action
                 {
                     continue;
                 }
-                value = value.Substring(s.Length, value.Length - s.Length);
+                value = value[s.Length..];
             }
 
             foreach (var s in deleteParam.End)

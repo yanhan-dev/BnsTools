@@ -1,0 +1,197 @@
+{
+  "Type": "item-buy-price",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "alias"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "alias": "别名"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Delete",
+          "Params": {
+            "Start": [],
+            "End": [
+              "_jpn",
+              "_jpn_1",
+              "_jpn_2",
+              "_jpn_3",
+              "_jpn_4",
+              "_jpn_5",
+              "_jpn_6",
+              "_jpn_7",
+              "_jpn_8",
+              "_jpn_9",
+              "_jpn_10",
+              "_jpn_11",
+              "_jpn_12",
+              "_jpn_13",
+              "_jpn_14",
+              "_jpn_15",
+              "_jpn_16",
+              "_jpn_17",
+              "_jpn_18",
+              "_jpn_19",
+              "_jpn_20",
+              "_ncw",
+              "_ncw1",
+              "_ncw2",
+              "_ncw3",
+              "_ncw4",
+              "_ncw5",
+              "_ncw6",
+              "_ncw7",
+              "_ncw8",
+              "_ncw9",
+              "_ncw10",
+              "_ncw11",
+              "_ncw12",
+              "_ncw13",
+              "_ncw14",
+              "_ncw15",
+              "_ncw16",
+              "_ncw17",
+              "_ncw18",
+              "_ncw19",
+              "_ncw20",
+              "_1",
+              "_2",
+              "_3",
+              "_4",
+              "_5",
+              "_6",
+              "_7",
+              "_8",
+              "_9",
+              "_10",
+              "_11",
+              "_12",
+              "_13",
+              "_14",
+              "_15",
+              "_16",
+              "_17",
+              "_18",
+              "_19",
+              "_20",
+              "_GB1",
+              "_GB2",
+              "_GB3",
+              "_GB4",
+              "_GB5",
+              "_GB6",
+              "_event",
+              "_buy_price"
+            ]
+          }
+        },
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "required-item-1": "所需物品-1",
+        "required-item-2": "所需物品-2",
+        "required-item-3": "所需物品-3"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "required-itembrand": "所需标牌"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "SelectAdd",
+          "Params": {
+            "Selector": [
+              {
+                "AndContains": [
+                  "ItemBrand",
+                  "Weapon"
+                ],
+                "Start": "",
+                "End": "_Weapon"
+              }
+            ]
+          }
+        },
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "IBN.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "check-solo-duel-grade": "个人战段位",
+        "check-team-duel-grade": "团体战段位",
+        "faction-level": "势力等级",
+        "money": "铜币",
+        "required-achievement-id": "所需成就ID",
+        "required-achievement-score": "所需成就点数",
+        "required-achievement-step-min": "所需成就最小步骤",
+        "required-duel-point": "所需仙豆",
+        "required-faction-score": "所需灵气",
+        "required-field-play-point": "所需龙果",
+        "required-item-count-1": "所需物品-数量-1",
+        "required-item-count-2": "所需物品-数量-2",
+        "required-item-count-3": "所需物品-数量-3",
+        "required-party-battle-point": "所需龙果"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "required-itembrand-condition-type": "所需标牌类型"
+      },
+      "LocalDesc": {
+        "blade-master-sword": "剑",
+        "kung-fu-fighter-gauntlet": "拳套",
+        "assassin-dagger": "短刀",
+        "aura-bangle": "彩绫",
+        "axe": "斧头",
+        "staff": "法杖",
+        "lyn-sword": "灵剑",
+        "warlock-dagger": "佩刀",
+        "soul-fighter-gauntlet": "玄甲",
+        "necklace": "项链",
+        "ring": "戒指",
+        "earring": "耳环",
+        "Bracelet": "手镯",
+        "belt": "腰带",
+        "soul": "魂"
+      }
+    }
+  ]
+}
