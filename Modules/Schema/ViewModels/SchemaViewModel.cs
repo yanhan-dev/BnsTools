@@ -65,9 +65,9 @@ namespace Schema.ViewModels
         }
 
         private DelegateCommand _ExportSchemaCommand;
-        public DelegateCommand ExportSchemaCommand => _ExportSchemaCommand ??= new DelegateCommand(async () => await ExecuteExportSchemaCommand());
+        public DelegateCommand ExportSchemaCommand => _ExportSchemaCommand ??= new DelegateCommand(ExecuteExportSchemaCommand);
 
-        async Task ExecuteExportSchemaCommand()
+        void ExecuteExportSchemaCommand()
         {
             /**
              * 1.遍历读取所有xml
@@ -102,7 +102,7 @@ namespace Schema.ViewModels
                     }
                 }
             }
-            using FileStream fs = new(Path.Combine(ExportSchemaPath, "Schema.json"), FileMode.CreateNew);
+            using FileStream fs = new(Path.Combine(ExportSchemaPath, "Schema.json"), FileMode.Create);
             fs.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemaList, Newtonsoft.Json.Formatting.Indented)));
             ExportLog = "Export success!";
         }
