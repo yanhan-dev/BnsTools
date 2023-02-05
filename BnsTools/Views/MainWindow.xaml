@@ -33,10 +33,10 @@
                     <MenuItem Header="Home" Command="{Binding NavigateCommand}" CommandParameter="HomeView">
                     </MenuItem>
                     <MenuItem Header="Tools">
-                        <MenuItem Header="Export server schema" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
+                        <MenuItem Header="Export Server Schema" Command="{Binding NavigateCommand}" CommandParameter="SchemaView"/>
                         <MenuItem Header="Translate" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
-                        <MenuItem Header="Export item" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
-                        <MenuItem Header="RandomStore" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
+                        <MenuItem Header="Export Item" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
+                        <MenuItem Header="Random Store" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
                         <MenuItem Header="XML Editor" Command="{Binding NavigateCommand}" CommandParameter="XmlEditorView"/>
                     </MenuItem>
                 </Menu>

@@ -54,7 +54,7 @@ namespace Schema.ViewModels
             CommonOpenFileDialog dialog = new CommonOpenFileDialog
             {
                 IsFolderPicker = true,
-                Title = "选择输出目录"
+                Title = "Select export path"
             };
             if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
             {
@@ -103,7 +103,8 @@ namespace Schema.ViewModels
                 }
             }
             using FileStream fs = new(Path.Combine(ExportSchemaPath, "Schema.json"), FileMode.CreateNew);
-            fs.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemaList)));
+            fs.Write(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(schemaList, Newtonsoft.Json.Formatting.Indented)));
+            ExportLog = "Export success!";
         }
 
         #endregion
