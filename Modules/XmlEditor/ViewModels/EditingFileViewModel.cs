@@ -506,8 +506,9 @@ namespace XmlEditor.ViewModels
 
             XmlWriterSettings settings = new()
             {
+                Encoding = new UTF8Encoding(false),
                 Indent = true,
-                IndentChars = "    ",  // Indent 4 Spaces
+                IndentChars = "  ",  // Indent 2 Spaces
             };
 
             using (XmlWriter writer = XmlWriter.Create(Uri, settings))

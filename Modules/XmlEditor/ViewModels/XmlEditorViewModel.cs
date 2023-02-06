@@ -86,11 +86,24 @@ namespace XmlEditor.ViewModels
                 return;
             }
 
-            EditingFiles.Add(new()
+            EditingFileViewModel editingFileViewModel = null;
+
+            try
             {
-                Name = file.Name,
-                Uri = file.Uri,
-            });
+                editingFileViewModel = new EditingFileViewModel()
+                {
+                    Name = file.Name,
+                    Uri = file.Uri,
+                };
+            }
+            catch (XmlException e)
+            {
+                HandyControl.Controls.MessageBox.Error(e.Message, file.Name);
+                return;
+            }
+
+
+            EditingFiles.Add(editingFileViewModel);
 
             EditingFilesSelectedIndex = EditingFiles.Count - 1;
         }
