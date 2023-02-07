@@ -463,8 +463,12 @@ namespace XmlEditor.ViewModels
                     xmlNode.Title = title;
                     xmlNode.XmlAttributes = new(attrList);
 
-                    var descContains = descAttrs?.Where(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
+                    if (descAttrs.IsNullOrEmpty())
+                    {
+                        return xmlNode;
+                    }
 
+                    var descContains = descAttrs.Where(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
                     var descAttrVM = xmlNode.XmlAttributes.FirstOrDefault(attr => descContains.Contains(attr.Attr) && !string.IsNullOrEmpty(attr.ValueDesc), new AttributeViewModel { ValueDesc = string.Empty });
                     xmlNode.DescAttr = descAttrVM.Attr;
                     xmlNode.Desc = descAttrVM.ValueDesc;
