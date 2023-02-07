@@ -2,7 +2,8 @@
   "Type": "reward",
   "TitleAttr": "alias",
   "DescAttr": [
-    "alias"
+    "alias",
+    "fixed-item-1"
   ],
   "AttrDesc": [
     {
