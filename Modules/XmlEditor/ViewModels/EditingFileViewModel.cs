@@ -324,7 +324,7 @@ namespace XmlEditor.ViewModels
                     continue;
                 }
 
-                if (!XmlNodes[i].Title.Contains(parameter) && null != XmlNodes[i].Desc && !XmlNodes[i].Desc.Contains(parameter))
+                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
                 {
                     continue;
                 }
@@ -339,7 +339,7 @@ namespace XmlEditor.ViewModels
                     continue;
                 }
 
-                if (!XmlNodes[i].Title.Contains(parameter) && !XmlNodes[i].Desc.Contains(parameter))
+                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
                 {
                     continue;
                 }
