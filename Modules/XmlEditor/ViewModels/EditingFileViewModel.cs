@@ -281,14 +281,14 @@ namespace XmlEditor.ViewModels
 
         void ExecuteSearchUpCommand(string parameter)
         {
-            for (int i = NodeSelectedIndex - 1; i > 0; i--)
+            for (int i = NodeSelectedIndex - 1; i >= 0; i--)
             {
                 if (XmlNodes[i].UnUse)
                 {
                     continue;
                 }
 
-                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
+                if (MatchItem(parameter, i))
                 {
                     continue;
                 }
@@ -303,13 +303,18 @@ namespace XmlEditor.ViewModels
                     continue;
                 }
 
-                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
+                if (MatchItem(parameter, i))
                 {
                     continue;
                 }
                 NodeSelectedIndex = i;
                 return;
             }
+        }
+
+        private bool MatchItem(string parameter, int i)
+        {
+            return (string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter));
         }
 
         private DelegateCommand<string> _SearchDownCommand;
@@ -324,7 +329,7 @@ namespace XmlEditor.ViewModels
                     continue;
                 }
 
-                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
+                if (MatchItem(parameter, i))
                 {
                     continue;
                 }
@@ -339,7 +344,7 @@ namespace XmlEditor.ViewModels
                     continue;
                 }
 
-                if ((string.IsNullOrEmpty(XmlNodes[i].Title) || !XmlNodes[i].Title.Contains(parameter)) && (string.IsNullOrEmpty(XmlNodes[i].Desc) || !XmlNodes[i].Desc.Contains(parameter)))
+                if (MatchItem(parameter, i))
                 {
                     continue;
                 }
