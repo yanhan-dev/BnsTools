@@ -1,0 +1,54 @@
+{
+  "Type": "ItemExchange",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "required-item-1"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "required-item-1": "所需物品-1",
+        "required-item-2": "所需物品-2"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Replace",
+          "Params": {
+            "Maps": {
+              "item:": "Item.Name2.",
+              "item-brand:": "IBN."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "normal-item-1": "奖励物品-1",
+        "normal-item-2": "奖励物品-2"
+      },
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "normal-item-stack-count-1": "奖励物品-数量-1",
+        "normal-item-stack-count-2": "奖励物品-数量-2",
+        "required-item-min-level-1": "所需物品最低等级-1",
+        "required-item-min-level-2": "所需物品最低等级-2",
+        "required-item-stack-count-1": "所需物品-数量-1",
+        "required-item-stack-count-2": "所需物品-数量-2"
+      }
+    }
+  ]
+}
