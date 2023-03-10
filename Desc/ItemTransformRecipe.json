@@ -11,7 +11,8 @@
     {
       "Attrs": {
         "main-ingredient": "主物品",
-        "sub-ingredient-1": "子物品-1"
+        "sub-ingredient-1": "子物品-1",
+        "sub-ingredient-2": "子物品-2"
       },
       "LocalDesc": null,
       "TextDesc": [
@@ -115,7 +116,8 @@
     {
       "Attrs": {
         "main-ingredient-condition-type": "主物品-类型",
-        "sub-ingredient-condition-type-1": "子物品-类型-1"
+        "sub-ingredient-condition-type-1": "子物品-类型-1",
+        "sub-ingredient-condition-type-2": "子物品-类型-2"
       },
       "LocalDesc": {
         "blade-master-sword": "剑",
@@ -176,7 +178,8 @@
         "rare-item-total-count": "概率物品-总数量",
         "required-inven-capacity": "所需包裹空间",
         "sub-ingredient-min-level-1": "子物品-最低等级-1",
-        "sub-ingredient-stack-count-1": "子物品-数量-1"
+        "sub-ingredient-stack-count-1": "子物品-数量-1",
+        "sub-ingredient-stack-count-2": "子物品-数量-2"
       }
     }
   ]
