@@ -108,23 +108,21 @@ namespace XmlEditor.ViewModels
             EditingFilesSelectedIndex = EditingFiles.Count - 1;
         }
 
-        private DelegateCommand<XmlEditorViewModel> _SaveCommand;
-        public DelegateCommand<XmlEditorViewModel> SaveCommand =>
-            _SaveCommand ?? (_SaveCommand = new DelegateCommand<XmlEditorViewModel>(ExecuteSaveCommand));
+        private DelegateCommand _SaveCommand;
+        public DelegateCommand SaveCommand => _SaveCommand ??= new DelegateCommand(ExecuteSaveCommand);
 
-        void ExecuteSaveCommand(XmlEditorViewModel parameter)
+        void ExecuteSaveCommand()
         {
-            if (!EditingFiles[parameter.EditingFilesSelectedIndex].IsEditing)
+            if (!EditingFiles[EditingFilesSelectedIndex].IsEditing)
             {
                 return;
             }
 
-            EditingFiles[parameter.EditingFilesSelectedIndex].Save();
+            EditingFiles[EditingFilesSelectedIndex].Save();
         }
 
         private DelegateCommand<EditingFileViewModel> _CloseTabCommand;
-        public DelegateCommand<EditingFileViewModel> CloseTabCommand =>
-            _CloseTabCommand ?? (_CloseTabCommand = new DelegateCommand<EditingFileViewModel>(ExecuteCloseTabCommand));
+        public DelegateCommand<EditingFileViewModel> CloseTabCommand => _CloseTabCommand ??= new DelegateCommand<EditingFileViewModel>(ExecuteCloseTabCommand);
 
         void ExecuteCloseTabCommand(EditingFileViewModel parameter)
         {
@@ -132,8 +130,7 @@ namespace XmlEditor.ViewModels
         }
 
         private DelegateCommand<object> _TabClosingCommand;
-        public DelegateCommand<object> TabClosingCommand =>
-            _TabClosingCommand ?? (_TabClosingCommand = new DelegateCommand<object>(ExecuteTabClosingCommand));
+        public DelegateCommand<object> TabClosingCommand => _TabClosingCommand ??= new DelegateCommand<object>(ExecuteTabClosingCommand);
 
         void ExecuteTabClosingCommand(object parameter)
         {
@@ -141,8 +138,7 @@ namespace XmlEditor.ViewModels
         }
 
         private DelegateCommand<object> _ClosingTabCommand;
-        public DelegateCommand<object> ClosingTabCommand =>
-            _ClosingTabCommand ?? (_ClosingTabCommand = new DelegateCommand<object>(ExecuteClosingTabCommand));
+        public DelegateCommand<object> ClosingTabCommand => _ClosingTabCommand ??= new DelegateCommand<object>(ExecuteClosingTabCommand);
 
         void ExecuteClosingTabCommand(object parameter)
         {

@@ -19,7 +19,13 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <Grid >
+    <Grid>
+        <Grid.InputBindings>
+            <KeyBinding 
+                    Gesture="Ctrl+S"
+                    Command="{Binding SaveCommand}" 
+                    CommandParameter="{Binding}" />
+        </Grid.InputBindings>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320" MinWidth="100" x:Name="c1" />
             <ColumnDefinition Width="3"/>
@@ -61,12 +67,6 @@
                        ShowScrollButton="False" 
                        ShowContextMenu="True"
                        IsDraggable="True">
-            <hc:TabControl.InputBindings>
-                <KeyBinding 
-                    Gesture="Ctrl+S"  
-                    Command="{Binding SaveCommand}" 
-                    CommandParameter="{Binding}" />
-            </hc:TabControl.InputBindings>
             <hc:TabControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
