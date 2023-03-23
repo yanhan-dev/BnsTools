@@ -531,5 +531,11 @@ namespace XmlEditor.ViewModels
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            string editFlag = IsEditing ? "*" : string.Empty;
+            return $"{Name}{editFlag}";
+        }
     }
 }

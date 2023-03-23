@@ -103,9 +103,9 @@ namespace XmlEditor.ViewModels
             }
 
 
-            EditingFiles.Add(editingFileViewModel);
+            EditingFiles.Insert(0, editingFileViewModel);
 
-            EditingFilesSelectedIndex = EditingFiles.Count - 1;
+            EditingFilesSelectedIndex = 0;
         }
 
         private DelegateCommand _SaveCommand;
