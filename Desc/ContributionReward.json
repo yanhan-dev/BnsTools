@@ -19,6 +19,27 @@
             "ElseStart": "",
             "ELseEnd": ""
           }
+        },
+        {
+          "Action": "Delete",
+          "Params": {
+            "Start": [],
+            "End": [
+              "_weekend",
+              "_weekday",
+              "_mon",
+              "_tue",
+              "_wed",
+              "_thu",
+              "_fri",
+              "_sat",
+              "_sun",
+              "_private",
+              "_peaktime",
+              "_peaktime_weekday",
+              "_peaktime_weekend"
+            ]
+          }
         }
       ]
     },
