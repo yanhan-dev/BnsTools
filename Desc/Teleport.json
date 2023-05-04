@@ -1,0 +1,24 @@
+{
+  "Type": "teleport",
+  "TitleAttr": "id",
+  "DescAttr": [
+    "alias"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "alias": "传送点"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Name2.Teleport.",
+            "End": ""
+          }
+        }
+      ]
+    }
+  ]
+}

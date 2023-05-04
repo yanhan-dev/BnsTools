@@ -1,0 +1,44 @@
+{
+  "Type": "JumpingQuest",
+  "TitleAttr": "quest-id",
+  "DescAttr": [
+    "quest-id"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "quest-id": "任务ID"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Quest.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "job": "职业"
+      },
+      "LocalDesc": {
+        "검사": "剑士",
+        "권사": "拳师",
+        "소환사": "召唤师",
+        "기공사": "气功师",
+        "역사": "力士",
+        "암살자": "刺客",
+        "귀검사": "灵剑士",
+        "주술사": "咒术师",
+        "기권사": "气宗师",
+        "격사":"枪手",
+        "투사":"斗士",
+        "궁사":"弓手"
+      },
+      "TextDesc": null
+    }
+  ]
+}
