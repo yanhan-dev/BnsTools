@@ -23,7 +23,10 @@
     {
       "Attrs": {
         "required-preceding-quest-1": "所需前置任务-1",
-        "required-preceding-quest-2": "所需前置任务-2"
+        "required-preceding-quest-2": "所需前置任务-2",
+        "dungeon-quest-difficulty-type-1":"副本任务-难度1",
+        "dungeon-quest-difficulty-type-2":"副本任务-难度2",
+        "dungeon-quest-difficulty-type-3":"副本任务-难度3"
       },
       "LocalDesc": null,
       "TextDesc": [
@@ -53,6 +56,16 @@
       "LocalDesc": {
         "or": "或(满足其一即可)",
         "and": "且(需要全部满足)"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "dungeon-type": "副本绑定类型"
+      },
+      "LocalDesc": {
+        "unbind": "不绑定",
+        "bind": "绑定"
       },
       "TextDesc": null
     }
