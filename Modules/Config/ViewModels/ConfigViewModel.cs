@@ -32,10 +32,12 @@ namespace Config.ViewModels
             }
 
             ServerPath = ConfigurationManager.AppSettings[nameof(ServerPath)];
+            ClientPath = ConfigurationManager.AppSettings[nameof(ClientPath)];
             DescPath = ConfigurationManager.AppSettings[nameof(DescPath)];
             TranslatePath = ConfigurationManager.AppSettings[nameof(TranslatePath)];
 
             Common.Config.ServerPath = ServerPath;
+            Common.Config.ClientPath = ClientPath;
             Common.Config.DescPath = DescPath;
             Common.Config.TranslatePath = TranslatePath;
         }
@@ -60,6 +62,13 @@ namespace Config.ViewModels
         {
             get { return _ServerPath; }
             set { SetProperty(ref _ServerPath, value); }
+        }
+
+        private string _ClientPath;
+        public string ClientPath
+        {
+            get { return _ClientPath; }
+            set { SetProperty(ref _ClientPath, value); }
         }
 
         private string _ConfigPath;
@@ -105,9 +114,28 @@ namespace Config.ViewModels
             ServerPath = dialog.FileName;
         }
 
+        private DelegateCommand _OpenClientPathCommand;
+        public DelegateCommand OpenClientPathCommand => _OpenClientPathCommand ??= new DelegateCommand(ExecuteOpenClientPathCommand).ObservesCanExecute(() => IsEnableExport);
+
+        void ExecuteOpenClientPathCommand()
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Title = "请选择客户端XML文件夹"
+            };
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok)
+            {
+                return;
+            }
+
+            ClientPath = dialog.FileName;
+        }
+
+
+
         private DelegateCommand _OpenDescPathCommand;
-        public DelegateCommand OpenDescPathCommand =>
-            _OpenDescPathCommand ?? (_OpenDescPathCommand = new DelegateCommand(ExecuteOpenDescPathCommand));
+        public DelegateCommand OpenDescPathCommand => _OpenDescPathCommand ??= new DelegateCommand(ExecuteOpenDescPathCommand);
 
         void ExecuteOpenDescPathCommand()
         {
@@ -125,16 +153,17 @@ namespace Config.ViewModels
         }
 
         private DelegateCommand _SaveCommand;
-        public DelegateCommand SaveCommand =>
-            _SaveCommand ?? (_SaveCommand = new DelegateCommand(ExecuteSaveCommand));
+        public DelegateCommand SaveCommand => _SaveCommand ??= new DelegateCommand(ExecuteSaveCommand);
 
         void ExecuteSaveCommand()
         {
             Common.Config.ServerPath = ServerPath;
+            Common.Config.ClientPath = ClientPath;
             Common.Config.DescPath = DescPath;
             Common.Config.TranslatePath = TranslatePath;
 
             AddOrUpdateConfig(nameof(ServerPath), ServerPath);
+            AddOrUpdateConfig(nameof(ClientPath), ClientPath);
             AddOrUpdateConfig(nameof(DescPath), DescPath);
             AddOrUpdateConfig(nameof(TranslatePath), TranslatePath);
 

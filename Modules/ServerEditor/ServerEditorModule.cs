@@ -2,11 +2,11 @@
 using Prism.Modularity;
 using Prism.Regions;
 
-using XmlEditor.Views;
+using ServerEditor.Views;
 
-namespace XmlEditor
+namespace ServerEditor
 {
-    public class XmlEditorModule : IModule
+    public class ServerEditorModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
@@ -15,7 +15,7 @@ namespace XmlEditor
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<XmlEditorView>();
+            containerRegistry.RegisterForNavigation<ServerEditorView>();
         }
     }
 }

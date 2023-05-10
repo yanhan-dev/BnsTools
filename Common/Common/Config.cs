@@ -12,5 +12,6 @@ namespace Common
         public static string ServerPath { get; set; }
         public static string TranslatePath { get; set; }
         public static string DescPath { get; set; }
+        public static string ClientPath { get; set; }
     }
 }

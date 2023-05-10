@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace XmlEditor.Converters
+namespace ServerEditor.Converters
 {
     public class SubtractConverter : MarkupExtension, IValueConverter
     {

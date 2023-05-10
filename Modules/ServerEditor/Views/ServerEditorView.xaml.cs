@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XmlEditor.Views
+namespace ServerEditor.Views
 {
     /// <summary>
     /// Interaction logic for ViewA.xaml
     /// </summary>
-    public partial class XmlEditorView : UserControl
+    public partial class ServerEditorView : UserControl
     {
-        public XmlEditorView()
+        public ServerEditorView()
         {
             InitializeComponent();
         }

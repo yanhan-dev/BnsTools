@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace XmlEditor.ViewModels
+namespace ClientEditor.ViewModels
 {
     public class XmlNodeViewModel: BindableBase
     {

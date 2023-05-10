@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlEditor.ViewModels
+namespace ClientEditor.ViewModels
 {
     public class FilesViewModel : BindableBase
     {

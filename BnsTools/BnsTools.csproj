@@ -28,11 +28,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\Modules\ClientEditor\ClientEditor.csproj" />
     <ProjectReference Include="..\Modules\Config\Config.csproj" />
     <ProjectReference Include="..\Modules\ExtractItem\ExtractItem.csproj" />
     <ProjectReference Include="..\Modules\Home\Home.csproj" />
     <ProjectReference Include="..\Modules\RandomStore\RandomStore.csproj" />
     <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
+    <ProjectReference Include="..\Modules\ServerEditor\ServerEditor.csproj" />
     <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
     <ProjectReference Include="..\Modules\XmlEditor\XmlEditor.csproj" />
   </ItemGroup>

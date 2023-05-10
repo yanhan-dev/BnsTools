@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
-using XmlEditor.ViewModels;
+using ClientEditor.ViewModels;
 using System.Threading;
 using HandyControl.Tools;
 
-namespace XmlEditor.AttachedProperties
+namespace ClientEditor.AttachedProperties
 {
     /// <summary>
     /// DataGrid的滚动条自动滚到选中的项目

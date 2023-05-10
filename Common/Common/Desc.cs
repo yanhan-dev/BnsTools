@@ -30,6 +30,7 @@ namespace Common
                 string text = File.ReadAllText(file, Encoding.UTF8);
 
                 var obj = JsonConvert.DeserializeObject<FileSchemeDescModel>(text);
+                obj.Type = obj.Type.ToLower();
                 dict[obj.Type] = obj;
             }
 

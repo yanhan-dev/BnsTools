@@ -22,13 +22,13 @@ using HandyControl.Controls;
 using HandyControl.Data;
 using System.Diagnostics;
 
-namespace XmlEditor.ViewModels
+namespace ClientEditor.ViewModels
 {
-    public class XmlEditorViewModel : BindableBase
+    public class ClientEditorViewModel : BindableBase
     {
-        public XmlEditorViewModel()
+        public ClientEditorViewModel()
         {
-            Files = new ObservableCollection<FilesViewModel>(GetFiles(Config.ServerPath));
+            Files = new ObservableCollection<FilesViewModel>(GetFiles(Config.ClientPath));
         }
 
         #region Dependency Property

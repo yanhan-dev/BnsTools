@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XmlEditor.ViewModels
+namespace ServerEditor.ViewModels
 {
     public class AttributeViewModel : BindableBase
     {
