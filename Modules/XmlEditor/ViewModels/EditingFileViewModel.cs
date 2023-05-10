@@ -30,8 +30,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-using XmlEditor.Message;
-
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace XmlEditor.ViewModels

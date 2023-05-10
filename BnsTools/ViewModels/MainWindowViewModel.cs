@@ -6,6 +6,8 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
+using System;
+using System.ComponentModel;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -45,13 +47,21 @@ namespace BnsTools.ViewModels
         }
 
         private DelegateCommand _ContentRenderedCommand;
-        public DelegateCommand ContentRenderedCommand =>
-            _ContentRenderedCommand ?? (_ContentRenderedCommand = new DelegateCommand(ExecuteContentRenderedCommand));
+        public DelegateCommand ContentRenderedCommand => _ContentRenderedCommand ??= new DelegateCommand(ExecuteContentRenderedCommand);
 
         void ExecuteContentRenderedCommand()
         {
             NavigateCommand.Execute(nameof(ConfigView));
         }
+
+        private DelegateCommand<System.ComponentModel.CancelEventArgs> _ClosingCommand;
+        public DelegateCommand<System.ComponentModel.CancelEventArgs> ClosingCommand => _ClosingCommand ??= new DelegateCommand<System.ComponentModel.CancelEventArgs>(ExecuteClosingCommand);
+
+        private void ExecuteClosingCommand(CancelEventArgs e)
+        {
+            //e.Cancel = true;
+        }
+
         #endregion
     }
 }

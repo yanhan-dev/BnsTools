@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomStore", "Modules\Rand
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Config", "Modules\Config\Config.csproj", "{C4AEE2FB-9D37-487E-965B-1BA048D3BEEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlEditor", "Modules\XmlEditor\XmlEditor.csproj", "{7B66AB5D-B215-4ACF-959C-6396545CE3C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlEditor", "Modules\XmlEditor\XmlEditor.csproj", "{7B66AB5D-B215-4ACF-959C-6396545CE3C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientEditor", "Modules\ClientEditor\ClientEditor.csproj", "{80B7EBFC-34A0-475C-940E-B10364A2A71E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{7B66AB5D-B215-4ACF-959C-6396545CE3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B66AB5D-B215-4ACF-959C-6396545CE3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B66AB5D-B215-4ACF-959C-6396545CE3C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80B7EBFC-34A0-475C-940E-B10364A2A71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B7EBFC-34A0-475C-940E-B10364A2A71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B7EBFC-34A0-475C-940E-B10364A2A71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B7EBFC-34A0-475C-940E-B10364A2A71E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{5ABDB68A-A9A1-40AB-929B-4E61EA311FA2} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{C4AEE2FB-9D37-487E-965B-1BA048D3BEEE} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{7B66AB5D-B215-4ACF-959C-6396545CE3C9} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
+		{80B7EBFC-34A0-475C-940E-B10364A2A71E} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A47EFA-CB64-4994-A1CA-C090AB0A53AA}
