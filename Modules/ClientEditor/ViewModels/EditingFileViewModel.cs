@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AngleSharp.Text;
+
+using AutoMapper;
 
 using Common;
 using Common.Extensions;
@@ -484,13 +486,25 @@ namespace ClientEditor.ViewModels
         {
             XDocument xDocument = new();
             xDocument.Add(new XElement(Root));
-
+            bool hasAutoId = XmlNodes.FirstOrDefault().XmlAttributes.FirstOrDefault(attr => attr.Attr == "auto-id") != null;
+            int autoId = 0;
             foreach (var node in XmlNodes)
             {
                 if (node.UnUse)
                 {
                     xDocument.Root.Add(node.Node);
                     continue;
+                }
+
+                //rebuild currentXml autoId
+                if (autoId == 0)
+                {
+                    autoId = node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value.ToInt32();
+                }
+                else
+                {
+                    autoId++;
+                    node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value = autoId.ToString();
                 }
 
                 var record = new XElement("record");
