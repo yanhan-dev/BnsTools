@@ -8,6 +8,26 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.Default.props" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.props" />
   <PropertyGroup />
+  <ItemGroup>
+    <Compile Include="AttachedProperties\ScrollToSelectingItem.cs" />
+    <Compile Include="AttachedProperties\XmlNodeViewModelScrollToSelectingItem.cs" />
+    <Compile Include="Converters\SubtractConverter.cs" />
+    <Compile Include="ViewModels\AttributeViewModel.cs" />
+    <Compile Include="ViewModels\EditingFileViewModel.cs" />
+    <Compile Include="ViewModels\ElementViewModel.cs" />
+    <Compile Include="ViewModels\FilesViewModel.cs" />
+    <Compile Include="ViewModels\XmlEditorViewModel.cs" />
+    <Compile Include="ViewModels\XmlNodeViewModel.cs" />
+    <Compile Include="Views\XmlEditorView.xaml.cs">
+      <DependentUpon>XmlEditorView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\XmlEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="XmlEditor.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
 </Project>

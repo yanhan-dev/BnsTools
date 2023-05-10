@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientEditor", "Modules\Cli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerEditor", "Modules\ServerEditor\ServerEditor.csproj", "{FBFDFF7F-2D43-4E38-A075-DE247D4BFA3D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XmlEditor", "Modules\XmlEditor\XmlEditor.shproj", "{671E51A7-2DB8-44D2-A654-8D645D0ABC53}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XmlEditor_Shared", "Modules\XmlEditor_Shared\XmlEditor_Shared.shproj", "{671E51A7-2DB8-44D2-A654-8D645D0ABC53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,8 +102,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A47EFA-CB64-4994-A1CA-C090AB0A53AA}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Modules\XmlEditor\XmlEditor.projitems*{671e51a7-2db8-44d2-a654-8d645d0abc53}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
