@@ -35,7 +35,6 @@ namespace BnsTools
             moduleCatalog.AddModule<RandomStoreModule>();
             moduleCatalog.AddModule<ServerEditorModule>();
             moduleCatalog.AddModule<ClientEditorModule>();
-
         }
     }
 }

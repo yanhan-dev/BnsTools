@@ -31,8 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientEditor", "Modules\Cli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerEditor", "Modules\ServerEditor\ServerEditor.csproj", "{FBFDFF7F-2D43-4E38-A075-DE247D4BFA3D}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XmlEditor_Shared", "Modules\XmlEditor_Shared\XmlEditor_Shared.shproj", "{671E51A7-2DB8-44D2-A654-8D645D0ABC53}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,7 +96,6 @@ Global
 		{C4AEE2FB-9D37-487E-965B-1BA048D3BEEE} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{80B7EBFC-34A0-475C-940E-B10364A2A71E} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{FBFDFF7F-2D43-4E38-A075-DE247D4BFA3D} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
-		{671E51A7-2DB8-44D2-A654-8D645D0ABC53} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A47EFA-CB64-4994-A1CA-C090AB0A53AA}

@@ -43,7 +43,6 @@
                     </MenuItem>
                     <MenuItem Header="Server Editor" Command="{Binding NavigateCommand}" CommandParameter="ServerEditorView"/>
                     <MenuItem Header="Client Editor" Command="{Binding NavigateCommand}" CommandParameter="ClientEditorView"/>
-
                 </Menu>
             </StackPanel>
             <Button HorizontalAlignment="Right" Grid.Column="1" Click="ButtonConfig_OnClick" Name="ButtonConfig" Style="{StaticResource ButtonIcon}" Foreground="{DynamicResource PrimaryTextBrush}" hc:IconElement.Geometry="{StaticResource ConfigGeometry}"/>

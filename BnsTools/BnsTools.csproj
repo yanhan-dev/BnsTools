@@ -36,6 +36,7 @@
     <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
     <ProjectReference Include="..\Modules\ServerEditor\ServerEditor.csproj" />
     <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
+    <ProjectReference Include="..\Modules\XmlEditorServer\XmlEditorServer.csproj" />
     <ProjectReference Include="..\Modules\XmlEditor\XmlEditor.csproj" />
   </ItemGroup>
 </Project>
