@@ -497,14 +497,17 @@ namespace ClientEditor.ViewModels
                 }
 
                 //rebuild currentXml autoId
-                if (autoId == 0)
+                if (hasAutoId)
                 {
-                    autoId = node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value.ToInt32();
-                }
-                else
-                {
-                    autoId++;
-                    node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value = autoId.ToString();
+                    if (autoId == 0)
+                    {
+                        autoId = node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value.ToInt32();
+                    }
+                    else
+                    {
+                        autoId++;
+                        node.XmlAttributes.First(attr => attr.Attr == "auto-id").Value = autoId.ToString();
+                    }
                 }
 
                 var record = new XElement("record");
