@@ -419,7 +419,8 @@ namespace ClientEditor.ViewModels
         private void Load(string uri)
         {
             XDocument xDocument = XDocument.Load(uri);
-            FileType = xDocument.Root.Attribute("type").Value.ToLower();
+            var typeAttr = xDocument.Root.Attribute("type");
+            FileType = typeAttr == null ? "none" : typeAttr.Value.ToLower();
             string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.TitleAttr;
             List<string> descAttrs = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.DescAttr;
             Root = new XElement(xDocument.Root.Name);
