@@ -178,8 +178,8 @@
                                 </i:Interaction.Triggers>
                                 <DataGrid.ContextMenu>
                                     <ContextMenu>
-                                        <MenuItem Header="Copy (Ctrl+C)" Command="{Binding CopyAttrsCommand}"/>
                                         <MenuItem Header="CopyAdd" Command="{Binding CopyAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
+                                        <MenuItem Header="Copy (Ctrl+C)" Command="{Binding CopyAttrsCommand}"/>
                                         <MenuItem Header="PasteAdd (Ctrl+V)" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
                                         <MenuItem Header="Delete (Delete)" Command="{Binding DeleteSelectedAttrCommand}"/>
                                     </ContextMenu>
