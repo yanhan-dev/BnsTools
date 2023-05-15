@@ -147,7 +147,7 @@
                         <!--编辑区-->
                         <DataGrid x:Name="attrDg"
                                   Grid.Column="2" 
-                                  ItemsSource="{Binding EditingXmlAttributes}" 
+                                  ItemsSource="{Binding EditingXmlAttributes}"
                                   Style="{StaticResource DataGrid.Small}" 
                                   GridLinesVisibility="Vertical" 
                                   VerticalGridLinesBrush="{DynamicResource BorderBrush}"                                   
@@ -167,8 +167,10 @@
                             </i:Interaction.Triggers>
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
+                                    <MenuItem Header="Copy" Command="{Binding CopyAttrsCommand}"/>
                                     <MenuItem Header="CopyAdd" Command="{Binding CopyAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
-                                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
+                                    <MenuItem Header="PasteAdd" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
+                                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedAttrCommand}"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                             <DataGrid.RowHeaderTemplate>

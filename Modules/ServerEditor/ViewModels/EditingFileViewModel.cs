@@ -1,6 +1,9 @@
-﻿using AutoMapper;
+﻿using AngleSharp.Common;
+
+using AutoMapper;
 
 using Common;
+using Common.Clipboard;
 using Common.Extensions;
 using Common.Model;
 
@@ -234,6 +237,27 @@ namespace ServerEditor.ViewModels
             string newAttr = string.Join("-", attrs);
 
             EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
+            IsEditing = true;
+        }
+
+        private DelegateCommand _CopyAttrsCommand;
+        public DelegateCommand CopyAttrsCommand => _CopyAttrsCommand ??= new DelegateCommand(ExecuteCopyAttrsCommand);
+
+        void ExecuteCopyAttrsCommand()
+        {
+            XmlAttributeClipboard.Copy(SelectedAttrs.ToDictionary(k => k.Attr, v => v.Value));
+        }
+
+        private DelegateCommand<AttributeViewModel> _PasteAddAttrCommand;
+        public DelegateCommand<AttributeViewModel> PasteAddAttrCommand => _PasteAddAttrCommand ??= new DelegateCommand<AttributeViewModel>(ExecutePasteAddAttrCommand);
+
+        void ExecutePasteAddAttrCommand(AttributeViewModel parameter)
+        {
+            XmlAttributeClipboard.Paste().Reverse().ForEach(kv =>
+            {
+                EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = kv.Key, Value = kv.Value });
+            });
+
             IsEditing = true;
         }
 
