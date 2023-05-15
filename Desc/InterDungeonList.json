@@ -1,0 +1,84 @@
+{
+  "Type": "InterDungeonList",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "cave",
+    "dungeon",
+    "party-battle-field",
+    "public-raid"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "dungeon": "副本"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Dungeon.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "cave": "洞穴"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Cave2.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "party-battle-field": "战场"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Replace",
+          "Params": {
+            "Maps": {
+              "PartyBattle_": "PartyBattleField.Name2."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "public-raid": "公共副本"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "PublicRaid.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "use-guild-combat": "启用门派战",
+        "use-pc-contents-type-dungeon":"启用角色内容类型副本"
+      },
+      "LocalDesc": {
+        "y": "是",
+        "n": "否"
+      },
+      "TextDesc": null
+    }
+  ]
+}
