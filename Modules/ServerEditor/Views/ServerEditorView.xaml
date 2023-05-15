@@ -156,6 +156,8 @@
                                   hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30">
                             <DataGrid.InputBindings>
                                 <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
+                                <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyAttrsCommand}" />
+                                <KeyBinding Gesture="Ctrl+V" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}" />
                             </DataGrid.InputBindings>
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="CellEditEnding">
@@ -167,10 +169,10 @@
                             </i:Interaction.Triggers>
                             <DataGrid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Copy" Command="{Binding CopyAttrsCommand}"/>
+                                    <MenuItem Header="Copy (Ctrl+C)" Command="{Binding CopyAttrsCommand}"/>
                                     <MenuItem Header="CopyAdd" Command="{Binding CopyAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
-                                    <MenuItem Header="PasteAdd" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
-                                    <MenuItem Header="Delete" Command="{Binding DeleteSelectedAttrCommand}"/>
+                                    <MenuItem Header="PasteAdd (Ctrl+V)" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
+                                    <MenuItem Header="Delete (Delete)" Command="{Binding DeleteSelectedAttrCommand}"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
                             <DataGrid.RowHeaderTemplate>
