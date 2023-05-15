@@ -16,6 +16,11 @@
           "Params": {
             "Start": [],
             "End": [
+              "_Easy",
+              "_Normal",
+              "_Expert",
+              "_Newbie",
+              "_default",
               "_Event",
               "_Sword",
               "_Gauntlet",
