@@ -33,9 +33,12 @@
         </Grid.ColumnDefinitions>
         <!--左-->
         <DataGrid 
+            x:Name="dgFiles"
             Width="{Binding Path=Width.Value, ElementName=c1}" 
-            ItemsSource="{Binding Files}" 
+            ItemsSource="{Binding Files}"
+            SelectedIndex="{Binding FilesSelectedIndex}"
             Style="{StaticResource DataGrid.Small}" 
+            ap:FilesScrollToSelectingItem.SelectingItem="{Binding ElementName=dgFiles, Path=SelectedItem}"
             IsSynchronizedWithCurrentItem="True"
             Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
             <DataGrid.ContextMenu>
@@ -50,6 +53,11 @@
                     CommandParameter="{Binding Files/}"
                 />
             </DataGrid.InputBindings>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewKeyDown">
+                    <i:InvokeCommandAction Command="{Binding FileNavigationCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File" Binding="{Binding Name}" FontFamily="JetBrainsMono" FontSize="14" Width="200" IsReadOnly="True">
                 </DataGridTextColumn>

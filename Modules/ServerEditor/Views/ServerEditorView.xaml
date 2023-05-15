@@ -32,9 +32,12 @@
             <ColumnDefinition Width="*" x:Name="c2"/>
         </Grid.ColumnDefinitions>
         <!--左-->
-        <DataGrid 
+        <DataGrid
+            x:Name="dgFiles"
             Width="{Binding Path=Width.Value, ElementName=c1}" 
             ItemsSource="{Binding Files}" 
+            SelectedIndex="{Binding FilesSelectedIndex}"
+            ap:FilesScrollToSelectingItem.SelectingItem="{Binding ElementName=dgFiles, Path=SelectedItem}"
             Style="{StaticResource DataGrid.Small}" 
             IsSynchronizedWithCurrentItem="True"
             Grid.Column="0" HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
@@ -50,6 +53,11 @@
                     CommandParameter="{Binding Files/}"
                 />
             </DataGrid.InputBindings>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewKeyDown">
+                    <i:InvokeCommandAction Command="{Binding FileNavigationCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File" Binding="{Binding Name}" FontFamily="JetBrainsMono" FontSize="14" Width="200" IsReadOnly="True">
                 </DataGridTextColumn>
@@ -59,8 +67,8 @@
         <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
         <!--右-->
         <hc:TabControl Grid.Column="2" x:Name="tc"
-                       SelectedIndex="{Binding EditingFilesSelectedIndex}" 
                        ItemsSource="{Binding EditingFiles}" 
+                       SelectedIndex="{Binding EditingFilesSelectedIndex}" 
                        IsAnimationEnabled="True" 
                        ShowCloseButton="True" 
                        ShowOverflowButton="True" 

@@ -21,6 +21,7 @@ using Prism.Events;
 using HandyControl.Controls;
 using HandyControl.Data;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace ClientEditor.ViewModels
 {
@@ -40,13 +41,19 @@ namespace ClientEditor.ViewModels
             set { SetProperty(ref _Files, value); }
         }
 
+        private int _FilesSelectedIndex;
+        public int FilesSelectedIndex
+        {
+            get { return _FilesSelectedIndex; }
+            set { SetProperty(ref _FilesSelectedIndex, value); }
+        }
+
         private ObservableCollection<EditingFileViewModel> _EditingFiles;
         public ObservableCollection<EditingFileViewModel> EditingFiles
         {
             get { return _EditingFiles ??= new ObservableCollection<EditingFileViewModel>(); }
             set { SetProperty(ref _EditingFiles, value); }
         }
-
 
         private int _EditingFilesSelectedIndex;
         public int EditingFilesSelectedIndex
@@ -58,6 +65,48 @@ namespace ClientEditor.ViewModels
         #endregion
 
         #region Command
+        private DelegateCommand<KeyEventArgs> _FileNavigationCommand;
+        public DelegateCommand<KeyEventArgs> FileNavigationCommand => _FileNavigationCommand ??= new DelegateCommand<KeyEventArgs>(OnFileNavigation);
+
+        private void OnFileNavigation(KeyEventArgs e)
+        {
+            // 获取按下的字母键
+            if (e.Key >= Key.A && e.Key <= Key.Z)
+            {
+                char keyChar = (char)('A' + (e.Key - Key.A)); // 获取按下的字母字符
+                string firstChar = keyChar.ToString().ToUpper(); // 转换为大写
+
+                // 查找第一个以指定字母开头的文件名
+                int? index = GetFirstFileNameStartingWith(firstChar);
+                if (null != index)
+                {
+                    FilesSelectedIndex = index.Value;
+                }
+
+                e.Handled = true; // 标记事件已处理，避免其他事件处理程序响应按键
+            }
+        }
+
+        private int? GetFirstFileNameStartingWith(string firstChar)
+        {
+            for (int i = FilesSelectedIndex + 1; i < Files.Count; i++)
+            {
+                if (Files[i].Name.StartsWith(firstChar, StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+
+            for (int i = 0; i < FilesSelectedIndex; i++)
+            {
+                if (Files[i].Name.StartsWith(firstChar, StringComparison.OrdinalIgnoreCase))
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
         private DelegateCommand<FilesViewModel> _OpenFileCommand;
         public DelegateCommand<FilesViewModel> OpenFileCommand => _OpenFileCommand ??= new DelegateCommand<FilesViewModel>(ExecuteOpenFileCommand);
 
