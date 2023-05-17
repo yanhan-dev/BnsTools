@@ -506,7 +506,7 @@ namespace ClientEditor.ViewModels
             XDocument xDocument = new();
             xDocument.Add(new XElement(Root));
             bool hasAutoId = XmlNodes.FirstOrDefault().XmlAttributes.FirstOrDefault(attr => attr.Attr == "auto-id") != null;
-            int autoId = 0;
+            //int autoId = 0;
             foreach (var node in XmlNodes)
             {
                 if (node.UnUse)
@@ -553,7 +553,7 @@ namespace ClientEditor.ViewModels
             {
                 Encoding = new UTF8Encoding(false),
                 Indent = true,
-                IndentChars = "  ",  // Indent 2 Spaces
+                IndentChars = "    ",  // Indent 2 Spaces
             };
 
             using (XmlWriter writer = XmlWriter.Create(Uri, settings))
