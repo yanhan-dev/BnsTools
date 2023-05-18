@@ -51,6 +51,8 @@
         "fixed-ingredient-4": "固定物品-4",
         "fixed-ingredient-5": "固定物品-5",
         "fixed-ingredient-6": "固定物品-6",
+        "fixed-ingredient-7": "固定物品-7",
+        "fixed-ingredient-8": "固定物品-8",
         "random-item-1": "随机奖励-物品-1",
         "random-item-2": "随机奖励-物品-2",
         "random-item-3": "随机奖励-物品-3",
@@ -64,6 +66,15 @@
         "title-item": "标题物品"
       },
       "TextDesc": [
+        {
+          "Action": "Delete",
+          "Params": {
+            "Start": [
+              "item:"
+            ],
+            "End": []
+          }
+        },
         {
           "Action": "Add",
           "Params": {
@@ -145,6 +156,8 @@
         "fixed-ingredient-stack-count-4": "固定物品-数量-4",
         "fixed-ingredient-stack-count-5": "固定物品-数量-5",
         "fixed-ingredient-stack-count-6": "固定物品-数量-6",
+        "fixed-ingredient-stack-count-7": "固定物品-数量-7",
+        "fixed-ingredient-stack-count-8": "固定物品-数量-8",
         "main-ingredient-min-level": "主物品-最小等级",
         "main-ingredient-stack-count": "主物品-数量",
         "money-cost": "铜币",
