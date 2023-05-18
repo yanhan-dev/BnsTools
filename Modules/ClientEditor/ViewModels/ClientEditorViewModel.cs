@@ -200,16 +200,16 @@ namespace ClientEditor.ViewModels
 
         private IEnumerable<FilesViewModel> GetFiles(string path)
         {
-            var files = Directory.EnumerateFiles(path, "*.xml", SearchOption.TopDirectoryOnly);
+            var files = Directory.EnumerateFiles(path, "*.xml", SearchOption.AllDirectories);
             return files.Select(file =>
             {
                 return new FilesViewModel
                 {
                     Uri = file,
-                    Name = Path.GetFileName(file),
+                    Name = Path.GetRelativePath(path, file),
                     Desc = "空"
                 };
-            });
+            }).OrderBy(x => x.Name);
         }
 
         #endregion
