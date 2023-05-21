@@ -96,9 +96,9 @@ namespace ServerEditor.ViewModels
             get { return _Title; }
             set
             {
-                if (value.Length > 25)
+                if (value.Length > 24)
                 {
-                    value = value.Truncate(25);
+                    value = value.Truncate(24);
                 }
                 SetProperty(ref _Title, value);
                 return;
