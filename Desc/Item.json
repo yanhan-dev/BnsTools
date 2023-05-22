@@ -121,6 +121,7 @@
         "awakening-recipe-material-3": "突破所需物品-3",
         "awakening-recipe-material-4": "突破所需物品-4",
         "awakening-recipe-material-5": "突破所需物品-5",
+        "awakening-recipe-material-6": "突破所需物品-6",
         "decompose-by-item2-1": "开启所需物品-1",
         "decompose-by-item2-2": "开启所需物品-2",
         "decompose-by-item2-3": "开启所需物品-3",
@@ -347,6 +348,8 @@
         "awakening-recipe-material-count-3": "突破所需物品-数量-3",
         "awakening-recipe-material-count-4": "突破所需物品-数量-4",
         "awakening-recipe-material-count-5": "突破所需物品-数量-5",
+        "awakening-recipe-material-count-6": "突破所需物品-数量-6",
+
         "base-fee": "邮寄费用",
         "bonus-exp": "奖励-经验",
         "bonus-mastery-exp": "奖励-洪门经验",
