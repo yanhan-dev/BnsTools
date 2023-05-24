@@ -120,9 +120,9 @@
                                     MouseAction="LeftDoubleClick"
                                     Command="{Binding NodeLeftDoubleClickCommand}"
                                     CommandParameter="{Binding XmlNodes/}" />
-                                        <KeyBinding 
-                                    Gesture="Delete"  
-                                    Command="{Binding DeleteSelectedNodesCommand}" />
+                                        <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedNodesCommand}" />
+                                        <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyNodeCommand}" />
+                                        <KeyBinding Gesture="Ctrl+V" Command="{Binding PasteAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
                                     </DataGrid.InputBindings>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="SelectionChanged">
@@ -132,7 +132,9 @@
                                     <DataGrid.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem Header="CopyAdd" Command="{Binding CopyAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
-                                            <MenuItem Header="Delete" Command="{Binding DeleteSelectedNodesCommand}" />
+                                            <MenuItem Header="Copy (Ctrl+C)" Command="{Binding CopyNodeCommand}"/>
+                                            <MenuItem Header="PasteAdd (Ctrl+V)" Command="{Binding PasteAddNodeCommand}" CommandParameter="{Binding XmlNodes/}"/>
+                                            <MenuItem Header="Delete (Delete)" Command="{Binding DeleteSelectedNodesCommand}" />
                                         </ContextMenu>
                                     </DataGrid.ContextMenu>
                                     <DataGrid.Columns>

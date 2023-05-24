@@ -29,17 +29,14 @@ namespace Common
                 {
                     continue;
                 }
+                if (null == element.Attribute("alias"))
+                {
+                    continue;
+                }
 
                 string alias = element.Attribute("alias").Value;
-                //if (!alias.StartsWith("Item.Name2."))
-                //{
-                //    continue;
-                //}
-
-                //alias = alias[11..];
-
-                string name = element.Elements().LastOrDefault().Value;
-                translate[alias] = name;
+                string text = element.Attribute("text")?.Value;
+                translate[alias] = text;
             }
             return translate;
         }

@@ -116,11 +116,7 @@ namespace ClientEditor.ViewModels
         public string Uri
         {
             get { return _Uri; }
-            set
-            {
-                SetProperty(ref _Uri, value);
-                Load(_Uri);
-            }
+            set { SetProperty(ref _Uri, value); }
         }
 
         private bool _IsEditing;
@@ -252,7 +248,14 @@ namespace ClientEditor.ViewModels
         {
             XmlAttributeClipboard.Paste().Reverse().ForEach(kv =>
             {
-                EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = kv.Key, Value = kv.Value });
+                var avVM = Desc.FindAttrAndValueDesc(kv.Key, kv.Value, FileType);
+                EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new()
+                {
+                    Attr = avVM.Attr,
+                    AttrDesc = avVM.AttrDesc,
+                    Value = avVM.Value,
+                    ValueDesc = avVM.ValueDesc
+                });
             });
             IsEditing = true;
         }
@@ -275,6 +278,62 @@ namespace ClientEditor.ViewModels
                     Value = a.Value,
                     ValueDesc = a.ValueDesc
                 }))
+            });
+            IsEditing = true;
+        }
+
+        private DelegateCommand _CopyNodeCommand;
+        public DelegateCommand CopyNodeCommand => _CopyNodeCommand ??= new DelegateCommand(ExecuteCopyNodeCommand);
+
+        void ExecuteCopyNodeCommand()
+        {
+            if(SelectedNodes.FirstOrDefault(x=>x.Title == null) != null)
+            {
+                MessageBox.Error("No title record cant copy");
+                return;
+            }
+            var dnodes = SelectedNodes.SelectMany(node =>
+            {
+                Dictionary<string, Dictionary<string, string>> dnode = new()
+                {
+                    {
+                        node.Title,
+                        new Dictionary<string, string>(node.XmlAttributes.Select(av => new KeyValuePair<string, string>(av.Attr, av.Value)))
+                    }
+                };
+                return dnode;
+            });
+
+            XmlNodeClipboard.Copy(new(dnodes));
+        }
+
+        private DelegateCommand<XmlNodeViewModel> _PasteAddNodeCommand;
+        public DelegateCommand<XmlNodeViewModel> PasteAddNodeCommand => _PasteAddNodeCommand ??= new DelegateCommand<XmlNodeViewModel>(ExecutePasteAddNodeCommand);
+
+        void ExecutePasteAddNodeCommand(XmlNodeViewModel parameter)
+        {
+            XmlNodeClipboard.Paste().Reverse().ForEach(dnode =>
+            {
+                XmlNodeViewModel xnVM = new()
+                {
+                    Title = dnode.Key,
+                    XmlAttributes = new(dnode.Value.Select(attr =>
+                    {
+                        var find = Desc.FindAttrAndValueDesc(attr.Key, attr.Value, FileType);
+                        return new AttributeViewModel
+                        {
+                            Attr = find.Attr,
+                            AttrDesc = find.AttrDesc,
+                            Value = find.Value,
+                            ValueDesc = find.ValueDesc
+                        };
+                    }))
+                };
+                var descAttrs = Desc.FindDescAttr(FileType);
+                var selectedAttr = descAttrs.FirstOrDefault(d => xnVM.XmlAttributes.FirstOrDefault(a => a.Attr == d && !string.IsNullOrEmpty(a.ValueDesc)) != null);
+                xnVM.DescAttr = selectedAttr;
+                xnVM.Desc = xnVM.XmlAttributes.FirstOrDefault(a => a.Attr == selectedAttr).ValueDesc;
+                XmlNodes.InsertAfter(node => node.Title == parameter.Title, xnVM);
             });
             IsEditing = true;
         }
@@ -416,7 +475,7 @@ namespace ClientEditor.ViewModels
                 IsEditing = true;
                 return;
             }
-            if (string.Equals(header, "Attr", StringComparison.Ordinal) && !string.Equals(originRow.Attr, input, StringComparison.Ordinal))
+            if (header == "Attr" && !string.Equals(originRow.Attr, input, StringComparison.Ordinal))
             {
                 // update by Value
                 var attrM = Desc.FindAttrAndValueDesc(input, originRow.Value, FileType);
@@ -434,9 +493,9 @@ namespace ClientEditor.ViewModels
 
         #region Method
 
-        private void Load(string uri)
+        public void Load()
         {
-            XDocument xDocument = XDocument.Load(uri);
+            XDocument xDocument = XDocument.Load(Uri);
             var typeAttr = xDocument.Root.Attribute("type");
             FileType = typeAttr == null ? "none" : typeAttr.Value.ToLower();
             string titleAttr = Desc.FileSchemeDescs.GetValueOrDefault(FileType, null)?.TitleAttr;
@@ -468,7 +527,16 @@ namespace ClientEditor.ViewModels
                         element.Attribute("alias")?.Value ??
                         element.Attribute("dayofweek")?.Value ??
                         element.Attribute("store2")?.Value ??
-                        element.Attribute("job")?.Value;
+                        element.Attribute("job")?.Value ??
+                        element.Attribute("level")?.Value ??
+                        element.Attribute("id")?.Value ??
+                        element.Attribute("grade")?.Value ??
+                        element.Attribute("dest-id")?.Value ??
+                        element.Attribute("type")?.Value ??
+                        element.Attribute("contents-type")?.Value ??
+                        element.Attribute("reset-target")?.Value ?? 
+                        element.Attribute("order")?.Value ?? 
+                        element.Attribute("group-id")?.Value;
 
                     List<AttributeViewModel> attrList = new();
                     foreach (var attr in element.Attributes())
@@ -492,8 +560,8 @@ namespace ClientEditor.ViewModels
                         return xmlNode;
                     }
 
-                    var descContains = descAttrs.Where(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr) != null);
-                    var descAttrVM = xmlNode.XmlAttributes.FirstOrDefault(attr => descContains.Contains(attr.Attr) && !string.IsNullOrEmpty(attr.ValueDesc), new AttributeViewModel { ValueDesc = string.Empty });
+                    var selectedDesc = descAttrs.FirstOrDefault(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr && !string.IsNullOrEmpty(attr.ValueDesc)) != null);
+                    var descAttrVM = xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == selectedDesc);
                     xmlNode.DescAttr = descAttrVM.Attr;
                     xmlNode.Desc = descAttrVM.ValueDesc;
 

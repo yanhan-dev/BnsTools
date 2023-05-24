@@ -147,6 +147,7 @@ namespace ServerEditor.ViewModels
                     Name = file.Name,
                     Uri = file.Uri,
                 };
+                editingFileViewModel.Load();
             }
             catch (XmlException e)
             {
