@@ -289,7 +289,7 @@ namespace ServerEditor.ViewModels
 
         void ExecuteCopyNodeCommand()
         {
-            var dnodes = SelectedNodes.SelectMany(node =>
+            var dnodes = SelectedNodes.Where(x=> !x.UnUse).SelectMany(node =>
             {
                 Dictionary<string, Dictionary<string, string>> dnode = new()
                 {
