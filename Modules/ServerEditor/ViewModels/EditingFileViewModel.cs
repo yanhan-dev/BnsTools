@@ -566,8 +566,8 @@ namespace ServerEditor.ViewModels
 
                     var selectedDesc = descAttrs.FirstOrDefault(descAttr => xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == descAttr && !string.IsNullOrEmpty(attr.ValueDesc)) != null);
                     var descAttrVM = xmlNode.XmlAttributes.FirstOrDefault(attr => attr.Attr == selectedDesc);
-                    xmlNode.DescAttr = descAttrVM.Attr;
-                    xmlNode.Desc = descAttrVM.ValueDesc;
+                    xmlNode.DescAttr = descAttrVM?.Attr;
+                    xmlNode.Desc = descAttrVM?.ValueDesc;
 
                     return xmlNode;
                 }));
