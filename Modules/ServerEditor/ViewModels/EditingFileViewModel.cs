@@ -192,6 +192,10 @@ namespace ServerEditor.ViewModels
 
             foreach (AttributeViewModel item in parameter.AddedItems)
             {
+                if (SelectedAttrs.FirstOrDefault(x=>x.Attr == item.Attr) != null)
+                {
+                    MessageBox.Error($"重复的Attr:{item.Attr} newValue:{item.Value}");
+                }
                 SelectedAttrs.Add(item);
             }
         }
@@ -201,7 +205,7 @@ namespace ServerEditor.ViewModels
 
         void ExecuteDeleteSelectedAttrCommand()
         {
-            EditingXmlAttributes.RemoveWhere(eAttr => SelectedAttrs.FirstOrDefault(sAttr => sAttr.Attr == eAttr.Attr) != null);
+            EditingXmlAttributes.RemoveWhere(eAttr => SelectedAttrs.FirstOrDefault(sAttr => sAttr == eAttr) != null);
             IsEditing = true;
         }
 
@@ -210,7 +214,7 @@ namespace ServerEditor.ViewModels
 
         void ExecuteDeleteSelectedNodesCommand()
         {
-            XmlNodes.RemoveWhere(node => SelectedNodes.FirstOrDefault(sNode => sNode.Title == node.Title) != null);
+            XmlNodes.RemoveWhere(node => SelectedNodes.FirstOrDefault(sNode => sNode == node) != null);
             IsEditing = true;
         }
 
@@ -252,7 +256,7 @@ namespace ServerEditor.ViewModels
             XmlAttributeClipboard.Paste().Reverse().ForEach(kv =>
             {
                 var avVM = Desc.FindAttrAndValueDesc(kv.Key, kv.Value, FileType);
-                EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new() 
+                EditingXmlAttributes.InsertAfter(ss => ss == parameter, new() 
                 {
                     Attr = avVM.Attr, 
                     AttrDesc = avVM.AttrDesc,

@@ -24,9 +24,9 @@
       "Attrs": {
         "required-preceding-quest-1": "所需前置任务-1",
         "required-preceding-quest-2": "所需前置任务-2",
-        "dungeon-quest-difficulty-type-1":"副本任务-难度1",
-        "dungeon-quest-difficulty-type-2":"副本任务-难度2",
-        "dungeon-quest-difficulty-type-3":"副本任务-难度3"
+        "dungeon-quest-difficulty-type-1":"副本任务-入门模式",
+        "dungeon-quest-difficulty-type-2":"副本任务-普通模式",
+        "dungeon-quest-difficulty-type-3":"副本任务-熟练模式"
       },
       "LocalDesc": null,
       "TextDesc": [
@@ -44,6 +44,26 @@
           "Action": "Add",
           "Params": {
             "Start": "Quest.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "effect-npc-difficulty-type-1": "怪物效果-入门模式",
+        "effect-npc-difficulty-type-2": "怪物效果-普通模式",
+        "effect-npc-difficulty-type-3": "怪物效果-熟练模式",
+        "effect-pc-difficulty-type-1":"玩家效果-入门模式",
+        "effect-pc-difficulty-type-2":"玩家效果-普通模式",
+        "effect-pc-difficulty-type-3":"玩家效果-熟练模式"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Effect.Name2.",
             "End": ""
           }
         }

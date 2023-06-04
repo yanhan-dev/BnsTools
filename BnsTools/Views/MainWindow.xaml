@@ -85,7 +85,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="20"/>
             <RowDefinition Height="3"/>
-            <RowDefinition Height="100" MinHeight="40"/>
+            <RowDefinition Height="30" MinHeight="10"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="ContentRegion" />
         <GridSplitter Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>

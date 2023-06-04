@@ -84,6 +84,11 @@
                        ShowScrollButton="False" 
                        ShowContextMenu="True"
                        IsDraggable="True">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding TableItemSelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <hc:TabControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -119,7 +124,7 @@
                                         <MouseBinding
                                             MouseAction="LeftDoubleClick"
                                             Command="{Binding NodeLeftDoubleClickCommand}"
-                                            CommandParameter="{Binding XmlNodes/}" />   
+                                            CommandParameter="{Binding XmlNodes/}" />
                                         <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedNodesCommand}" />
                                         <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyNodeCommand}" />
                                         <KeyBinding Gesture="Ctrl+V" Command="{Binding PasteAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />

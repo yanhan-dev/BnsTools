@@ -201,7 +201,7 @@ namespace ClientEditor.ViewModels
 
         void ExecuteDeleteSelectedAttrCommand()
         {
-            EditingXmlAttributes.RemoveWhere(eAttr => SelectedAttrs.FirstOrDefault(sAttr => sAttr.Attr == eAttr.Attr) != null);
+            EditingXmlAttributes.RemoveWhere(eAttr => SelectedAttrs.FirstOrDefault(sAttr => sAttr == eAttr) != null);
             IsEditing = true;
         }
 
@@ -210,7 +210,7 @@ namespace ClientEditor.ViewModels
 
         void ExecuteDeleteSelectedNodesCommand()
         {
-            XmlNodes.RemoveWhere(node => SelectedNodes.FirstOrDefault(sNode => sNode.Title == node.Title) != null);
+            XmlNodes.RemoveWhere(node => SelectedNodes.FirstOrDefault(sNode => sNode == node) != null);
             IsEditing = true;
         }
 
@@ -330,7 +330,7 @@ namespace ClientEditor.ViewModels
                     }))
                 };
                 var descAttrs = Desc.FindDescAttr(FileType);
-                var selectedAttr = descAttrs.FirstOrDefault(d => xnVM.XmlAttributes.FirstOrDefault(a => a.Attr == d && !string.IsNullOrEmpty(a.ValueDesc)) != null);
+                var selectedAttr = descAttrs?.FirstOrDefault(d => xnVM.XmlAttributes.FirstOrDefault(a => a.Attr == d && !string.IsNullOrEmpty(a.ValueDesc)) != null);
                 xnVM.DescAttr = selectedAttr;
                 xnVM.Desc = xnVM.XmlAttributes.FirstOrDefault(a => a.Attr == selectedAttr).ValueDesc;
                 XmlNodes.InsertAfter(node => node.Title == parameter.Title, xnVM);

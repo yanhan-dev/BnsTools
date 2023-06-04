@@ -24,6 +24,7 @@ using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
 using AngleSharp.Css;
+using Masuit.Tools.Reflection;
 
 namespace ServerEditor.ViewModels
 {
@@ -68,6 +69,30 @@ namespace ServerEditor.ViewModels
         #endregion
 
         #region Command
+
+        private DelegateCommand<SelectionChangedEventArgs> _TableItemSelectionChangedCommand;
+        public DelegateCommand<SelectionChangedEventArgs> TableItemSelectionChangedCommand => _TableItemSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteTableItemSelectionChangedCommand);
+
+        void ExecuteTableItemSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        {
+            //foreach (var item in parameter.RemovedItems)
+            //{
+            //    if (item is EditingFileViewModel rm)
+            //    {
+            //        rm.SelectedAttrs.Clear();
+            //    }
+            //}
+            //foreach (var item in parameter.AddedItems)
+            //{
+            //    if (item is EditingFileViewModel rm)
+            //    {
+            //        rm.SelectedAttrs.Clear();
+            //    }
+            //}
+
+            //parameter.Handled = true;
+        }
+
         private DelegateCommand<KeyEventArgs> _FileNavigationCommand;
         public DelegateCommand<KeyEventArgs> FileNavigationCommand => _FileNavigationCommand ??= new DelegateCommand<KeyEventArgs>(OnFileNavigation);
 
