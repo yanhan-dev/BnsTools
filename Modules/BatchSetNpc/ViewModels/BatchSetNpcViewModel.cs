@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Linq;
 
 namespace BatchSetNpc.ViewModels
@@ -75,6 +76,10 @@ namespace BatchSetNpc.ViewModels
             string[] attributes = ModAttribute.Split(",");
 
             string[] files = Directory.GetFiles(Config.ServerPath, "*.xml", SearchOption.TopDirectoryOnly);
+
+            NpcFiles.Clear();
+            SpawnFiles.Clear();
+
             Parallel.ForEach(files, file =>
             {
                 XDocument xd = XDocument.Load(file);
@@ -112,6 +117,8 @@ namespace BatchSetNpc.ViewModels
 
                 xd.Value.Save(xd.Key);
             }
+
+            MessageBox.Show("Success!");
         }
 
         private void SetNpcAttributes(XElement xe, string[] attributes, string symbol, double param)
