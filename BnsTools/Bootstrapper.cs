@@ -11,6 +11,7 @@ using Translate;
 using Config;
 using ServerEditor;
 using ClientEditor;
+using BatchSetNpc;
 
 namespace BnsTools
 {
@@ -35,6 +36,7 @@ namespace BnsTools
             moduleCatalog.AddModule<RandomStoreModule>();
             moduleCatalog.AddModule<ServerEditorModule>();
             moduleCatalog.AddModule<ClientEditorModule>();
+            moduleCatalog.AddModule<BatchSetNpcModule>();
         }
     }
 }

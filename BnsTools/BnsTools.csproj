@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\Modules\BatchSetNpc\BatchSetNpc.csproj" />
     <ProjectReference Include="..\Modules\ClientEditor\ClientEditor.csproj" />
     <ProjectReference Include="..\Modules\Config\Config.csproj" />
     <ProjectReference Include="..\Modules\ExtractItem\ExtractItem.csproj" />

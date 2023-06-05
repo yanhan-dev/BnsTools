@@ -40,6 +40,7 @@
                         <MenuItem Header="Translate" Command="{Binding NavigateCommand}" CommandParameter="TranslateView"/>
                         <MenuItem Header="Export Item" Command="{Binding NavigateCommand}" CommandParameter="ExtractItemView"/>
                         <MenuItem Header="Random Store" Command="{Binding NavigateCommand}" CommandParameter="RandomStoreView"/>
+                        <MenuItem Header="Batch Set Npc" Command="{Binding NavigateCommand}" CommandParameter="BatchSetNpcView"/>
                     </MenuItem>
                     <MenuItem Header="Server Editor" Command="{Binding NavigateCommand}" CommandParameter="ServerEditorView"/>
                     <MenuItem Header="Client Editor" Command="{Binding NavigateCommand}" CommandParameter="ClientEditorView"/>
