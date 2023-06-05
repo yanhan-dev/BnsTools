@@ -94,6 +94,7 @@ namespace BatchSetNpc.ViewModels
             List<string> npcs = SpawnFiles.Values.SelectMany(xd => xd.Root.Elements()
             .Where(e => zones.Contains(e.Attribute("zone").Value))
             .Select(e => e.Attribute("npc").Value))
+            .Distinct()
             .ToList();
 
             List<string> foundNpc = new();
