@@ -1,5 +1,7 @@
 ﻿using AngleSharp.Common;
 
+using Autofac.Annotation;
+
 using AutoMapper;
 
 using Common;
@@ -154,17 +156,6 @@ namespace ServerEditor.ViewModels
             set { SetProperty(ref _SelectedAttrs, value); }
         }
 
-        public object SelectedAttrsBind
-        {
-            set 
-            {
-                if (value == null) return;
-                System.Collections.IList items = (System.Collections.IList)value;
-                IEnumerable<AttributeViewModel> collection = items.Cast<AttributeViewModel>();
-                SelectedAttrs = new(collection);
-            }
-        }
-
         private ObservableCollection<XmlNodeViewModel> _SelectedNodes;
         public ObservableCollection<XmlNodeViewModel> SelectedNodes
         {
@@ -186,6 +177,28 @@ namespace ServerEditor.ViewModels
         #endregion
 
         #region Command
+
+        private DelegateCommand<object> _NodeSelectionChangedCommand;
+        public DelegateCommand<object> NodeSelectionChangedCommand => _NodeSelectionChangedCommand ??= new DelegateCommand<object>(ExecuteNodeSelectionChangedCommand);
+
+        void ExecuteNodeSelectionChangedCommand(object parameter)
+        {
+            if (parameter == null) return;
+            System.Collections.IList items = (System.Collections.IList)parameter;
+            IEnumerable<XmlNodeViewModel> collection = items.Cast<XmlNodeViewModel>();
+            SelectedNodes = new(collection);
+        }
+
+        private DelegateCommand<object> _AttrSelectionChangedCommand;
+        public DelegateCommand<object> AttrSelectionChangedCommand => _AttrSelectionChangedCommand ??= new DelegateCommand<object>(ExecuteAttrSelectionChangedCommand);
+
+        void ExecuteAttrSelectionChangedCommand(object parameter)
+        {
+            if (parameter == null) return;
+            System.Collections.IList items = (System.Collections.IList)parameter;
+            IEnumerable<AttributeViewModel> collection = items.Cast<AttributeViewModel>();
+            SelectedAttrs = new(collection);
+        }
 
         private DelegateCommand _DeleteSelectedAttrCommand;
         public DelegateCommand DeleteSelectedAttrCommand => _DeleteSelectedAttrCommand ??= new DelegateCommand(ExecuteDeleteSelectedAttrCommand);

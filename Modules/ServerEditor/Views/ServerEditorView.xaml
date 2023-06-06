@@ -11,7 +11,6 @@
              xmlns:converters="clr-namespace:ServerEditor.Converters"
              xmlns:ap="clr-namespace:ServerEditor.AttachedProperties" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
-             xmlns:control="clr-namespace:ServerEditor.Control"
              d:DataContext="{d:DesignInstance Type=viewmodels:ServerEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -111,9 +110,8 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="30"/>
                                 </Grid.RowDefinitions>
-                                <control:CustomDataGrid Grid.Row="0" x:Name="dgList"
+                                <DataGrid Grid.Row="0" x:Name="dgList"
                                     ItemsSource="{Binding XmlNodes}"
-                                    SelectedItems="{Binding SelectedNodesBind, Mode=OneWayToSource}"
                                     Style="{StaticResource DataGrid.Small}"
                                     Width="{Binding Path=Width.Value, ElementName=ac1}" 
                                     SelectedIndex="{Binding NodeSelectedIndex}"
@@ -121,6 +119,14 @@
                                     IsSynchronizedWithCurrentItem="True"
                                     GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
                                     HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction 
+                                                Command="{Binding NodeSelectionChangedCommand}" 
+                                                CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <DataGrid.InputBindings>
                                         <MouseBinding
                                             MouseAction="LeftDoubleClick"
@@ -142,7 +148,7 @@
                                         <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150" />
                                         <DataGridTextColumn Header="Title" Binding="{Binding Title}" FontFamily="JetBrainsMono" FontSize="14" IsReadOnly="True" />
                                     </DataGrid.Columns>
-                                </control:CustomDataGrid>
+                                </DataGrid>
 
                                 <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
                                     <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}">
@@ -157,10 +163,9 @@
 
                             <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                             <!--编辑区-->
-                            <control:CustomDataGrid x:Name="attrDg"
+                            <DataGrid x:Name="attrDg"
                                   Grid.Column="2" 
                                   ItemsSource="{Binding EditingXmlAttributes}"
-                                  SelectedItems="{Binding SelectedAttrsBind, Mode=OneWayToSource}"
                                   Style="{StaticResource DataGrid.Small}" 
                                   GridLinesVisibility="Vertical" 
                                   VerticalGridLinesBrush="{DynamicResource BorderBrush}"                                   
@@ -175,6 +180,12 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="CellEditEnding">
                                         <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction 
+                                                Command="{Binding AttrSelectionChangedCommand}" 
+                                                CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                PassEventArgsToCommand="True" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <DataGrid.ContextMenu>
@@ -196,7 +207,7 @@
                                     <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontFamily="JetBrainsMono" FontSize="14"/>
                                     <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc, Mode=TwoWay}" FontSize="13"/>
                                 </DataGrid.Columns>
-                            </control:CustomDataGrid>
+                            </DataGrid>
 
                         </Grid>
                     </DataTemplate>
