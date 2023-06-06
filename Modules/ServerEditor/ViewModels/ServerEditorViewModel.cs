@@ -63,18 +63,7 @@ namespace ServerEditor.ViewModels
         public int EditingFilesSelectedIndex
         {
             get { return _EditingFilesSelectedIndex; }
-            set 
-            {
-                for (int i = 0; i < EditingFiles.Count; i++)
-                {
-                    if (i == value)
-                    {
-                        continue;
-                    }
-                    EditingFiles[i].SelectedAttrs.Clear();
-                }
-                SetProperty(ref _EditingFilesSelectedIndex, value); 
-            }
+            set { SetProperty(ref _EditingFilesSelectedIndex, value); }
         }
 
         #endregion

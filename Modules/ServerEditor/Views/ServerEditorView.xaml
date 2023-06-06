@@ -1,7 +1,6 @@
 ﻿<UserControl x:Class="ServerEditor.Views.ServerEditorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ServerEditor.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"             
@@ -12,6 +11,7 @@
              xmlns:converters="clr-namespace:ServerEditor.Converters"
              xmlns:ap="clr-namespace:ServerEditor.AttachedProperties" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:control="clr-namespace:ServerEditor.Control"
              d:DataContext="{d:DesignInstance Type=viewmodels:ServerEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -111,15 +111,16 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="30"/>
                                 </Grid.RowDefinitions>
-                                <DataGrid Grid.Row="0" x:Name="dgList"
-                                ItemsSource="{Binding XmlNodes}"
-                                Style="{StaticResource DataGrid.Small}"
-                                Width="{Binding Path=Width.Value, ElementName=ac1}" 
-                                SelectedIndex="{Binding NodeSelectedIndex}"
-                                ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
-                                IsSynchronizedWithCurrentItem="True"
-                                GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
-                                HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                <control:CustomDataGrid Grid.Row="0" x:Name="dgList"
+                                    ItemsSource="{Binding XmlNodes}"
+                                    SelectedItems="{Binding SelectedNodesBind, Mode=OneWayToSource}"
+                                    Style="{StaticResource DataGrid.Small}"
+                                    Width="{Binding Path=Width.Value, ElementName=ac1}" 
+                                    SelectedIndex="{Binding NodeSelectedIndex}"
+                                    ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
+                                    IsSynchronizedWithCurrentItem="True"
+                                    GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
+                                    HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
                                     <DataGrid.InputBindings>
                                         <MouseBinding
                                             MouseAction="LeftDoubleClick"
@@ -129,11 +130,6 @@
                                         <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyNodeCommand}" />
                                         <KeyBinding Gesture="Ctrl+V" Command="{Binding PasteAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
                                     </DataGrid.InputBindings>
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding NodesSelectionChangedCommand}" PassEventArgsToCommand="True"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                     <DataGrid.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem Header="CopyAdd" Command="{Binding CopyAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
@@ -146,7 +142,7 @@
                                         <DataGridTextColumn Header="Desc" Binding="{Binding Desc}" FontSize="12" IsReadOnly="True" Width="150" />
                                         <DataGridTextColumn Header="Title" Binding="{Binding Title}" FontFamily="JetBrainsMono" FontSize="14" IsReadOnly="True" />
                                     </DataGrid.Columns>
-                                </DataGrid>
+                                </control:CustomDataGrid>
 
                                 <StackPanel x:Name="sp1" Grid.Row="1" Width="{Binding Path=Width.Value, ElementName=ac1}" Orientation="Horizontal">
                                     <TextBox x:Name="searchTb" Width="{Binding Width, ElementName=sp1, Converter={converters:SubtractConverter Value=61}}">
@@ -161,15 +157,16 @@
 
                             <GridSplitter Grid.Column="1" Width="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource BorderBrush}"/>
                             <!--编辑区-->
-                            <DataGrid x:Name="attrDg"
+                            <control:CustomDataGrid x:Name="attrDg"
                                   Grid.Column="2" 
                                   ItemsSource="{Binding EditingXmlAttributes}"
+                                  SelectedItems="{Binding SelectedAttrsBind, Mode=OneWayToSource}"
                                   Style="{StaticResource DataGrid.Small}" 
                                   GridLinesVisibility="Vertical" 
                                   VerticalGridLinesBrush="{DynamicResource BorderBrush}"                                   
                                   IsSynchronizedWithCurrentItem="True"
                                   AutoGenerateColumns="False"
-                                  hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30">
+                                  hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30" >
                                 <DataGrid.InputBindings>
                                     <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
                                     <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyAttrsCommand}" />
@@ -178,9 +175,6 @@
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="CellEditEnding">
                                         <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
-                                    </i:EventTrigger>
-                                    <i:EventTrigger EventName="SelectionChanged">
-                                        <i:InvokeCommandAction Command="{Binding AttrSelectionChangedCommand}" PassEventArgsToCommand="True"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <DataGrid.ContextMenu>
@@ -202,7 +196,7 @@
                                     <DataGridTextColumn Header="Value" Binding="{Binding Value}" FontFamily="JetBrainsMono" FontSize="14"/>
                                     <DataGridTextColumn Header="ValueDesc" Binding="{Binding ValueDesc, Mode=TwoWay}" FontSize="13"/>
                                 </DataGrid.Columns>
-                            </DataGrid>
+                            </control:CustomDataGrid>
 
                         </Grid>
                     </DataTemplate>

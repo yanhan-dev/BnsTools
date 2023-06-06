@@ -143,7 +143,7 @@ namespace ServerEditor.ViewModels
         private ObservableCollection<AttributeViewModel> _EditingXmlAttributes;
         public ObservableCollection<AttributeViewModel> EditingXmlAttributes
         {
-            get { return _EditingXmlAttributes; }
+            get { return _EditingXmlAttributes ??= new ObservableCollection<AttributeViewModel>(); }
             set { SetProperty(ref _EditingXmlAttributes, value); }
         }
 
@@ -154,6 +154,17 @@ namespace ServerEditor.ViewModels
             set { SetProperty(ref _SelectedAttrs, value); }
         }
 
+        public object SelectedAttrsBind
+        {
+            set 
+            {
+                if (value == null) return;
+                System.Collections.IList items = (System.Collections.IList)value;
+                IEnumerable<AttributeViewModel> collection = items.Cast<AttributeViewModel>();
+                SelectedAttrs = new(collection);
+            }
+        }
+
         private ObservableCollection<XmlNodeViewModel> _SelectedNodes;
         public ObservableCollection<XmlNodeViewModel> SelectedNodes
         {
@@ -161,44 +172,20 @@ namespace ServerEditor.ViewModels
             set { SetProperty(ref _SelectedNodes, value); }
         }
 
+        public object SelectedNodesBind
+        {
+            set
+            {
+                if (value == null) return;
+                System.Collections.IList items = (System.Collections.IList)value;
+                IEnumerable<XmlNodeViewModel> collection = items.Cast<XmlNodeViewModel>();
+                SelectedNodes = new(collection);
+            }
+        }
+
         #endregion
 
         #region Command
-        private DelegateCommand<SelectionChangedEventArgs> _NodesSelectionChangedCommand;
-        public DelegateCommand<SelectionChangedEventArgs> NodesSelectionChangedCommand => _NodesSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteNodesSelectionChangedCommand);
-
-        void ExecuteNodesSelectionChangedCommand(SelectionChangedEventArgs parameter)
-        {
-            foreach (XmlNodeViewModel item in parameter.RemovedItems)
-            {
-                SelectedNodes.Remove(item);
-            }
-
-            foreach (XmlNodeViewModel item in parameter.AddedItems)
-            {
-                SelectedNodes.Add(item);
-            }
-        }
-
-        private DelegateCommand<SelectionChangedEventArgs> _AttrSelectionChangedCommand;
-        public DelegateCommand<SelectionChangedEventArgs> AttrSelectionChangedCommand => _AttrSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteAttrSelectionChangedCommand);
-
-        void ExecuteAttrSelectionChangedCommand(SelectionChangedEventArgs parameter)
-        {
-            foreach (AttributeViewModel item in parameter.RemovedItems)
-            {
-                SelectedAttrs.Remove(item);
-            }
-
-            foreach (AttributeViewModel item in parameter.AddedItems)
-            {
-                if (SelectedAttrs.FirstOrDefault(x=>x.Attr == item.Attr) != null)
-                {
-                    MessageBox.Error($"重复的Attr:{item.Attr} newValue:{item.Value}");
-                }
-                SelectedAttrs.Add(item);
-            }
-        }
 
         private DelegateCommand _DeleteSelectedAttrCommand;
         public DelegateCommand DeleteSelectedAttrCommand => _DeleteSelectedAttrCommand ??= new DelegateCommand(ExecuteDeleteSelectedAttrCommand);
@@ -236,7 +223,7 @@ namespace ServerEditor.ViewModels
             }
             string newAttr = string.Join("-", attrs);
 
-            EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
+            EditingXmlAttributes.InsertAfter(ss => ss == parameter, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
             IsEditing = true;
         }
 
@@ -256,9 +243,9 @@ namespace ServerEditor.ViewModels
             XmlAttributeClipboard.Paste().Reverse().ForEach(kv =>
             {
                 var avVM = Desc.FindAttrAndValueDesc(kv.Key, kv.Value, FileType);
-                EditingXmlAttributes.InsertAfter(ss => ss == parameter, new() 
+                EditingXmlAttributes.InsertAfter(ss => ss == parameter, new()
                 {
-                    Attr = avVM.Attr, 
+                    Attr = avVM.Attr,
                     AttrDesc = avVM.AttrDesc,
                     Value = avVM.Value,
                     ValueDesc = avVM.ValueDesc
@@ -293,7 +280,7 @@ namespace ServerEditor.ViewModels
 
         void ExecuteCopyNodeCommand()
         {
-            var dnodes = SelectedNodes.Where(x=> !x.UnUse).SelectMany(node =>
+            var dnodes = SelectedNodes.Where(x => !x.UnUse).SelectMany(node =>
             {
                 Dictionary<string, Dictionary<string, string>> dnode = new()
                 {
@@ -351,14 +338,6 @@ namespace ServerEditor.ViewModels
             }
 
             EditingNodeIndex = NodeSelectedIndex;
-            //parameter.XmlAttributes.ForEach(attr =>
-            //{
-            //    var descs = Desc.FindAttrAndValueDesc(attr.Attr, attr.Value, FileType);
-            //    attr.Attr = descs.Attr;
-            //    attr.Value = descs.Value;
-            //    attr.AttrDesc = descs.AttrDesc;
-            //    attr.ValueDesc = descs.ValueDesc;
-            //});
             EditingXmlAttributes = parameter.XmlAttributes;
         }
 
