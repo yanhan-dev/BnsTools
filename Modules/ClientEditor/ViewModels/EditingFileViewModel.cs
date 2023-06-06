@@ -150,7 +150,7 @@ namespace ClientEditor.ViewModels
         private ObservableCollection<AttributeViewModel> _SelectedAttrs;
         public ObservableCollection<AttributeViewModel> SelectedAttrs
         {
-            get { return _SelectedAttrs ??= new ObservableCollection<AttributeViewModel>(); }
+            get { return _SelectedAttrs; }
             set { SetProperty(ref _SelectedAttrs, value); }
         }
 
@@ -164,36 +164,24 @@ namespace ClientEditor.ViewModels
         #endregion
 
         #region Command
-        private DelegateCommand<SelectionChangedEventArgs> _NodesSelectionChangedCommand;
-        public DelegateCommand<SelectionChangedEventArgs> NodesSelectionChangedCommand => _NodesSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteNodesSelectionChangedCommand);
 
-        void ExecuteNodesSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        private DelegateCommand<object> _NodeSelectionChangedCommand;
+        public DelegateCommand<object> NodeSelectionChangedCommand => _NodeSelectionChangedCommand ??= new DelegateCommand<object>(ExecuteNodeSelectionChangedCommand);
+        void ExecuteNodeSelectionChangedCommand(object parameter)
         {
-            foreach (XmlNodeViewModel item in parameter.RemovedItems)
-            {
-                SelectedNodes.Remove(item);
-            }
-
-            foreach (XmlNodeViewModel item in parameter.AddedItems)
-            {
-                SelectedNodes.Add(item);
-            }
+            if (parameter == null) return;
+            System.Collections.IList items = (System.Collections.IList)parameter;
+            IEnumerable<XmlNodeViewModel> collection = items.Cast<XmlNodeViewModel>();
+            SelectedNodes = new(collection);
         }
-
-        private DelegateCommand<SelectionChangedEventArgs> _AttrSelectionChangedCommand;
-        public DelegateCommand<SelectionChangedEventArgs> AttrSelectionChangedCommand => _AttrSelectionChangedCommand ??= new DelegateCommand<SelectionChangedEventArgs>(ExecuteAttrSelectionChangedCommand);
-
-        void ExecuteAttrSelectionChangedCommand(SelectionChangedEventArgs parameter)
+        private DelegateCommand<object> _AttrSelectionChangedCommand;
+        public DelegateCommand<object> AttrSelectionChangedCommand => _AttrSelectionChangedCommand ??= new DelegateCommand<object>(ExecuteAttrSelectionChangedCommand);
+        void ExecuteAttrSelectionChangedCommand(object parameter)
         {
-            foreach (AttributeViewModel item in parameter.RemovedItems)
-            {
-                SelectedAttrs.Remove(item);
-            }
-
-            foreach (AttributeViewModel item in parameter.AddedItems)
-            {
-                SelectedAttrs.Add(item);
-            }
+            if (parameter == null) return;
+            System.Collections.IList items = (System.Collections.IList)parameter;
+            IEnumerable<AttributeViewModel> collection = items.Cast<AttributeViewModel>();
+            //SelectedAttrs = new(collection);
         }
 
         private DelegateCommand _DeleteSelectedAttrCommand;
@@ -232,7 +220,7 @@ namespace ClientEditor.ViewModels
             }
             string newAttr = string.Join("-", attrs);
 
-            EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
+            EditingXmlAttributes.InsertAfter(ss => ss == parameter, new AttributeViewModel { Attr = newAttr, Value = parameter.Value });
             IsEditing = true;
         }
 
@@ -249,7 +237,7 @@ namespace ClientEditor.ViewModels
             XmlAttributeClipboard.Paste().Reverse().ForEach(kv =>
             {
                 var avVM = Desc.FindAttrAndValueDesc(kv.Key, kv.Value, FileType);
-                EditingXmlAttributes.InsertAfter(ss => ss.Attr == parameter.Attr, new()
+                EditingXmlAttributes.InsertAfter(ss => ss == parameter, new()
                 {
                     Attr = avVM.Attr,
                     AttrDesc = avVM.AttrDesc,
@@ -287,7 +275,7 @@ namespace ClientEditor.ViewModels
 
         void ExecuteCopyNodeCommand()
         {
-            if(SelectedNodes.FirstOrDefault(x=>x.Title == null) != null)
+            if (SelectedNodes.FirstOrDefault(x => x.Title == null) != null)
             {
                 MessageBox.Error("No title record cant copy");
                 return;
@@ -534,8 +522,8 @@ namespace ClientEditor.ViewModels
                         element.Attribute("dest-id")?.Value ??
                         element.Attribute("type")?.Value ??
                         element.Attribute("contents-type")?.Value ??
-                        element.Attribute("reset-target")?.Value ?? 
-                        element.Attribute("order")?.Value ?? 
+                        element.Attribute("reset-target")?.Value ??
+                        element.Attribute("order")?.Value ??
                         element.Attribute("group-id")?.Value;
 
                     List<AttributeViewModel> attrList = new();

@@ -11,7 +11,7 @@
              xmlns:viewmodels="clr-namespace:ClientEditor.ViewModels" 
              xmlns:converters="clr-namespace:ClientEditor.Converters"
              xmlns:ap="clr-namespace:ClientEditor.AttachedProperties" 
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              d:DataContext="{d:DesignInstance Type=viewmodels:ClientEditorViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              >
@@ -107,28 +107,28 @@
                                     <RowDefinition Height="30"/>
                                 </Grid.RowDefinitions>
                                 <DataGrid Grid.Row="0" x:Name="dgList"
-                                ItemsSource="{Binding XmlNodes}"
-                                Style="{StaticResource DataGrid.Small}"
-                                Width="{Binding Path=Width.Value, ElementName=ac1}" 
-                                SelectedIndex="{Binding NodeSelectedIndex}"
-                                ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
-                                IsSynchronizedWithCurrentItem="True"
-                                GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
-                                HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                    ItemsSource="{Binding XmlNodes}"
+                                    Style="{StaticResource DataGrid.Small}"
+                                    Width="{Binding Path=Width.Value, ElementName=ac1}" 
+                                    SelectedIndex="{Binding NodeSelectedIndex}"
+                                    ap:XmlNodeViewModelScrollToSelectingItem.SelectingItem="{Binding ElementName=dgList, Path=SelectedItem}"
+                                    IsSynchronizedWithCurrentItem="True"
+                                    GridLinesVisibility="Vertical" VerticalGridLinesBrush="{DynamicResource BorderBrush}"
+                                    HorizontalAlignment="Left" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction 
+                                                Command="{Binding NodeSelectionChangedCommand}" 
+                                                CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <DataGrid.InputBindings>
-                                        <MouseBinding
-                                    MouseAction="LeftDoubleClick"
-                                    Command="{Binding NodeLeftDoubleClickCommand}"
-                                    CommandParameter="{Binding XmlNodes/}" />
+                                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding NodeLeftDoubleClickCommand}" CommandParameter="{Binding XmlNodes/}" />
                                         <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedNodesCommand}" />
                                         <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyNodeCommand}" />
                                         <KeyBinding Gesture="Ctrl+V" Command="{Binding PasteAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
                                     </DataGrid.InputBindings>
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="SelectionChanged">
-                                            <i:InvokeCommandAction Command="{Binding NodesSelectionChangedCommand}" PassEventArgsToCommand="True"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
                                     <DataGrid.ContextMenu>
                                         <ContextMenu>
                                             <MenuItem Header="CopyAdd" Command="{Binding CopyAddNodeCommand}" CommandParameter="{Binding XmlNodes/}" />
@@ -158,13 +158,13 @@
                             <!--编辑区-->
                             <DataGrid x:Name="attrDg"
                                   Grid.Column="2" 
-                                  ItemsSource="{Binding EditingXmlAttributes}" 
+                                  ItemsSource="{Binding EditingXmlAttributes}"
                                   Style="{StaticResource DataGrid.Small}" 
                                   GridLinesVisibility="Vertical" 
                                   VerticalGridLinesBrush="{DynamicResource BorderBrush}"                                   
                                   IsSynchronizedWithCurrentItem="True"
                                   AutoGenerateColumns="False"
-                                  hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30">
+                                  hc:DataGridAttach.CanUnselectAllWithBlankArea="True" HeadersVisibility="All" RowHeaderWidth="30" >
                                 <DataGrid.InputBindings>
                                     <KeyBinding Gesture="Delete" Command="{Binding DeleteSelectedAttrCommand}" />
                                     <KeyBinding Gesture="Ctrl+C" Command="{Binding CopyAttrsCommand}" />
@@ -175,7 +175,10 @@
                                         <i:InvokeCommandAction Command="{Binding CellEditEndingCommand}" PassEventArgsToCommand="True"/>
                                     </i:EventTrigger>
                                     <i:EventTrigger EventName="SelectionChanged">
-                                        <i:InvokeCommandAction Command="{Binding AttrSelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                                        <i:InvokeCommandAction 
+                                                Command="{Binding AttrSelectionChangedCommand}" 
+                                                CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                PassEventArgsToCommand="True" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                                 <DataGrid.ContextMenu>
@@ -183,7 +186,7 @@
                                         <MenuItem Header="CopyAdd" Command="{Binding CopyAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
                                         <MenuItem Header="Copy (Ctrl+C)" Command="{Binding CopyAttrsCommand}"/>
                                         <MenuItem Header="PasteAdd (Ctrl+V)" Command="{Binding PasteAddAttrCommand}" CommandParameter="{Binding EditingXmlAttributes/}"/>
-                                        <MenuItem Header="Delete (Delete)" Command="{Binding DeleteSelectedAttrCommand}" />
+                                        <MenuItem Header="Delete (Delete)" Command="{Binding DeleteSelectedAttrCommand}"/>
                                     </ContextMenu>
                                 </DataGrid.ContextMenu>
                                 <DataGrid.RowHeaderTemplate>
