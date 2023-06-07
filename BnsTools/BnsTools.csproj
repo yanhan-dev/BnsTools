@@ -5,11 +5,11 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>BnsTools</AssemblyName>
     <RootNamespace>BnsTools</RootNamespace>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.2</Version>
+	<FileVersion>1.0.0.2</FileVersion>
+	<AssemblyVersion>1.0.0.2</AssemblyVersion>
     <Configurations>Debug;Release</Configurations>
-    <Copyright>Copyright © YanHan 2021</Copyright>
-    <FileVersion>1.0.0.0</FileVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Copyright>Copyright © YanHan 2023</Copyright>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
