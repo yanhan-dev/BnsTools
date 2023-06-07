@@ -38,7 +38,8 @@
               "_duo",
               "_sextet",
               "_quartet",
-              "_private"
+              "_private",
+              "_select"
             ]
           }
         },
@@ -147,7 +148,21 @@
         "rare-item-13": "概率奖励-物品-13",
         "rare-item-14": "概率奖励-物品-14",
         "rare-item-15": "概率奖励-物品-15",
-        "rare-item-16": "概率奖励-物品-16"
+        "rare-item-16": "概率奖励-物品-16",
+        "selected-item-1":  "可选奖励-物品-1",
+        "selected-item-2":  "可选奖励-物品-2",
+        "selected-item-3":  "可选奖励-物品-3",
+        "selected-item-4":  "可选奖励-物品-4",
+        "selected-item-5":  "可选奖励-物品-5",
+        "selected-item-6":  "可选奖励-物品-6",
+        "selected-item-7":  "可选奖励-物品-7",
+        "selected-item-8":  "可选奖励-物品-8",
+        "selected-item-9":  "可选奖励-物品-9",
+        "selected-item-10": "可选奖励-物品-10",
+        "selected-item-11": "可选奖励-物品-11",
+        "selected-item-12": "可选奖励-物品-12",
+        "selected-item-13": "可选奖励-物品-13"
+
       },
       "LocalDesc": null,
       "TextDesc": [
