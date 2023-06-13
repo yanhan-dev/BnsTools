@@ -12,7 +12,12 @@
       "Attrs": {
         "main-ingredient": "主物品",
         "sub-ingredient-1": "子物品-1",
-        "sub-ingredient-2": "子物品-2"
+        "sub-ingredient-2": "子物品-2",
+        "sub-ingredient-3": "子物品-3",
+        "sub-ingredient-4": "子物品-4",
+        "sub-ingredient-5": "子物品-5",
+        "sub-ingredient-6": "子物品-6",
+        "sub-ingredient-7": "子物品-7"
       },
       "LocalDesc": null,
       "TextDesc": [
@@ -128,7 +133,12 @@
       "Attrs": {
         "main-ingredient-condition-type": "主物品-类型",
         "sub-ingredient-condition-type-1": "子物品-类型-1",
-        "sub-ingredient-condition-type-2": "子物品-类型-2"
+        "sub-ingredient-condition-type-2": "子物品-类型-2",
+        "sub-ingredient-condition-type-3": "子物品-类型-3",
+        "sub-ingredient-condition-type-4": "子物品-类型-4",
+        "sub-ingredient-condition-type-5": "子物品-类型-5",
+        "sub-ingredient-condition-type-6": "子物品-类型-6",
+        "sub-ingredient-condition-type-7": "子物品-类型-7"
       },
       "LocalDesc": {
         "blade-master-sword": "剑",
@@ -191,8 +201,19 @@
         "rare-item-total-count": "概率物品-总数量",
         "required-inven-capacity": "所需包裹空间",
         "sub-ingredient-min-level-1": "子物品-最低等级-1",
+        "sub-ingredient-min-level-2": "子物品-最低等级-2",
+        "sub-ingredient-min-level-3": "子物品-最低等级-3",
+        "sub-ingredient-min-level-4": "子物品-最低等级-4",
+        "sub-ingredient-min-level-5": "子物品-最低等级-5",
+        "sub-ingredient-min-level-6": "子物品-最低等级-6",
+        "sub-ingredient-min-level-7": "子物品-最低等级-7",
         "sub-ingredient-stack-count-1": "子物品-数量-1",
-        "sub-ingredient-stack-count-2": "子物品-数量-2"
+        "sub-ingredient-stack-count-2": "子物品-数量-2",
+        "sub-ingredient-stack-count-3": "子物品-数量-3",
+        "sub-ingredient-stack-count-4": "子物品-数量-4",
+        "sub-ingredient-stack-count-5": "子物品-数量-5",
+        "sub-ingredient-stack-count-6": "子物品-数量-6",
+        "sub-ingredient-stack-count-7": "子物品-数量-7"
       }
     }
   ]

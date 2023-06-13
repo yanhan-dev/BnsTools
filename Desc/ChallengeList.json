@@ -1,0 +1,240 @@
+{
+  "Type": "ChallengeList",
+  "TitleAttr": "challenge-type",
+  "DescAttr": [
+    "type"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "challenge-quest-basic-1": "挑战任务-1",
+        "challenge-quest-basic-2": "挑战任务-2",
+        "challenge-quest-basic-3": "挑战任务-3",
+        "challenge-quest-basic-4": "挑战任务-4",
+        "challenge-quest-basic-5": "挑战任务-5",
+        "challenge-quest-basic-6": "挑战任务-6",
+        "challenge-quest-basic-7": "挑战任务-7",
+        "challenge-quest-basic-8": "挑战任务-8",
+        "challenge-quest-basic-9": "挑战任务-9",
+        "challenge-quest-basic-10": "挑战任务-10",
+        "challenge-quest-basic-11": "挑战任务-11",
+        "challenge-quest-basic-12": "挑战任务-12",
+        "challenge-quest-basic-13": "挑战任务-13",
+        "challenge-quest-basic-14": "挑战任务-14"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Split",
+          "Params": {
+            "Char": "_",
+            "Start": 2,
+            "End": 3
+          }
+        },
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Quest.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "challenge-type": "挑战类型"
+      },
+      "LocalDesc": {
+        "mon": "周一",
+        "tue": "周二",
+        "wed": "周三",
+        "thu": "周四",
+        "fri":"周五",
+        "sat":"周六",
+        "sun":"周日"
+
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "type": "类型"
+      },
+      "LocalDesc": {
+        "dayofweek": "每日挑战",
+        "week": "每周挑战"
+
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "challenge-count-for-reward-1": "挑战任务数量-阶段-1",
+        "challenge-count-for-reward-2": "挑战任务数量-阶段-2",
+        "challenge-count-for-reward-3": "挑战任务数量-阶段-3",
+        "challenge-count-for-reward-4": "挑战任务数量-阶段-4",
+        "required-level": "所需角色等级",
+        "required-mastery-level": "所需角色洪门星级",
+        "reward-1": "挑战奖励-阶段-1",
+        "reward-2": "挑战奖励-阶段-2",
+        "reward-3": "挑战奖励-阶段-3",
+        "reward-4": "挑战奖励-阶段-4"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "fixed-common-item-count-1": "固定奖励-数量-1",
+        "fixed-common-item-count-2": "固定奖励-数量-2",
+        "fixed-common-item-count-3": "固定奖励-数量-3",
+        "fixed-common-item-count-4": "固定奖励-数量-4",
+        "optional-common-item-count-1": "可选奖励-物品-数量-1",
+        "optional-common-item-count-2": "可选奖励-物品-数量-2",
+        "optional-common-item-count-3": "可选奖励-物品-数量-3",
+        "optional-common-item-count-4": "可选奖励-物品-数量-4",
+        "fixed-1-item-count-1": "固定奖励-1-物品-数量-1",
+        "fixed-1-item-count-2": "固定奖励-1-物品-数量-2",
+        "fixed-1-item-count-3": "固定奖励-1-物品-数量-3",
+        "fixed-1-item-count-4": "固定奖励-1-物品-数量-4",
+        "fixed-2-item-count-1": "固定奖励-2-物品-数量-1",
+        "fixed-2-item-count-2": "固定奖励-2-物品-数量-2",
+        "fixed-2-item-count-3": "固定奖励-2-物品-数量-3",
+        "fixed-2-item-count-4": "固定奖励-2-物品-数量-4",
+        "fixed-3-item-count-1": "固定奖励-3-物品-数量-1",
+        "fixed-3-item-count-2": "固定奖励-3-物品-数量-2",
+        "fixed-3-item-count-3": "固定奖励-3-物品-数量-3",
+        "fixed-3-item-count-4": "固定奖励-3-物品-数量-4",
+        "fixed-4-item-count-1": "固定奖励-4-物品-数量-1",
+        "fixed-4-item-count-2": "固定奖励-4-物品-数量-2",
+        "fixed-4-item-count-3": "固定奖励-4-物品-数量-3",
+        "fixed-4-item-count-4": "固定奖励-4-物品-数量-4",
+        "fixed-5-item-count-1": "固定奖励-5-物品-数量-1",
+        "fixed-5-item-count-2": "固定奖励-5-物品-数量-2",
+        "fixed-5-item-count-3": "固定奖励-5-物品-数量-3",
+        "fixed-5-item-count-4": "固定奖励-5-物品-数量-4",
+        "fixed-6-item-count-1": "固定奖励-6-物品-数量-1",
+        "fixed-6-item-count-2": "固定奖励-6-物品-数量-2",
+        "fixed-6-item-count-3": "固定奖励-6-物品-数量-3",
+        "fixed-6-item-count-4": "固定奖励-6-物品-数量-4",
+        "fixed-7-item-count-1": "固定奖励-7-物品-数量-1",
+        "fixed-7-item-count-2": "固定奖励-7-物品-数量-2",
+        "fixed-7-item-count-3": "固定奖励-7-物品-数量-3",
+        "fixed-7-item-count-4": "固定奖励-7-物品-数量-4",
+        "fixed-8-item-count-1": "固定奖励-8-物品-数量-1",
+        "fixed-8-item-count-2": "固定奖励-8-物品-数量-2",
+        "fixed-8-item-count-3": "固定奖励-8-物品-数量-3",
+        "fixed-8-item-count-4": "固定奖励-8-物品-数量-4",
+        "fixed-9-item-count-1": "固定奖励-9-物品-数量-1",
+        "fixed-9-item-count-2": "固定奖励-9-物品-数量-2",
+        "fixed-9-item-count-3": "固定奖励-9-物品-数量-3",
+        "fixed-9-item-count-4": "固定奖励-9-物品-数量-4",
+        "basic-faction-reputation": "势力贡献度"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "fixed-1-job-1": "固定奖励-1-职业-1",
+        "fixed-2-job-1": "固定奖励-2-职业-1",
+        "fixed-3-job-1": "固定奖励-3-职业-1",
+        "fixed-4-job-1": "固定奖励-4-职业-1",
+        "fixed-5-job-1": "固定奖励-5-职业-1",
+        "fixed-6-job-1": "固定奖励-6-职业-1",
+        "fixed-7-job-1": "固定奖励-7-职业-1",
+        "fixed-8-job-1": "固定奖励-8-职业-1",
+        "fixed-9-job-1": "固定奖励-9-职业-1"
+      },
+      "LocalDesc": {
+        "검사": "剑士",
+        "권사": "拳师",
+        "소환사": "召唤师",
+        "기공사": "气功师",
+        "역사": "力士",
+        "암살자": "刺客",
+        "귀검사": "灵剑士",
+        "주술사": "咒术师",
+        "기권사": "气宗师"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "fixed-1-party-type": "固定奖励-1-副本-类型",
+        "fixed-2-party-type": "固定奖励-2-副本-类型",
+        "fixed-3-party-type": "固定奖励-3-副本-类型",
+        "fixed-4-party-type": "固定奖励-4-副本-类型",
+        "fixed-5-party-type": "固定奖励-5-副本-类型",
+        "fixed-6-party-type": "固定奖励-6-副本-类型",
+        "fixed-7-party-type": "固定奖励-7-副本-类型",
+        "fixed-8-party-type": "固定奖励-8-副本-类型",
+        "fixed-9-party-type": "固定奖励-9-副本-类型",
+        "optional-1-party-type": "自选-"
+      },
+      "LocalDesc": {
+        "sextet": "6人",
+        "quartet": "4人",
+        "dont-care": "无"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "fixed-skill3-1": "固定奖励-技能3-1",
+        "fixed-skill3-2": "固定奖励-技能3-2",
+        "fixed-skill3-3": "固定奖励-技能3-3",
+        "fixed-skill3-4": "固定奖励-技能3-4"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Skill.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "quest-first-progress": "是否首次执行任务"
+      },
+      "LocalDesc": {
+        "y": "是",
+        "n": "否"
+      },
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "dayofweek-mon-fixed-count-1": "固定奖励-周一-物品-数量-1",
+        "dayofweek-mon-fixed-count-2": "固定奖励-周一-物品-数量-2",
+        "dayofweek-tue-fixed-count-1": "固定奖励-周二-物品-数量-1",
+        "dayofweek-tue-fixed-count-2": "固定奖励-周二-物品-数量-2",
+        "dayofweek-wed-fixed-count-1": "固定奖励-周三-物品-数量-1",
+        "dayofweek-wed-fixed-count-2": "固定奖励-周三-物品-数量-2",
+        "dayofweek-thu-fixed-count-1": "固定奖励-周四-物品-数量-1",
+        "dayofweek-thu-fixed-count-2": "固定奖励-周四-物品-数量-2",
+        "dayofweek-fri-fixed-count-1": "固定奖励-周五-物品-数量-1",
+        "dayofweek-fri-fixed-count-2": "固定奖励-周五-物品-数量-2",
+        "dayofweek-sat-fixed-count-1": "固定奖励-周六-物品-数量-1",
+        "dayofweek-sat-fixed-count-2": "固定奖励-周六-物品-数量-2",
+        "dayofweek-sun-fixed-count-1": "固定奖励-周日-物品-数量-1",
+        "dayofweek-sun-fixed-count-2": "固定奖励-周日-物品-数量-2"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "Type": "ChallengeListReward",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "alias"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "alias": "别名"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    },
+    {
+      "Attrs": {
+        "reward-item-1": "奖励道具-1",
+        "reward-item-2": "奖励道具-2",
+        "reward-item-3": "奖励道具-3",
+        "reward-item-4": "奖励道具-4",
+        "reward-item-5": "奖励道具-5",
+        "reward-item-6": "奖励道具-6"        
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "reward-money": "奖励-铜币",
+        "reward-account-exp": "奖励-侠义团经验",
+        "reward-item-count-1":"奖励道具-数量-1",
+        "reward-item-count-2":"奖励道具-数量-2",
+        "reward-item-count-3":"奖励道具-数量-3",
+        "reward-item-count-4":"奖励道具-数量-4",
+        "reward-item-count-5":"奖励道具-数量-5",
+        "reward-item-count-6":"奖励道具-数量-6"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    }    
+  ]
+}

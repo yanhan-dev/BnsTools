@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientEditor", "Modules\Cli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerEditor", "Modules\ServerEditor\ServerEditor.csproj", "{FBFDFF7F-2D43-4E38-A075-DE247D4BFA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchSetNpc", "Modules\BatchSetNpc\BatchSetNpc.csproj", "{91278175-D6F7-4414-B01A-8C8D0811C566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatchSetNpc", "Modules\BatchSetNpc\BatchSetNpc.csproj", "{91278175-D6F7-4414-B01A-8C8D0811C566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchBoostJob", "Modules\BatchBoostJob\BatchBoostJob.csproj", "{F8895396-3A1D-4242-8568-38FC23032806}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{91278175-D6F7-4414-B01A-8C8D0811C566}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91278175-D6F7-4414-B01A-8C8D0811C566}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91278175-D6F7-4414-B01A-8C8D0811C566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8895396-3A1D-4242-8568-38FC23032806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8895396-3A1D-4242-8568-38FC23032806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8895396-3A1D-4242-8568-38FC23032806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8895396-3A1D-4242-8568-38FC23032806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{80B7EBFC-34A0-475C-940E-B10364A2A71E} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{FBFDFF7F-2D43-4E38-A075-DE247D4BFA3D} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 		{91278175-D6F7-4414-B01A-8C8D0811C566} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
+		{F8895396-3A1D-4242-8568-38FC23032806} = {A314D295-2BCE-4CC5-91B5-E314DDD67E6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D3A47EFA-CB64-4994-A1CA-C090AB0A53AA}

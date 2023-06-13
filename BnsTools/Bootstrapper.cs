@@ -12,6 +12,7 @@ using Config;
 using ServerEditor;
 using ClientEditor;
 using BatchSetNpc;
+using BatchBoostJob;
 
 namespace BnsTools
 {
@@ -37,6 +38,7 @@ namespace BnsTools
             moduleCatalog.AddModule<ServerEditorModule>();
             moduleCatalog.AddModule<ClientEditorModule>();
             moduleCatalog.AddModule<BatchSetNpcModule>();
+            moduleCatalog.AddModule<BatchBoostJobModule>();
         }
     }
 }
