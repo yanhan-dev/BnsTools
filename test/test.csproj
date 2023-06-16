@@ -10,8 +10,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Modules\XmlEditor\XmlEditor.csproj" />
-  </ItemGroup>
-
 </Project>
