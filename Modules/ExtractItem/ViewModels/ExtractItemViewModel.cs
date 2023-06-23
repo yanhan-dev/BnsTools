@@ -166,8 +166,12 @@ namespace ExtractItem.ViewModels
             ExportLog = "正在翻译物品...";
             foreach (var item in items)
             {
-                
+
                 item.Name = translate.GetValueOrDefault($"Item.Name2.{item.Alias}", item.Alias);
+                if (string.IsNullOrEmpty(item.Name))
+                {
+                    item.Name = item.Alias;
+                }
             }
 
             ExportLog = "正在导出文件...";
@@ -242,7 +246,7 @@ namespace ExtractItem.ViewModels
                 foreach (var xmlFile in Directory.EnumerateFiles(path, "*.xml", SearchOption.TopDirectoryOnly))
                 {
                     XDocument xml = XDocument.Load(xmlFile);
-                    string type = xml.Root.Attribute("type").Value;
+                    string type = xml.Root.Attribute("type")?.Value;
                     if (!string.Equals(type, "item"))
                     {
                         continue;
