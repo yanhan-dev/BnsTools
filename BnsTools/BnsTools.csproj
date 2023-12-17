@@ -1,42 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <AssemblyName>BnsTools</AssemblyName>
-    <RootNamespace>BnsTools</RootNamespace>
-    <Version>1.0.0.2</Version>
-	<FileVersion>1.0.0.2</FileVersion>
-	<AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <Configurations>Debug;Release</Configurations>
-    <Copyright>Copyright © YanHan 2023</Copyright>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;Core</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;Core</DefineConstants>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.5.0" />
-    <PackageReference Include="Autofac.Annotation" Version="4.3.7" />
-    <PackageReference Include="HandyControls" Version="3.4.4" />
-    <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.1" />
-    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
-    <PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common\Common.csproj" />
-    <ProjectReference Include="..\Modules\BatchBoostJob\BatchBoostJob.csproj" />
-    <ProjectReference Include="..\Modules\BatchSetNpc\BatchSetNpc.csproj" />
-    <ProjectReference Include="..\Modules\ClientEditor\ClientEditor.csproj" />
-    <ProjectReference Include="..\Modules\Config\Config.csproj" />
-    <ProjectReference Include="..\Modules\ExtractItem\ExtractItem.csproj" />
-    <ProjectReference Include="..\Modules\Home\Home.csproj" />
-    <ProjectReference Include="..\Modules\RandomStore\RandomStore.csproj" />
-    <ProjectReference Include="..\Modules\Schema\Schema.csproj" />
-    <ProjectReference Include="..\Modules\ServerEditor\ServerEditor.csproj" />
-    <ProjectReference Include="..\Modules\Translate\Translate.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<AssemblyName>BnsTools</AssemblyName>
+		<RootNamespace>BnsTools</RootNamespace>
+		<Version>1.0.0.2</Version>
+		<FileVersion>1.0.0.2</FileVersion>
+		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+		<Configurations>Debug;Release</Configurations>
+		<Copyright>Copyright © YanHan 2023</Copyright>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DefineConstants>TRACE;Core</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>TRACE;Core</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.5.0" />
+		<PackageReference Include="Autofac.Annotation" Version="4.3.7" />
+		<PackageReference Include="HandyControls" Version="3.4.4" />
+		<PackageReference Include="HandyControls.Lang.zh-CN" Version="3.5.0" />
+		<PackageReference Include="Masuit.Tools.Core" Version="2.5.9.1" />
+		<PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+		<PackageReference Include="WpfExtensions.Xaml" Version="1.2.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Common\Common\Common.csproj" />
+		<ProjectReference Include="..\Modules\BatchBoostJob\BatchBoostJob.csproj" />
+		<ProjectReference Include="..\Modules\BatchSetNpc\BatchSetNpc.csproj" />
+		<ProjectReference Include="..\Modules\ClientEditor\ClientEditor.csproj" />
+		<ProjectReference Include="..\Modules\Config\Config.csproj" />
+		<ProjectReference Include="..\Modules\ExtractItem\ExtractItem.csproj" />
+		<ProjectReference Include="..\Modules\Home\Home.csproj" />
+		<ProjectReference Include="..\Modules\RandomStore\RandomStore.csproj" />
+		<ProjectReference Include="..\Modules\Schema\Schema.csproj" />
+		<ProjectReference Include="..\Modules\ServerEditor\ServerEditor.csproj" />
+		<ProjectReference Include="..\Modules\Translate\Translate.csproj" />
+	</ItemGroup>
 </Project>

@@ -35,7 +35,9 @@ namespace Common
                 }
 
                 string alias = element.Attribute("alias").Value;
-                string text = element.Attribute("text")?.Value;
+                //string text = element.Attribute("text")?.Value;
+                string text = element.Elements().LastOrDefault().Value;
+
                 translate[alias] = text;
             }
             return translate;
@@ -44,7 +46,7 @@ namespace Common
         //草他妈的NC, text里的有的技能别名大小写混写, 服务端也混写, 没法匹配, 这么大数据量List性能太差, 只能再做个全小写别名的Dictionary了, 
         private static Dictionary<string, string> TranslateKeyToLower(Dictionary<string, string> translate)
         {
-            return new Dictionary<string, string>(translate.Select(ss => KeyValuePair.Create(ss.Key.ToLowerInvariant(), ss.Value)).DistinctBy(ss=>ss.Key));
+            return new Dictionary<string, string>(translate.Select(ss => KeyValuePair.Create(ss.Key.ToLowerInvariant(), ss.Value)).DistinctBy(ss => ss.Key));
         }
     }
 }
