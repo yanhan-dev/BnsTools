@@ -1,0 +1,72 @@
+{
+  "Type": "random-store-item-group",
+  "TitleAttr": "alias",
+  "DescAttr": [
+    "alias"
+  ],
+  "AttrDesc": [
+    {
+      "Attrs": {
+        "item-1": "物品-1",
+        "item-2": "物品-2",
+        "item-3": "物品-3",
+        "item-4": "物品-4",
+        "item-5": "物品-5",
+        "item-6": "物品-6",
+        "item-7": "物品-7",
+        "item-8": "物品-8",
+        "item-price-item-1": "购买所需物品-1",
+        "item-price-item-2": "购买所需物品-2",
+        "item-price-item-3": "购买所需物品-3",
+        "item-price-item-4": "购买所需物品-4",
+        "item-price-item-5": "购买所需物品-5",
+        "item-price-item-6": "购买所需物品-6",
+        "item-price-item-7": "购买所需物品-7",
+        "item-price-item-8": "购买所需物品-8"
+      },
+      "LocalDesc": null,
+      "TextDesc": [
+        {
+          "Action": "Add",
+          "Params": {
+            "Start": "Item.Name2.",
+            "End": "",
+            "ElseStart": "",
+            "ELseEnd": ""
+          }
+        }
+      ]
+    },
+    {
+      "Attrs": {
+        "item-count-1": "物品数量-1",
+        "item-count-2": "物品数量-2",
+        "item-count-3": "物品数量-3",
+        "item-count-4": "物品数量-4",
+        "item-count-5": "物品数量-5",
+        "item-count-6": "物品数量-6",
+        "item-count-7": "物品数量-7",
+        "item-count-8": "物品数量-8",
+        "item-price-item-amount-1": "购买所需物品数量-1",
+        "item-price-item-amount-2": "购买所需物品数量-2",
+        "item-price-item-amount-3": "购买所需物品数量-3",
+        "item-price-item-amount-4": "购买所需物品数量-4",
+        "item-price-item-amount-5": "购买所需物品数量-5",
+        "item-price-item-amount-6": "购买所需物品数量-6",
+        "item-price-item-amount-7": "购买所需物品数量-7",
+        "item-price-item-amount-8": "购买所需物品数量-8",
+        "item-price-money-1": "购买价格-1",
+        "item-price-money-2": "购买价格-2",
+        "item-price-money-3": "购买价格-3",
+        "item-price-money-4": "购买价格-4",
+        "item-price-money-5": "购买价格-5",
+        "item-price-money-6": "购买价格-6",
+        "item-price-money-7": "购买价格-7",
+        "item-price-money-8": "购买价格-8",
+        "ui-grade": "星级"
+      },
+      "LocalDesc": null,
+      "TextDesc": null
+    }
+  ]
+}

@@ -91,14 +91,14 @@ namespace RandomStore.ViewModels
             _RandomStoreItemGroup = (RandomStoreItemGroup)xmlSerializer.Deserialize(streamReader);
             foreach (var record in _RandomStoreItemGroup.RandomStoreItemGroupRecords)
             {
-                record.Name1 = Translation.Translate.GetValueOrDefault(record.Item1, "未知");
-                record.Name2 = Translation.Translate.GetValueOrDefault(record.Item2, "未知");
-                record.Name3 = Translation.Translate.GetValueOrDefault(record.Item3, "未知");
-                record.Name4 = Translation.Translate.GetValueOrDefault(record.Item4, "未知");
-                record.Name5 = Translation.Translate.GetValueOrDefault(record.Item5, "未知");
-                record.Name6 = Translation.Translate.GetValueOrDefault(record.Item6, "未知");
-                record.Name7 = Translation.Translate.GetValueOrDefault(record.Item7, "未知");
-                record.Name8 = Translation.Translate.GetValueOrDefault(record.Item8, "未知");
+                record.Name1 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item1, "未知");
+                record.Name2 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item2, "未知");
+                record.Name3 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item3, "未知");
+                record.Name4 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item4, "未知");
+                record.Name5 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item5, "未知");
+                record.Name6 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item6, "未知");
+                record.Name7 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item7, "未知");
+                record.Name8 = Translation.Translate.GetValueOrDefault("Item.Name2." + record.Item8, "未知");
             }
 
             RandomStoreItemGroupRecords = new ObservableCollection<RandomStoreItemGroupRecord>(_RandomStoreItemGroup.RandomStoreItemGroupRecords);

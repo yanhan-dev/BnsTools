@@ -33,9 +33,10 @@
         "basic-faction": "势力阵营"
       },
       "LocalDesc": {
-        "0": "无",
-        "1": "武林盟",
-        "2": "浑天教"
+        "factionmain1": "武林盟",
+        "FactionMain1": "武林盟",
+        "factionmain2": "浑天教",
+        "FactionMain2": "浑天教"
       },
       "TextDesc": null
     },

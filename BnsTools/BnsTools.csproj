@@ -5,9 +5,9 @@
 		<UseWPF>true</UseWPF>
 		<AssemblyName>BnsTools</AssemblyName>
 		<RootNamespace>BnsTools</RootNamespace>
-		<Version>1.0.0.2</Version>
-		<FileVersion>1.0.0.2</FileVersion>
-		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<Version>1.0.0.3</Version>
+		<FileVersion>1.0.0.3</FileVersion>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<Configurations>Debug;Release</Configurations>
 		<Copyright>Copyright © YanHan 2023</Copyright>
